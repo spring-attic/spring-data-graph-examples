@@ -65,7 +65,7 @@ body {
 
 #menu h2 {
 	color: #fff;
-	background: #9022AE;
+	background: #F71220;
 	text-transform: uppercase;
 	font-weight:bold;
 	font-size: 12px;
@@ -79,7 +79,7 @@ body {
 }
 
 #menu a:hover {
-	color: #9022AE;
+	color: #F71220;
 	background: #fff;
 }
 

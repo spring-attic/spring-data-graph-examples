@@ -6,6 +6,6 @@
        	<field:input field="lastName" id="c_com_springone_myrestaurants_domain_UserAccount_lastName"/>
        	<field:datetime dateTimePattern="${userAccount_birthdate_date_format}" field="birthDate" id="c_com_springone_myrestaurants_domain_UserAccount_birthDate"/>
        	<field:select field="favorites" id="c_com_springone_myrestaurants_domain_UserAccount_favorites" itemValue="id" items="${restaurants}" multiple="true" path="/restaurants"/>
-	    <field:input field="userName" id="c_com_springone_myrestaurants_domain_UserAccount_userName"/>
+	    <field:input field="userName" readonly="true" id="c_com_springone_myrestaurants_domain_UserAccount_userName"/>
     </form:update>
 </div>
