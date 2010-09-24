@@ -90,6 +90,14 @@ public class SignUpController {
             }
         };
     }
+	
+	Converter<String, Restaurant> getRestaurantConverterFromString() {		
+        return new Converter<String, Restaurant>() {
+            public Restaurant convert(String id) {
+                return restaurantDao.findRestaurant(Long.getLong(id)); 
+            }
+        };
+    }
 
 	Converter<UserAccount, String> getUserAccountConverter() {
         return new Converter<UserAccount, String>() {
@@ -105,6 +113,7 @@ public class SignUpController {
             GenericConversionService conversionService = (GenericConversionService) binder.getConversionService();
             conversionService.addConverter(getRestaurantConverter());
             conversionService.addConverter(getUserAccountConverter());
+            conversionService.addConverter(getRestaurantConverterFromString());
         }
     }
 
