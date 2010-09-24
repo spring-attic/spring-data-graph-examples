@@ -91,10 +91,10 @@ public class SignUpController {
         };
     }
 	
-	Converter<String, Restaurant> getRestaurantConverterFromString() {		
+	Converter<String, Restaurant> getRestaurantConverterFromString() {
         return new Converter<String, Restaurant>() {
             public Restaurant convert(String id) {
-                return restaurantDao.findRestaurant(Long.getLong(id)); 
+                return restaurantDao.findRestaurant(Long.valueOf(id)); 
             }
         };
     }
