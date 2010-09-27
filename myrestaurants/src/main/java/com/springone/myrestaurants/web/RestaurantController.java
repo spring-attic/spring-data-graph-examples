@@ -3,17 +3,22 @@ package com.springone.myrestaurants.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.support.GenericConversionService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.springone.myrestaurants.dao.RestaurantDao;
+import com.springone.myrestaurants.dao.UserAccountDao;
 import com.springone.myrestaurants.domain.Restaurant;
+import com.springone.myrestaurants.domain.UserAccount;
 
 @RequestMapping("/restaurants")
 @Controller
@@ -21,6 +26,9 @@ public class RestaurantController {
 	
 	@Autowired
 	RestaurantDao restaurantDao;
+	
+	@Autowired
+	UserAccountDao userAccountDao;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String show(@PathVariable("id") Long id, Model model) {
@@ -40,6 +48,17 @@ public class RestaurantController {
             model.addAttribute("restaurants", restaurantDao.findAllRestaurants());
         }
         return "restaurants/list";
+    }
+	
+	@ModelAttribute("currentUserAccountId")
+    public String populateCurrentUserName() {
+		String currentUser = SecurityContextHolder.getContext().getAuthentication().getName();
+		UserAccount userAccount = userAccountDao.findByName(currentUser);
+		if (userAccount != null) { 
+			return userAccount.getId().toString();
+		} else {
+			return "USER-ID-NOT-AVAILABLE";
+		}
     }
 
 	Converter<Restaurant, String> getRestaurantConverter() {

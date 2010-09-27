@@ -51,7 +51,8 @@ public class SignUpController {
         addDateTimeFormatPatterns(model);
         return "useraccounts/create";
     }
-
+	
+	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String show(@PathVariable("id") Long id, Model model) {
         addDateTimeFormatPatterns(model);
@@ -77,6 +78,16 @@ public class SignUpController {
         addDateTimeFormatPatterns(model);
         return "useraccounts/update";
     }
+	
+	@RequestMapping(value = "/{username}", params = "form2", method = RequestMethod.GET)
+    public String updateForm(@PathVariable("username") String userName, Model model) {
+		UserAccount userAccount = userAccountDao.findByName(userName);
+        model.addAttribute("userAccount", userAccount);
+        addDateTimeFormatPatterns(model);
+        return "useraccounts/update";
+    }
+	
+
 
 	@ModelAttribute("restaurants")
     public Collection<Restaurant> populateRestaurants() {
