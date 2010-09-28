@@ -117,7 +117,7 @@
               <spring:url value="${path}/${item[typeIdFieldName]}/${currentUserAccountId}" var="favorite_form_url">
                 <spring:param name="favorite" />
               </spring:url>
-              <spring:url value="/resources/images/en.png" var="favorite_image_url" />
+              <spring:url value="/resources/images/fav-new.png" var="favorite_image_url" />
               <form:form action="${fn:escapeXml(favorite_form_url)}" method="PUT">
               	<spring:message arguments="${typeName}" code="entity_favorite" var="favorite_label" />
                 <input alt="${fn:escapeXml(favorite_label)}" class="image" src="${fn:escapeXml(favorite_image_url)}" title="${fn:escapeXml(favorite_label)}" type="image" value="${fn:escapeXml(favorite_label)}" />
