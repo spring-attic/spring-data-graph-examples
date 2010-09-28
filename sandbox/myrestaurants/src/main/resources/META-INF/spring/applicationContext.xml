@@ -79,10 +79,7 @@
     </bean>-->
 
     <tx:annotation-driven mode="aspectj" transaction-manager="transactionManager"/>
-    <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory">
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
-    
+
     <bean class="org.springframework.datastore.graph.neo4j.spi.node.Neo4jNodeBacking" factory-method="aspectOf" />
 
 	<bean class="org.springframework.datastore.graph.neo4j.spi.relationship.Neo4jRelationshipBacking" factory-method="aspectOf" />
@@ -134,5 +131,9 @@
 	<bean id="neo4jUserTransactionService" class="org.neo4j.kernel.impl.transaction.UserTransactionImpl">
 	    <constructor-arg index="0" ref="graphDbService" />
 	</bean>
+
+    <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory" depends-on="org.springframework.datastore.graph.neo4j.spi.node.Neo4jNodeBacking">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
 
 </beans>
