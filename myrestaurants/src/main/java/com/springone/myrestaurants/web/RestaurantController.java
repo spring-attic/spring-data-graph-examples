@@ -1,34 +1,22 @@
 package com.springone.myrestaurants.web;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.support.GenericConversionService;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.springone.myrestaurants.dao.RestaurantDao;
-import com.springone.myrestaurants.dao.UserAccountDao;
 import com.springone.myrestaurants.domain.Restaurant;
 import com.springone.myrestaurants.domain.UserAccount;
 
 @RequestMapping("/restaurants")
 @Controller
-public class RestaurantController {
+public class RestaurantController extends BaseApplicationController {
 	
-	@Autowired
-	RestaurantDao restaurantDao;
-	
-	@Autowired
-	UserAccountDao userAccountDao;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String show(@PathVariable("id") Long id, Model model) {
@@ -38,7 +26,9 @@ public class RestaurantController {
     }
 
 	@RequestMapping(method = RequestMethod.GET)
-    public String list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model model) {
+    public String list(@RequestParam(value = "page", required = false) Integer page, 
+    				   @RequestParam(value = "size", required = false) Integer size, 
+    				   Model model) {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             model.addAttribute("restaurants", restaurantDao.findRestaurantEntries(page == null ? 0 : (page.intValue() - 1) * sizeNo, sizeNo));
@@ -50,24 +40,22 @@ public class RestaurantController {
         return "restaurants/list";
     }
 	
-	@ModelAttribute("currentUserAccountId")
-    public String populateCurrentUserName() {
-		String currentUser = SecurityContextHolder.getContext().getAuthentication().getName();
-		UserAccount userAccount = userAccountDao.findByName(currentUser);
-		if (userAccount != null) { 
-			return userAccount.getId().toString();
-		} else {
-			return "USER-ID-NOT-AVAILABLE";
-		}
+	@RequestMapping(value = "/{id}/{userId}", params = "favorite", method = RequestMethod.PUT)
+    public String addFavoriteRestaurant(@PathVariable("id") Long id, 
+    									@PathVariable("userId") Long userId, 
+    									Model model) {
+		Restaurant restaurant = this.restaurantDao.findRestaurant(id);
+		UserAccount account = this.userAccountDao.findUserAccount(userId);    
+		account.getFavorites().add(restaurant);
+		this.userAccountDao.persist(account);
+        addDateTimeFormatPatterns(model);       
+        model.addAttribute("useraccount", account);
+        model.addAttribute("itemId", id);
+        return "redirect:/useraccounts/" + account.getId();
     }
 
-	Converter<Restaurant, String> getRestaurantConverter() {
-        return new Converter<Restaurant, String>() {
-            public String convert(Restaurant restaurant) {
-                return new StringBuilder().append(restaurant.getName()).append(" ").append(restaurant.getCity()).append(" ").append(restaurant.getState()).toString();
-            }
-        };
-    }
+
+
 
 	@InitBinder
     void registerConverters(WebDataBinder binder) {

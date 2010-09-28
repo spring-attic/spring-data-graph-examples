@@ -9,6 +9,7 @@
   <jsp:directive.attribute name="create" type="java.lang.Boolean" required="false" description="Include 'create' link into table (default true)" />
   <jsp:directive.attribute name="update" type="java.lang.Boolean" required="false" description="Include 'update' link into table (default true)" />
   <jsp:directive.attribute name="delete" type="java.lang.Boolean" required="false" description="Include 'delete' link into table (default true)" />
+  <jsp:directive.attribute name="favorite" type="java.lang.Boolean" required="false" description="Include 'favorite' restaurant link into table (default false)" />
   <jsp:directive.attribute name="render" type="java.lang.Boolean" required="false" description="Indicate if the contents of this tag and all enclosed tags should be rendered (default 'true')" />
   <jsp:directive.attribute name="z" type="java.lang.String" required="false" description="Used for checking if element has been modified (to recalculate simply provide empty string value)" />
 
@@ -31,6 +32,10 @@
     <c:if test="${empty delete}">
       <c:set var="delete" value="true" />
     </c:if>
+    
+    <c:if test="${empty favorite}">
+      <c:set var="favorite" value="false" />
+    </c:if>
 
     <c:set var="typeName" value="${fn:split(id,'_')[fn:length(fn:split(id,'_')) - 1]}" />
     <c:set var="lengths" value="${fn:split(columnMaxLengths, ',')}" scope="request" />
@@ -48,6 +53,9 @@
             <th></th>
           </c:if>
           <c:if test="${delete}">
+            <th></th>
+          </c:if>
+          <c:if test="${favorite}">
             <th></th>
           </c:if>
         </tr>
@@ -102,6 +110,24 @@
                   <input name="size" type="hidden" value="${fn:escapeXml(param.size)}" />
                 </c:if>
               </form:form>
+            </td>
+          </c:if>
+          <c:if test="${favorite}">
+            <td>
+              <spring:url value="${path}/${item[typeIdFieldName]}/${currentUserAccountId}" var="favorite_form_url">
+                <spring:param name="favorite" />
+              </spring:url>
+              <spring:url value="/resources/images/en.png" var="favorite_image_url" />
+              <form:form action="${fn:escapeXml(favorite_form_url)}" method="PUT">
+              	<spring:message arguments="${typeName}" code="entity_favorite" var="favorite_label" />
+                <input alt="${fn:escapeXml(favorite_label)}" class="image" src="${fn:escapeXml(favorite_image_url)}" title="${fn:escapeXml(favorite_label)}" type="image" value="${fn:escapeXml(favorite_label)}" />
+                <c:if test="${not empty param.page}">
+                  <input name="page" type="hidden" value="${fn:escapeXml(param.page)}" />
+                </c:if>
+                <c:if test="${not empty param.size}">
+                  <input name="size" type="hidden" value="${fn:escapeXml(param.size)}" />
+                </c:if>
+              </form:form>              	             
             </td>
           </c:if>
         </tr>

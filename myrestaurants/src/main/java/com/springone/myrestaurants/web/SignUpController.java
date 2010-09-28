@@ -4,9 +4,6 @@ import java.util.Collection;
 
 import javax.validation.Valid;
 
-import org.joda.time.format.DateTimeFormat;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.support.GenericConversionService;
 import org.springframework.stereotype.Controller;
@@ -19,20 +16,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.springone.myrestaurants.dao.RestaurantDao;
-import com.springone.myrestaurants.dao.UserAccountDao;
 import com.springone.myrestaurants.domain.Restaurant;
 import com.springone.myrestaurants.domain.UserAccount;
 
 @RequestMapping("/useraccounts")
 @Controller
-public class SignUpController {
+public class SignUpController extends BaseApplicationController {
 
-	@Autowired
-	RestaurantDao restaurantDao;
-
-	@Autowired
-	UserAccountDao userAccountDao;
 
 	@RequestMapping(method = RequestMethod.POST)
     public String create(@Valid UserAccount userAccount, BindingResult result, Model model) {
@@ -94,14 +84,7 @@ public class SignUpController {
         return restaurantDao.findAllRestaurants();
     }
 
-	Converter<Restaurant, String> getRestaurantConverter() {
-        return new Converter<Restaurant, String>() {
-            public String convert(Restaurant restaurant) {
-                return new StringBuilder().append(restaurant.getName()).append(" ").append(restaurant.getCity()).append(" ").append(restaurant.getState()).toString();
-            }
-        };
-    }
-	
+
 	Converter<String, Restaurant> getRestaurantConverterFromString() {
         return new Converter<String, Restaurant>() {
             public Restaurant convert(String id) {
@@ -128,7 +111,4 @@ public class SignUpController {
         }
     }
 
-	void addDateTimeFormatPatterns(Model model) {
-        model.addAttribute("userAccount_birthdate_date_format", DateTimeFormat.patternForStyle("S-", LocaleContextHolder.getLocale()));
-    }
 }
