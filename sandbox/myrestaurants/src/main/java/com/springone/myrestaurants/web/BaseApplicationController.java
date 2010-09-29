@@ -5,27 +5,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import com.springone.myrestaurants.dao.RestaurantDao;
-import com.springone.myrestaurants.dao.UserAccountDao;
+import com.springone.myrestaurants.data.RestaurantRepository;
+import com.springone.myrestaurants.data.UserAccountRepository;
 import com.springone.myrestaurants.domain.Restaurant;
 import com.springone.myrestaurants.domain.UserAccount;
 
+@Transactional
 public class BaseApplicationController {
 
 	@Autowired
-	RestaurantDao restaurantDao;
+	RestaurantRepository restaurantRepository;
 
 	@Autowired
-	UserAccountDao userAccountDao;
+	UserAccountRepository userAccountRepository;
 
 	@ModelAttribute("currentUserAccountId")
 	public String populateCurrentUserName() {
 		String currentUser = SecurityContextHolder.getContext()
 				.getAuthentication().getName();
-		UserAccount userAccount = userAccountDao.findByName(currentUser);
+		UserAccount userAccount = userAccountRepository.findByName(currentUser);
 		if (userAccount != null) {
 			return userAccount.getId().toString();
 		} else {

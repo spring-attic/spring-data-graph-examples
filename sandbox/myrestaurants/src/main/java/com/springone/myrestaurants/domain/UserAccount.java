@@ -19,6 +19,7 @@ import javax.persistence.Version;
 import org.springframework.datastore.graph.api.GraphEntity;
 import org.springframework.datastore.graph.api.GraphEntityProperty;
 import org.springframework.datastore.graph.api.GraphEntityRelationship;
+import org.springframework.datastore.graph.api.GraphEntityRelationshipEntity;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -39,6 +40,10 @@ public class UserAccount {
     @GraphEntityRelationship(type = "friends", elementClass = UserAccount.class)
     @Transient
     Set<UserAccount> friends;
+
+    @GraphEntityRelationshipEntity(type = "recommends", elementClass = Recommendation.class)
+    @Transient
+    Iterable<Recommendation> recommendations;
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "S-")
@@ -118,6 +123,17 @@ public class UserAccount {
 
 	public void setFavorites(Set<Restaurant> favorites) {
         this.favorites = favorites;
+    }
+
+    public Recommendation rate(Restaurant restaurant, int stars, String comment) {
+    	// TODO:
+        //Recommendation recommendation = (Recommendation) relateTo(restaurant, Recommendation.class, "recommends");
+        //recommendation.rate(stars, comment);
+        //return recommendation;
+    	return null;
+    }
+    public Iterable<Recommendation> getRecommendations() {
+        return recommendations;
     }
 
 	public String toString() {

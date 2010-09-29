@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.support.GenericConversionService;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -31,7 +32,7 @@ public class SignUpController extends BaseApplicationController {
             addDateTimeFormatPatterns(model);
             return "useraccounts/create";
         }
-        userAccountDao.persist(userAccount);
+        userAccountRepository.persist(userAccount);
         return "redirect:/useraccounts/" + userAccount.getId();
     }
 
@@ -46,7 +47,7 @@ public class SignUpController extends BaseApplicationController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String show(@PathVariable("id") Long id, Model model) {
         addDateTimeFormatPatterns(model);
-        model.addAttribute("useraccount", userAccountDao.findUserAccount(id));
+        model.addAttribute("useraccount", userAccountRepository.findUserAccount(id));
         model.addAttribute("itemId", id);
         return "useraccounts/show";
     }
@@ -58,20 +59,20 @@ public class SignUpController extends BaseApplicationController {
             addDateTimeFormatPatterns(model);
             return "useraccounts/update";
         }
-        userAccountDao.merge(userAccount);
+        userAccountRepository.merge(userAccount);
         return "redirect:/useraccounts/" + userAccount.getId();
     }
 
 	@RequestMapping(value = "/{id}", params = "form", method = RequestMethod.GET)
     public String updateForm(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("userAccount", userAccountDao.findUserAccount(id));
+        model.addAttribute("userAccount", userAccountRepository.findUserAccount(id));
         addDateTimeFormatPatterns(model);
         return "useraccounts/update";
     }
 	
 	@RequestMapping(value = "/{username}", params = "form2", method = RequestMethod.GET)
     public String updateForm(@PathVariable("username") String userName, Model model) {
-		UserAccount userAccount = userAccountDao.findByName(userName);
+		UserAccount userAccount = userAccountRepository.findByName(userName);
         model.addAttribute("userAccount", userAccount);
         addDateTimeFormatPatterns(model);
         return "useraccounts/update";
@@ -81,14 +82,14 @@ public class SignUpController extends BaseApplicationController {
 
 	@ModelAttribute("restaurants")
     public Collection<Restaurant> populateRestaurants() {
-        return restaurantDao.findAllRestaurants();
+        return restaurantRepository.findAllRestaurants();
     }
 
 
 	Converter<String, Restaurant> getRestaurantConverterFromString() {
         return new Converter<String, Restaurant>() {
             public Restaurant convert(String id) {
-                return restaurantDao.findRestaurant(Long.valueOf(id)); 
+                return restaurantRepository.findRestaurant(Long.valueOf(id)); 
             }
         };
     }

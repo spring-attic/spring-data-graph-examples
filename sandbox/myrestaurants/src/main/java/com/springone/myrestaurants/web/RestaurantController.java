@@ -20,7 +20,7 @@ public class RestaurantController extends BaseApplicationController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String show(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("restaurant", restaurantDao.findRestaurant(id));
+        model.addAttribute("restaurant", restaurantRepository.findRestaurant(id));
         model.addAttribute("itemId", id);
         return "restaurants/show";
     }
@@ -31,11 +31,11 @@ public class RestaurantController extends BaseApplicationController {
     				   Model model) {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
-            model.addAttribute("restaurants", restaurantDao.findRestaurantEntries(page == null ? 0 : (page.intValue() - 1) * sizeNo, sizeNo));
-            float nrOfPages = (float) restaurantDao.countRestaurants() / sizeNo;
+            model.addAttribute("restaurants", restaurantRepository.findRestaurantEntries(page == null ? 0 : (page.intValue() - 1) * sizeNo, sizeNo));
+            float nrOfPages = (float) restaurantRepository.countRestaurants() / sizeNo;
             model.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            model.addAttribute("restaurants", restaurantDao.findAllRestaurants());
+            model.addAttribute("restaurants", restaurantRepository.findAllRestaurants());
         }
         return "restaurants/list";
     }
@@ -44,10 +44,10 @@ public class RestaurantController extends BaseApplicationController {
     public String addFavoriteRestaurant(@PathVariable("id") Long id, 
     									@PathVariable("userId") Long userId, 
     									Model model) {
-		Restaurant restaurant = this.restaurantDao.findRestaurant(id);
-		UserAccount account = this.userAccountDao.findUserAccount(userId);    
+		Restaurant restaurant = this.restaurantRepository.findRestaurant(id);
+		UserAccount account = this.userAccountRepository.findUserAccount(userId);    
 		account.getFavorites().add(restaurant);
-		this.userAccountDao.persist(account);
+		this.userAccountRepository.persist(account);
         addDateTimeFormatPatterns(model);       
         model.addAttribute("useraccount", account);
         model.addAttribute("itemId", id);
