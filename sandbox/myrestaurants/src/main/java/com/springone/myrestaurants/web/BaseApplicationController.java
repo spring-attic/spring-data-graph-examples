@@ -14,7 +14,7 @@ import com.springone.myrestaurants.data.UserAccountRepository;
 import com.springone.myrestaurants.domain.Restaurant;
 import com.springone.myrestaurants.domain.UserAccount;
 
-@Transactional
+//@Transactional
 public class BaseApplicationController {
 
 	@Autowired

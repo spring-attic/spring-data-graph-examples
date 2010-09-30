@@ -18,7 +18,9 @@ public class UserAccountRepository {
 	@Transactional
 	public UserAccount findUserAccount(Long id) {
         if (id == null) return null;
-        return entityManager.find(UserAccount.class, id);
+        final UserAccount userAccount = entityManager.find(UserAccount.class, id);
+        userAccount.getId();
+        return userAccount;
     }
     @Transactional
 	public UserAccount findByName(String name) {

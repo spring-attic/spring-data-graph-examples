@@ -4,6 +4,7 @@
    	<form:update id="fu_com_springone_myrestaurants_domain_UserAccount" modelAttribute="userAccount" path="/useraccounts">
        	<field:input field="firstName" id="c_com_springone_myrestaurants_domain_UserAccount_firstName"/>
        	<field:input field="lastName" id="c_com_springone_myrestaurants_domain_UserAccount_lastName"/>
+       	<field:input field="nickname" id="c_com_springone_myrestaurants_domain_UserAccount_nickname"/>
        	<field:datetime dateTimePattern="${userAccount_birthdate_date_format}" field="birthDate" id="c_com_springone_myrestaurants_domain_UserAccount_birthDate"/>
        	<field:select field="favorites" id="c_com_springone_myrestaurants_domain_UserAccount_favorites" itemValue="id" items="${restaurants}" multiple="true" path="/restaurants"/>
 	    <field:input field="userName" readonly="true" id="c_com_springone_myrestaurants_domain_UserAccount_userName"/>
