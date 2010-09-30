@@ -20,8 +20,7 @@ public class UserAccountRepository {
         if (id == null) return null;
         return entityManager.find(UserAccount.class, id);
     }
-	
-	@Transactional
+    @Transactional
 	public UserAccount findByName(String name) {
 		if (name == null) return null;		
 		Query q = entityManager.createQuery("SELECT u FROM UserAccount u WHERE u.userName = :username");
@@ -30,7 +29,9 @@ public class UserAccountRepository {
 		java.util.List resultList = q.getResultList();
 		if (resultList.size() > 0)
 		{
-			return (UserAccount) resultList.get(0);
+            final UserAccount userAccount = (UserAccount) resultList.get(0);
+            userAccount.getId();
+            return userAccount;
 		} 
 		return null;
 	}
@@ -38,10 +39,12 @@ public class UserAccountRepository {
 	@Transactional
     public void persist(UserAccount userAccount) {
         this.entityManager.persist(userAccount);
+        userAccount.getId();
     }
 
 	@Transactional
     public UserAccount merge(UserAccount userAccount) {
+        userAccount.getId();
         UserAccount merged = this.entityManager.merge(userAccount);
         this.entityManager.flush();
         return merged;

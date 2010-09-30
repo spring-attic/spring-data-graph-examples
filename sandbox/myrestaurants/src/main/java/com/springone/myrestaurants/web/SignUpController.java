@@ -59,8 +59,8 @@ public class SignUpController extends BaseApplicationController {
             addDateTimeFormatPatterns(model);
             return "useraccounts/update";
         }
-        userAccountRepository.merge(userAccount);
-        return "redirect:/useraccounts/" + userAccount.getId();
+        final UserAccount mergedAccount = userAccountRepository.merge(userAccount);
+        return "redirect:/useraccounts/" + mergedAccount.getId();
     }
 
 	@RequestMapping(value = "/{id}", params = "form", method = RequestMethod.GET)
