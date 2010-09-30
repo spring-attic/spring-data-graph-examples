@@ -21,6 +21,7 @@ import org.springframework.datastore.graph.api.GraphEntityProperty;
 import org.springframework.datastore.graph.api.GraphEntityRelationship;
 import org.springframework.datastore.graph.api.GraphEntityRelationshipEntity;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.persistence.RelatedEntity;
 
 @Entity
 @Table(name = "user_account")
@@ -126,11 +127,9 @@ public class UserAccount {
     }
 
     public Recommendation rate(Restaurant restaurant, int stars, String comment) {
-    	// TODO:
-        //Recommendation recommendation = (Recommendation) relateTo(restaurant, Recommendation.class, "recommends");
-        //recommendation.rate(stars, comment);
-        //return recommendation;
-    	return null;
+        Recommendation recommendation = (Recommendation) relateTo(restaurant, Recommendation.class, "recommends");
+        recommendation.rate(stars, comment);
+        return recommendation;
     }
     public Iterable<Recommendation> getRecommendations() {
         return recommendations;

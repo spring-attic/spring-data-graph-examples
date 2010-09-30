@@ -7,7 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Version;
 
+import org.springframework.datastore.graph.api.GraphEntity;
+
 @Entity
+@GraphEntity(partial = true)
 public class Restaurant {
 
     private String name;
