@@ -22,6 +22,7 @@ import org.springframework.datastore.graph.api.GraphEntityRelationship;
 import org.springframework.datastore.graph.api.GraphEntityRelationshipEntity;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.persistence.RelatedEntity;
+import org.springframework.transaction.annotation.Transactional;
 
 @Entity
 @Table(name = "user_account")
@@ -50,7 +51,15 @@ public class UserAccount {
     @DateTimeFormat(style = "S-")
     private Date birthDate;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    public Set<UserAccount> getFriends() {
+		return friends;
+	}
+
+	public void setFriends(Set<UserAccount> friends) {
+		this.friends = friends;
+	}
+
+	@ManyToMany(cascade = CascadeType.ALL)
     private Set<Restaurant> favorites = new java.util.HashSet<Restaurant>();
 
 	@Id
@@ -126,6 +135,7 @@ public class UserAccount {
         this.favorites = favorites;
     }
 
+	@Transactional
     public Recommendation rate(Restaurant restaurant, int stars, String comment) {
         Recommendation recommendation = (Recommendation) relateTo(restaurant, Recommendation.class, "recommends");
         recommendation.rate(stars, comment);

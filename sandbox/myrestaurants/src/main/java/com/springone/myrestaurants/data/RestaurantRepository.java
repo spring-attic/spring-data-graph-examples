@@ -20,7 +20,9 @@ public class RestaurantRepository {
 	public Restaurant findRestaurant(Long id) {
 		if (id == null) return null;
 		final Restaurant rest = entityManager.find(Restaurant.class, id);
-		rest.getId();
+		if (rest != null) {
+			rest.getId();
+		}
 		return rest;
     }
 

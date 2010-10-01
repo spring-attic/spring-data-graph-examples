@@ -1,5 +1,7 @@
 package com.springone.myrestaurants.data;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -7,6 +9,7 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.springone.myrestaurants.domain.Restaurant;
 import com.springone.myrestaurants.domain.UserAccount;
 
 @Repository
@@ -19,7 +22,9 @@ public class UserAccountRepository {
 	public UserAccount findUserAccount(Long id) {
         if (id == null) return null;
         final UserAccount userAccount = entityManager.find(UserAccount.class, id);
-        userAccount.getId();
+        if (userAccount != null) {
+        	userAccount.getId();
+        }
         return userAccount;
     }
     @Transactional
@@ -32,11 +37,31 @@ public class UserAccountRepository {
 		if (resultList.size() > 0)
 		{
             final UserAccount userAccount = (UserAccount) resultList.get(0);
-            userAccount.getId();
+            if (userAccount != null) {
+            	userAccount.getId();
+            }
             return userAccount;
 		} 
 		return null;
 	}
+    
+	@SuppressWarnings("unchecked")
+	@Transactional(readOnly=true)
+    public List<UserAccount> findAllUserAccounts() {
+        return entityManager.createQuery("select o from UserAccount o").getResultList();
+    }
+	   
+	@SuppressWarnings("unchecked")
+	@Transactional(readOnly=true)
+    public List<UserAccount> findUserAccountEntries(int firstResult, int maxResults) {
+        return entityManager.createQuery("select o from UserAccount o").setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+	
+	
+	@Transactional
+	public long countUserAccounts() {
+        return ((Number) entityManager.createQuery("select count(o) from UserAccount o").getSingleResult()).longValue();
+    }
 
 	@Transactional
     public void persist(UserAccount userAccount) {

@@ -24,15 +24,23 @@ public class BaseApplicationController {
 	UserAccountRepository userAccountRepository;
 
 	@ModelAttribute("currentUserAccountId")
-	public String populateCurrentUserId() {
-		String currentUser = SecurityContextHolder.getContext()
-				.getAuthentication().getName();
-		UserAccount userAccount = userAccountRepository.findByName(currentUser);
+	public String populateModelWithCurrentUserAccountIdAsString() {
+		UserAccount userAccount = getCurrentUserAccount();
 		if (userAccount != null) {
 			return userAccount.getId().toString();
 		} else {
 			return "USER-ID-NOT-AVAILABLE";
 		}
+	}
+
+	private UserAccount getCurrentUserAccount() {
+		String currentUser = SecurityContextHolder.getContext()
+				.getAuthentication().getName();
+		UserAccount userAccount = userAccountRepository.findByName(currentUser);
+		if (userAccount != null) {
+			userAccount.getId();
+		}
+		return userAccount;
 	}
 
 	void addDateTimeFormatPatterns(Model model) {
