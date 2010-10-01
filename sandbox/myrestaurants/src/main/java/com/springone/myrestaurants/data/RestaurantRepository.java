@@ -18,8 +18,10 @@ public class RestaurantRepository {
 
 	@Transactional
 	public Restaurant findRestaurant(Long id) {
-        if (id == null) return null;
-        return entityManager.find(Restaurant.class, id);
+		if (id == null) return null;
+		final Restaurant rest = entityManager.find(Restaurant.class, id);
+		rest.getId();
+		return rest;
     }
 
 	@SuppressWarnings("unchecked")

@@ -14,7 +14,7 @@ import com.springone.myrestaurants.data.UserAccountRepository;
 import com.springone.myrestaurants.domain.Restaurant;
 import com.springone.myrestaurants.domain.UserAccount;
 
-//@Transactional
+@Transactional
 public class BaseApplicationController {
 
 	@Autowired
@@ -24,7 +24,7 @@ public class BaseApplicationController {
 	UserAccountRepository userAccountRepository;
 
 	@ModelAttribute("currentUserAccountId")
-	public String populateCurrentUserName() {
+	public String populateCurrentUserId() {
 		String currentUser = SecurityContextHolder.getContext()
 				.getAuthentication().getName();
 		UserAccount userAccount = userAccountRepository.findByName(currentUser);
