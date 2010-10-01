@@ -25,14 +25,7 @@ public class RecommendationController extends BaseApplicationController {
     				   @ModelAttribute("currentUserAccountId") String userIdAsString, 
     				   Model model) {
 		
-		UserAccount account = this.userAccountRepository.findUserAccount(Long.parseLong(userIdAsString));
-		Iterable<Recommendation> recs = account.getRecommendations();
-		Recommendation foundRec = null;
-		for (Recommendation recommendation : recs) {
-			if (recommendation.getId().equals(recommendationId)) {
-				foundRec = recommendation;
-			}
-		}
+		Recommendation foundRec = findRecommendation(userIdAsString, recommendationId);
 		RecommendationFormBean bean = new RecommendationFormBean();
 		if (foundRec != null) {
 			bean.setComments(foundRec.getComment());
@@ -43,6 +36,20 @@ public class RecommendationController extends BaseApplicationController {
 		model.addAttribute("recommendation", bean);
         return "recommendations/show";
     }
+
+
+	private Recommendation findRecommendation(String userIdAsString,
+			Long recommendationId) {
+		UserAccount account = this.userAccountRepository.findUserAccount(Long.parseLong(userIdAsString));
+		Iterable<Recommendation> recs = account.getRecommendations();
+		Recommendation foundRec = null;
+		for (Recommendation recommendation : recs) {
+			if (recommendation.getId().equals(recommendationId)) {
+				foundRec = recommendation;
+			}
+		}
+		return foundRec;
+	}
 	
 	
 	@RequestMapping(method = RequestMethod.GET)
@@ -50,16 +57,7 @@ public class RecommendationController extends BaseApplicationController {
     				   @RequestParam(value = "size", required = false) Integer size, 
     				   @ModelAttribute("currentUserAccountId") String userIdAsString,
     				   Model model) {
-		/*
-        if (page != null || size != null) {
-            int sizeNo = size == null ? 10 : size.intValue();
-            model.addAttribute("restaurants", restaurantRepository.findRestaurantEntries(page == null ? 0 : (page.intValue() - 1) * sizeNo, sizeNo));
-            float nrOfPages = (float) restaurantRepository.countRestaurants() / sizeNo;
-            model.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
-        } else {
-            model.addAttribute("restaurants", restaurantRepository.findAllRestaurants());
-        }*/
-		
+
 		UserAccount account = this.userAccountRepository.findUserAccount(Long.parseLong(userIdAsString));
 		Iterable<Recommendation> recs = account.getRecommendations();
 		//View expects a list with indexer access and properties that match those of the form bean.
@@ -114,11 +112,60 @@ public class RecommendationController extends BaseApplicationController {
         //model.addAttribute("userId", userId.toString());
         return "recommendations/create"; ///" + restaurantId + "/" + userId;
     }
-	/*
-	 * @RequestMapping(value = "/{id}", method = RequestMethod.GET) public
-	 * String show(@PathVariable("id") Long id, Model model) {
-	 * model.addAttribute("recommendation",
-	 * Recommendation.findRecommendation(id)); model.addAttribute("itemId", id);
-	 * return "recommendations/show"; }
-	 */
+	
+    @RequestMapping(method = RequestMethod.PUT)
+    public String update(RecommendationFormBean recommendationFormBean, 
+    					 @ModelAttribute("currentUserAccountId") String userIdAsString,
+    				     BindingResult result, 
+    				     Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("recommendation", recommendationFormBean);
+            return "recommendations/update";
+        }
+        Recommendation foundRec = findRecommendation(userIdAsString, recommendationFormBean.getId());
+        foundRec.rate(recommendationFormBean.getRating(), recommendationFormBean.getComments());  
+        model.addAttribute("itemId", recommendationFormBean.getId());
+        return "redirect:/recommendations/" + recommendationFormBean.getId();
+    }
+	
+    @RequestMapping(value = "/{id}", params = "form", method = RequestMethod.GET)
+    public String updateForm(@PathVariable("id") Long id, 
+    						 @ModelAttribute("currentUserAccountId") String userIdAsString,
+    						 Model model) {
+    	Recommendation foundRec = findRecommendation(userIdAsString, id);
+    	RecommendationFormBean recBean = new RecommendationFormBean();
+    	if (foundRec != null) {
+    	  recBean.setComments(foundRec.getComment());   
+    	  recBean.setId(foundRec.getId());
+    	  recBean.setRating(foundRec.getStars());
+    
+    	  //TODO navigation to restaurant is to be fixed 
+    	  //recBean.setName(foundRec.getRestaurant().getName());
+    	  //recBean.setRestaurantId(foundRec.getRestaurant().getId());
+    	}
+        model.addAttribute("recommendation", recBean);
+        model.addAttribute("itemId", recBean.getId());
+        return "recommendations/update";
+    }
+	
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public String delete(@PathVariable("id") Long id, 
+    				     @RequestParam(value = "page", required = false) Integer page, 
+    					 @RequestParam(value = "size", required = false) Integer size, 
+    					 @ModelAttribute("currentUserAccountId") String userIdAsString,
+    					 Model model) {
+    	Recommendation foundRec = findRecommendation(userIdAsString, id);
+    	if (foundRec != null) {
+    		if (foundRec.hasUnderlyingRelationship()) {
+    			foundRec.getUnderlyingState().delete();
+    		}
+    	}
+        model.addAttribute("page", (page == null) ? "1" : page.toString());
+        model.addAttribute("size", (size == null) ? "10" : size.toString());
+        return "redirect:/recommendations?page=" + ((page == null) ? "1" : page.toString()) + "&size=" + ((size == null) ? "10" : size.toString());
+    }
+    
+
+	
+	
 }
