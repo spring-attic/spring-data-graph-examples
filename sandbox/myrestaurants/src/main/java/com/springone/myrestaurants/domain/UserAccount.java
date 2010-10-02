@@ -60,7 +60,7 @@ public class UserAccount {
 	}
 
 	@ManyToMany(cascade = CascadeType.ALL)
-    private Set<Restaurant> favorites = new java.util.HashSet<Restaurant>();
+    private Set<Restaurant> favorites;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
