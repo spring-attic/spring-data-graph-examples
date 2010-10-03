@@ -1,5 +1,7 @@
 package com.springone.myrestaurants.data;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -50,7 +52,28 @@ public class RestaurantRepositoryTests {
     @Test
     public void testFindRestaurant() {
     	Restaurant r = repo.findRestaurant(1L);
-    	Assert.assertNotNull(r);
+    	Assert.assertNotNull("should have found something" ,r);
+    	Assert.assertEquals("should have found the right one", "Boston Market", r.getName());
     }
 
+    @Transactional
+    @Test
+    public void testFindAllRestaurants() {
+    	List<Restaurant> l = repo.findAllRestaurants();
+    	Assert.assertEquals("should have found them all", 50, l.size());
+    }
+
+    @Transactional
+    @Test
+    public void testFindRestaurantEntries() {
+    	List<Restaurant> l = repo.findRestaurantEntries(20, 10);
+    	Assert.assertEquals("should have found correct number of entries", 10, l.size());
+    }
+
+    @Transactional
+    @Test
+    public void testCountRestaurants() {
+    	long l = repo.countRestaurants();
+    	Assert.assertEquals("should be the correctnumber", 50, l);
+    }
 }
