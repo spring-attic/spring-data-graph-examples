@@ -25,7 +25,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.springone.myrestaurants.domain.Restaurant;
 import com.springone.myrestaurants.domain.UserAccount;
 
 @RunWith(SpringJUnit4ClassRunner.class)
