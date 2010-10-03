@@ -122,15 +122,15 @@ public class UserAccountRepositoryTests {
     	separateTx.begin();
     	UserAccount user = separateTxEm.find(UserAccount.class, id);
     	separateTxEm.flush();
-    	Assert.assertTrue("entity is part of separate tx", separateTxEm.contains(user));
+    	Assert.assertTrue("entity is part of separate em", separateTxEm.contains(user));
     	separateTx.commit();
     	separateTxEm.detach(user);
-    	Assert.assertFalse("entity is no longer part of separate tx", separateTxEm.contains(user));
-    	Assert.assertFalse("entity is not part of main tx", separateTxEm.contains(user));
+    	Assert.assertFalse("entity is no longer part of separate em", separateTxEm.contains(user));
+    	Assert.assertFalse("entity is not part of main em", em.contains(user));
     	user.setLastName("Hendrix");
     	UserAccount mergedUser = repo.merge(user);
     	em.flush();
-    	Assert.assertTrue("entity is now part of main tx", em.contains(mergedUser));
+    	Assert.assertTrue("entity is now part of main em", em.contains(mergedUser));
 		List results = em.createNativeQuery("select id, user_name, last_name from user_account where id = ?")
 				.setParameter(1, id).getResultList();
 		Assert.assertEquals("should have found the entry", 1, results.size());
