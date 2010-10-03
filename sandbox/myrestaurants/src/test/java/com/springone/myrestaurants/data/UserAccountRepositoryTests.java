@@ -22,6 +22,8 @@ import org.springframework.datastore.graph.neo4j.support.GraphDatabaseContext;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.AfterTransaction;
+import org.springframework.test.context.transaction.BeforeTransaction;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,6 +34,8 @@ import com.springone.myrestaurants.domain.UserAccount;
 public class UserAccountRepositoryTests {
 
     protected final Log log = LogFactory.getLog(getClass());
+    
+    private Long userId;
 
     @Autowired
     PlatformTransactionManager transactionManager;
@@ -48,6 +52,22 @@ public class UserAccountRepositoryTests {
     @Autowired
     UserAccountRepository repo;
 
+    @BeforeTransaction
+    public void setUp() {
+    	EntityManager setUpEm = emf.createEntityManager();
+    	EntityTransaction setUpTx = setUpEm.getTransaction();
+    	setUpTx.begin();
+    	UserAccount u = new UserAccount();
+    	u.setFirstName("Bubba");
+    	u.setLastName("Jones");
+    	u.setBirthDate(new Date());
+    	u.setUserName("user");
+    	setUpEm.persist(u);
+    	setUpEm.flush();
+    	this.userId = u.getId();
+    	setUpTx.commit();
+    }
+    
     @Transactional
     @Rollback(false)
     @Before
@@ -58,15 +78,7 @@ public class UserAccountRepositoryTests {
     @Transactional
     @Test
     public void testFindUser() {
-    	UserAccount u = new UserAccount();
-    	u.setFirstName("Bubba");
-    	u.setLastName("Jones");
-    	u.setBirthDate(new Date());
-    	u.setUserName("user");
-    	em.persist(u);
-    	em.flush();
-    	long id = u.getId();
-    	UserAccount o = repo.findUserAccount(id);
+    	UserAccount o = repo.findUserAccount(userId);
     	Assert.assertNotNull("should have found something" ,o);
     	Assert.assertEquals("should have found the right one", "user", o.getUserName());
     }
@@ -74,33 +86,25 @@ public class UserAccountRepositoryTests {
     @Transactional
     @Test
     public void testFindByName() {
-    	UserAccount u = new UserAccount();
-    	u.setFirstName("Bubba");
-    	u.setLastName("Jones");
-    	u.setBirthDate(new Date());
-    	u.setUserName("user");
-    	em.persist(u);
-    	em.flush();
-    	String name = u.getUserName();
-    	UserAccount o = repo.findByName(name);
+    	UserAccount o = repo.findByName("user");
     	Assert.assertNotNull("should have found something" ,o);
-    	Assert.assertEquals("should have found the right one", name, o.getUserName());
+    	Assert.assertEquals("should have found the right one", "user", o.getUserName());
     }
 
     @Transactional
     @Test
     public void testPersist() {
     	UserAccount u = new UserAccount();
-    	u.setFirstName("Bubba");
-    	u.setLastName("Jones");
+    	u.setFirstName("John");
+    	u.setLastName("Doe");
     	u.setBirthDate(new Date());
-    	u.setUserName("user");
+    	u.setUserName("jdoe");
     	repo.persist(u);
     	em.flush();
 		List results = em.createNativeQuery("select id, user_name, first_name from user_account where user_name = ?")
     			.setParameter(1, u.getUserName()).getResultList();
     	Assert.assertEquals("should have found the entry", 1, results.size());
-    	Assert.assertEquals("should have found the correct entry", "Bubba", ((Object[])results.get(0))[2]);
+    	Assert.assertEquals("should have found the correct entry", "John", ((Object[])results.get(0))[2]);
     }
     
     @Transactional
@@ -109,18 +113,7 @@ public class UserAccountRepositoryTests {
     	EntityManager separateTxEm = emf.createEntityManager();
     	EntityTransaction separateTx = separateTxEm.getTransaction();
     	separateTx.begin();
-    	UserAccount u = new UserAccount();
-    	u.setFirstName("Bubba");
-    	u.setLastName("Jones");
-    	u.setBirthDate(new Date());
-    	u.setUserName("user");
-    	separateTxEm.persist(u);
-    	separateTxEm.flush();
-    	Long id = u.getId();
-    	separateTx.commit();
-    	u = null;
-    	separateTx.begin();
-    	UserAccount user = separateTxEm.find(UserAccount.class, id);
+    	UserAccount user = separateTxEm.find(UserAccount.class, userId);
     	separateTxEm.flush();
     	Assert.assertTrue("entity is part of separate em", separateTxEm.contains(user));
     	separateTx.commit();
@@ -132,10 +125,20 @@ public class UserAccountRepositoryTests {
     	em.flush();
     	Assert.assertTrue("entity is now part of main em", em.contains(mergedUser));
 		List results = em.createNativeQuery("select id, user_name, last_name from user_account where id = ?")
-				.setParameter(1, id).getResultList();
+				.setParameter(1, userId).getResultList();
 		Assert.assertEquals("should have found the entry", 1, results.size());
 		Assert.assertEquals("should have found the updated entry", "Hendrix", ((Object[])results.get(0))[2]);
     }
 
+    @AfterTransaction
+    public void tearDown() {
+    	EntityManager tearDownEm = emf.createEntityManager();
+    	EntityTransaction tearDownTx = tearDownEm.getTransaction();
+    	tearDownTx.begin();
+    	UserAccount u = tearDownEm.find(UserAccount.class, this.userId);
+    	tearDownEm.remove(u);
+    	tearDownEm.flush();
+    	tearDownTx.commit();    	
+    }
 
 }
