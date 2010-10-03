@@ -1,7 +1,6 @@
 package com.springone.myrestaurants.domain;
 
-import java.util.Date;
-import java.util.Set;
+import java.util.*;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,12 +15,9 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.persistence.Version;
 
-import org.springframework.datastore.graph.api.GraphEntity;
-import org.springframework.datastore.graph.api.GraphEntityProperty;
-import org.springframework.datastore.graph.api.GraphEntityRelationship;
-import org.springframework.datastore.graph.api.GraphEntityRelationshipEntity;
+import org.neo4j.graphdb.DynamicRelationshipType;
+import org.springframework.datastore.graph.api.*;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.persistence.RelatedEntity;
 import org.springframework.transaction.annotation.Transactional;
 
 @Entity
@@ -47,6 +43,20 @@ public class UserAccount {
     @Transient
     Iterable<Recommendation> recommendations;
 
+    @GraphEntityTraversal(traversalBuilder = TopRatedRestaurantTraverser.class, elementClass = Restaurant.class)
+    @Transient
+    Iterable<Restaurant> topRatedRestaurants;
+
+    public Collection<Restaurant> getTopNRatedRestaurants(int n) {
+        Collection<Restaurant> result=new ArrayList<Restaurant>(n);
+        int count=0;
+        for (Restaurant restaurant : result) {
+            if (count == n) break;
+            result.add(restaurant);
+            count++;
+        }
+        return result;
+    }
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "S-")
     private Date birthDate;
@@ -133,6 +143,17 @@ public class UserAccount {
 
 	public void setFavorites(Set<Restaurant> favorites) {
         this.favorites = favorites;
+    }
+
+    @Transactional
+    public void knows(UserAccount friend) {
+        relateTo(friend, DynamicRelationshipType.withName("friends"));
+    /*
+        if (friends==null) {
+            friends=new HashSet<UserAccount>();
+        }
+        else friends.add(friend);
+    */
     }
 
 	@Transactional
