@@ -65,8 +65,7 @@ public class RecommendationController extends BaseApplicationController {
 		for (Recommendation recommendation : recs) {
 			RecommendationFormBean rfb = new RecommendationFormBean();
 			rfb.setComments(recommendation.getComment());	
-			//N.B. until a bug if fixed, this will be null.
-			//rfb.setName(recommendation.getRestaurant().getName());
+			rfb.setName(recommendation.getRestaurant().getName());
 			rfb.setRating(recommendation.getStars());		
 			rfb.setId(recommendation.getId());
 			listRecs.add(rfb);
@@ -93,8 +92,6 @@ public class RecommendationController extends BaseApplicationController {
 				recommendationFormBean.getRating(),
 				recommendationFormBean.getComments());
 		model.addAttribute("recommendationId", recommendation.getId());
-		// this.userAccountRepository.persist(account);
-		// recommendation.persist();
 		return "redirect:/recommendations/" + recommendation.getId();
 	}
 
@@ -137,11 +134,9 @@ public class RecommendationController extends BaseApplicationController {
     	if (foundRec != null) {
     	  recBean.setComments(foundRec.getComment());   
     	  recBean.setId(foundRec.getId());
-    	  recBean.setRating(foundRec.getStars());
-    
-    	  //TODO navigation to restaurant is to be fixed 
-    	  //recBean.setName(foundRec.getRestaurant().getName());
-    	  //recBean.setRestaurantId(foundRec.getRestaurant().getId());
+    	  recBean.setRating(foundRec.getStars());        	 
+    	  recBean.setName(foundRec.getRestaurant().getName());
+    	  recBean.setRestaurantId(foundRec.getRestaurant().getId());
     	}
         model.addAttribute("recommendation", recBean);
         model.addAttribute("itemId", recBean.getId());

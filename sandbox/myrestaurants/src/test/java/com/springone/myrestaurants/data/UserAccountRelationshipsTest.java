@@ -3,6 +3,7 @@ package com.springone.myrestaurants.data;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import junit.framework.Assert;
 
@@ -29,6 +30,15 @@ public class UserAccountRelationshipsTest extends AbstractTestWithUserAccount {
     @Autowired
     RestaurantRepository restaurantRepository;
 
+    @Transactional
+    @Test
+    public void listFriends() {
+    	UserAccount user = userAccountRepo.findUserAccount(userId);
+    	Set<UserAccount> friends = user.getFriends();
+    	Assert.assertEquals("Should have zero friends", 0, friends.size());    	
+    }
+    
+    
     @Transactional
     @Test
     public void testAddFriend() {
