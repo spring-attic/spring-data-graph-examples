@@ -101,7 +101,6 @@ public class RecommendationController extends BaseApplicationController {
 			                 Model model) {   
 		RecommendationFormBean recBean = new RecommendationFormBean();
 		Restaurant restaurant = this.restaurantRepository.findRestaurant(restaurantId);
-		//recBean.setId(restaurantId);
 		recBean.setRestaurantId(restaurantId);
 		recBean.setName(restaurant.getName());
         model.addAttribute("recommendation", recBean);              
