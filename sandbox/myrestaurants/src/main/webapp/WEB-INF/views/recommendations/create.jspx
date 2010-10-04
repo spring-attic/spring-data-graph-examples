@@ -5,7 +5,7 @@
         <field:input field="name" id="c_com_springone_myrestaurants_domain_Recommendation_name" readonly="true"/>
         <field:input field="rating" id="c_com_springone_myrestaurants_domain_Recommendation_rating" validationMessageCode="field_invalid_integer" />
         <field:input field="comments" id="c_com_springone_myrestaurants_domain_Recommendation_comments"/>
-        <field:input field="restaurantId" id="c_com_springone_myrestaurants_domain_Recommendation_restaurantId" render="false"/>
+        <field:input field="restaurantId" id="c_com_springone_myrestaurants_domain_Recommendation_restaurantId" render="true"/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_com_springone_myrestaurants_domain_Recommendation" render="${not empty dependencies}"/>
 </div>
