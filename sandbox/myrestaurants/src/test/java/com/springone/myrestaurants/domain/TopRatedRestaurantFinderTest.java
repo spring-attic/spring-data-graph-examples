@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.datastore.graph.neo4j.spi.node.Neo4jHelper;
 import org.springframework.datastore.graph.neo4j.support.GraphDatabaseContext;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.BeforeTransaction;
@@ -30,7 +31,8 @@ import static java.util.Arrays.asList;
  * @since 02.10.2010
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/META-INF/spring/applicationContext.xml"})
+@ContextConfiguration
+@DirtiesContext
 @Transactional
 public class TopRatedRestaurantFinderTest {
     @Autowired
