@@ -64,7 +64,8 @@ public class RecommendationController extends BaseApplicationController {
 		List<RecommendationFormBean> listRecs = new ArrayList<RecommendationFormBean>();
 		for (Recommendation recommendation : recs) {
 			RecommendationFormBean rfb = new RecommendationFormBean();
-			rfb.setComments(recommendation.getComment());	
+			rfb.setComments(recommendation.getComment());
+            rfb.setName(recommendation.getRestaurant().getName());
 			//N.B. until a bug if fixed, this will be null.
 			//rfb.setName(recommendation.getRestaurant().getName());
 			rfb.setRating(recommendation.getStars());		
