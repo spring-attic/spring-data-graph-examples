@@ -59,16 +59,17 @@
         <context:exclude-filter expression=".*_Roo_.*" type="regex"/>
         <context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
     </context:component-scan>
-    <!--
-    <bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="dataSource">
+
+    <!--  Use this for a permanent server based database -->
+    <!--<bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="dataSource">
         <property name="driverClassName" value="${database.driverClassName}"/>
         <property name="url" value="${database.url}"/>
         <property name="username" value="${database.username}"/>
         <property name="password" value="${database.password}"/>
-        <property name="validationQuery" value="SELECT 1 FROM DUAL"/>
+        <property name="validationQuery" value="SELECT 1"/>
         <property name="testOnBorrow" value="true"/>
-    </bean>
-    -->
+    </bean>-->
+    <!--  Use this for a temporary in-memory database -->
 	<jdbc:embedded-database id="dataSource" type="HSQL">
         <jdbc:script location="classpath:schema.sql"/>
         <jdbc:script location="classpath:restaurants-sample-data.sql"/>
