@@ -67,8 +67,8 @@ public class TopRatedRestaurantFinderTest {
         A.knows(B2);
         B1.knows(C1);
         C1.rate(a, 1, "");
-        C1.rate(b, 3, "");
-        C1.rate(c, 5, "");
+        C1.rate(b, 5, "");
+        C1.rate(c, 3, "");
         final Node node = node(A);
         final Collection<RatedRestaurant> topNRatedRestaurants = new TopRatedRestaurantFinder().getTopNRatedRestaurants(A, 5);
         Collection<Restaurant> result = new ArrayList<Restaurant>();
@@ -77,7 +77,7 @@ public class TopRatedRestaurantFinderTest {
         }
         final Restaurant b2 = em.find(Restaurant.class, 2L);
         Assert.assertNotNull(b2);
-        Assert.assertEquals(asList(b, c, a), result);
+        Assert.assertEquals(asList(b,c, a), result);
     }
 
     private Node node(UserAccount a) {
