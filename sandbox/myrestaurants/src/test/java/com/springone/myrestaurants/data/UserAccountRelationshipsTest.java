@@ -62,8 +62,9 @@ public class UserAccountRelationshipsTest extends AbstractTestWithUserAccount {
     		recommendations.add(r);
     	}
     	Assert.assertEquals("user should now have correct number of recommendations", 1, recommendations.size());
-    	Assert.assertEquals("recommendation should have correct rating", 3, recommendations.get(0).getStars());
-    	Assert.assertEquals("recommendation should have correct comment", "Pretty Good", recommendations.get(0).getComment());
+    	Recommendation r = recommendations.get(0);
+    	Assert.assertEquals("recommendation should have correct rating", 3, r.getStars());
+    	Assert.assertEquals("recommendation should have correct comment", "Pretty Good", r.getComment());
     }
 
 }
