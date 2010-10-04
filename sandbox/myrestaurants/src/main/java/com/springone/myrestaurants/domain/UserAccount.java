@@ -47,16 +47,14 @@ public class UserAccount {
     @Transient
     Iterable<Restaurant> topRatedRestaurants;
 
-    public Collection<Restaurant> getTopNRatedRestaurants(int n) {
-        Collection<Restaurant> result=new ArrayList<Restaurant>(n);
-        int count=0;
-        for (Restaurant restaurant : result) {
-            if (count == n) break;
-            result.add(restaurant);
-            count++;
-        }
-        return result;
+    public Collection<RatedRestaurant> getTopNRatedRestaurants(int n) {
+        return new TopRatedRestaurantFinder().getTopNRatedRestaurants(this,n);
     }
+
+    public Collection<RatedRestaurant> getTop5RatedRestaurants() {
+        return getTopNRatedRestaurants(5);
+    }
+
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "S-")
     private Date birthDate;
