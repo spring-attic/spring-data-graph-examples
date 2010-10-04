@@ -75,6 +75,8 @@ public class TopRatedRestaurantFinderTest {
         for (RatedRestaurant ratedRestaurant : topNRatedRestaurants) {
             result.add(ratedRestaurant.getRestaurant());
         }
+        final Restaurant b2 = em.find(Restaurant.class, 2L);
+        Assert.assertNotNull(b2);
         Assert.assertEquals(asList(b, c, a), result);
     }
 
@@ -94,6 +96,7 @@ public class TopRatedRestaurantFinderTest {
 
     private Restaurant restaurant(String name) {
         Restaurant restaurant = new Restaurant();
+        restaurant.setName(name);
         //restaurant.setId((long) name.hashCode());
         em.persist(restaurant);
         em.flush();

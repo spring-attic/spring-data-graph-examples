@@ -41,7 +41,9 @@
 		<constructor-arg ref="graphDatabaseContext" />
 	</bean>
 	
-	<bean id="graphEntityInstantiator" name="gei" class="org.springframework.datastore.graph.neo4j.spi.node.Neo4jConstructorGraphEntityInstantiator" />
+	<bean id="graphEntityInstantiator" name="gei" class="org.springframework.datastore.graph.neo4j.spi.node.PartialNeo4jEntityInstantiator" >
+        <property name="entityInstantiator"><bean class="org.springframework.datastore.graph.neo4j.spi.node.Neo4jConstructorGraphEntityInstantiator"/></property>
+    </bean>
 	
 	<bean id="relationshipEntityInstantiator" name="rei" class="org.springframework.datastore.graph.neo4j.spi.relationship.ConstructorBypassingGraphRelationshipInstantiator" />
 	
