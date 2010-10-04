@@ -70,8 +70,8 @@
     </bean>
     -->
 	<jdbc:embedded-database id="dataSource" type="HSQL">
-        <!--jdbc:script location="classpath:schema.sql"/>
-        <jdbc:script location="classpath:restaurants-sample-data.sql"/-->
+        <jdbc:script location="classpath:schema.sql"/>
+        <jdbc:script location="classpath:restaurants-sample-data.sql"/>
     </jdbc:embedded-database>
 
     <tx:annotation-driven mode="aspectj" transaction-manager="transactionManager"/>
