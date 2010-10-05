@@ -45,7 +45,6 @@ public class RestaurantRepositoryTest {
     RestaurantRepository repo;
 
     @Transactional
-//    @Rollback(false)
     @BeforeTransaction
     public void cleanDb() {
         Neo4jHelper.cleanDb(graphDatabaseContext);

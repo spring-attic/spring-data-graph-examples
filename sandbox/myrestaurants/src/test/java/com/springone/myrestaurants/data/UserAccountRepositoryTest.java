@@ -55,7 +55,6 @@ public class UserAccountRepositoryTest extends AbstractTestWithUserAccount {
     }
 
     @Transactional
-    @Rollback(false)
     @Test
     public void testPersist() {
     	UserAccount newUser = new UserAccount();

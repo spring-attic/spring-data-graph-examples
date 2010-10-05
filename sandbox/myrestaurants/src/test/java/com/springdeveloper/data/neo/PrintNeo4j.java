@@ -12,7 +12,7 @@ public class PrintNeo4j {
 
 	public static void main(String[] args) {
 		System.out.println("Hello Neo4j!");
-		GraphDatabaseService graphDb = new EmbeddedGraphDatabase( "target/data/myrestaurants" );
+		GraphDatabaseService graphDb = new EmbeddedGraphDatabase( "target/data/test" );
 		Transaction tx = graphDb.beginTx();
 
 		tx = graphDb.beginTx();

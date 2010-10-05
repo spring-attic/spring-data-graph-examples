@@ -52,8 +52,7 @@ public class AbstractTestWithUserAccount {
 	}
 
 	@Transactional
-	@Rollback(false)
-	@Before
+	@BeforeTransaction
 	public void cleanDb() {
 	    Neo4jHelper.cleanDb(graphDatabaseContext);
 	}
