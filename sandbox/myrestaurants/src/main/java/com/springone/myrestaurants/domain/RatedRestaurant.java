@@ -7,7 +7,7 @@ import java.util.Collection;
  * @author Michael Hunger
  * @since 02.10.2010
  */
-class RatedRestaurant {
+public class RatedRestaurant {
     private final Restaurant restaurant;
     private final Collection<Recommendation> recommendations = new ArrayList<Recommendation>();
 
@@ -27,3 +27,4 @@ class RatedRestaurant {
         return restaurant;
     }
 }
+	

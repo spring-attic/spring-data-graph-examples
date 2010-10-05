@@ -5,5 +5,6 @@
         <field:input field="name" id="c_com_springone_myrestaurants_domain_Recommendation_name" z="I2yE+cB7scb12F/C0g48lu2i0QU="/>
         <field:input field="rating" id="c_com_springone_myrestaurants_domain_Recommendation_rating" validationMessageCode="field_invalid_integer" z="5wkRWtnYYq6Z6+9R4cZWpVuySwQ="/>
         <field:input field="comments" id="c_com_springone_myrestaurants_domain_Recommendation_comments" z="E/A7yOsZsDji2SnMRY/lAuES9s8="/>
+        <field:input field="restaurantId" id="c_com_springone_myrestaurants_domain_Recommendation_restaurantId" render="true"/>
     </form:update>
 </div>

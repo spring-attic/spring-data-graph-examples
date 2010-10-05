@@ -61,18 +61,18 @@
     </context:component-scan>
 
     <!--  Use this for a permanent server based database -->
-    <!--<bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="dataSource">
+    <bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="dataSource">
         <property name="driverClassName" value="${database.driverClassName}"/>
         <property name="url" value="${database.url}"/>
         <property name="username" value="${database.username}"/>
         <property name="password" value="${database.password}"/>
         <property name="testOnBorrow" value="true"/>
-    </bean>-->
+    </bean>
     <!--  Use this for a temporary in-memory database -->
-	<jdbc:embedded-database id="dataSource" type="HSQL">
+	<!--<jdbc:embedded-database id="dataSource" type="HSQL">
         <jdbc:script location="classpath:schema.sql"/>
         <jdbc:script location="classpath:restaurants-sample-data.sql"/>
-    </jdbc:embedded-database>
+    </jdbc:embedded-database>-->
 
     <tx:annotation-driven mode="aspectj" transaction-manager="transactionManager"/>
 

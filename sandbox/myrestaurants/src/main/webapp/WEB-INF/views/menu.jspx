@@ -32,11 +32,12 @@
 			</sec:authorize>		
           </menu:category>
           <menu:category id="c_recommendation">
-            <menu:item id="i_recommendation_list" messageCode="global_menu_list" url="/recommendations?page=${empty param.page ? 1 : param.page}&amp;size=${empty param.size ? 10 : param.size}"/>
+            <menu:item id="i_recommendation_list" messageCode="global_menu_list_my" url="/recommendations?page=${empty param.page ? 1 : param.page}&amp;size=${empty param.size ? 10 : param.size}"/>
           </menu:category>   
     	  <menu:category id="c_friend">
             <menu:item id="i_friend_new" messageCode="global_menu_new" url="/friends?form" />
-            <menu:item id="i_friend_list" messageCode="global_menu_list" url="/friends?page=${empty param.page ? 1 : param.page}&amp;size=${empty param.size ? 10 : param.size}"/>
+            <menu:item id="i_friend_list" messageCode="global_menu_list_my" url="/friends?page=${empty param.page ? 1 : param.page}&amp;size=${empty param.size ? 10 : param.size}"/>
+            <menu:item id="i_topn" messageCode="global_menu_topn" url="/topn/"/>
           </menu:category>             
 		</sec:authorize>		
     </menu:menu>
