@@ -1,5 +1,7 @@
 package com.springone.myrestaurants.web;
 
+import java.util.List;
+
 import org.springframework.core.convert.support.GenericConversionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,11 +33,13 @@ public class RestaurantController extends BaseApplicationController {
     				   Model model) {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
-            model.addAttribute("restaurants", restaurantRepository.findRestaurantEntries(page == null ? 0 : (page.intValue() - 1) * sizeNo, sizeNo));
+            List<Restaurant> rests = restaurantRepository.findRestaurantEntries(page == null ? 0 : (page.intValue() - 1) * sizeNo, sizeNo);
+            model.addAttribute("restaurants", rests);
             float nrOfPages = (float) restaurantRepository.countRestaurants() / sizeNo;
             model.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            model.addAttribute("restaurants", restaurantRepository.findAllRestaurants());
+        	 List<Restaurant> rests = restaurantRepository.findAllRestaurants();
+            model.addAttribute("restaurants", rests);
         }
         return "restaurants/list";
     }

@@ -1,7 +1,6 @@
 package com.springone.myrestaurants.domain;
 
-import java.util.Date;
-import java.util.Set;
+import java.util.*;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,12 +15,10 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.persistence.Version;
 
-import org.springframework.datastore.graph.api.GraphEntity;
-import org.springframework.datastore.graph.api.GraphEntityProperty;
-import org.springframework.datastore.graph.api.GraphEntityRelationship;
-import org.springframework.datastore.graph.api.GraphEntityRelationshipEntity;
+import org.neo4j.graphdb.DynamicRelationshipType;
+import org.springframework.datastore.graph.api.*;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.persistence.RelatedEntity;
+import org.springframework.transaction.annotation.Transactional;
 
 @Entity
 @Table(name = "user_account")
@@ -46,12 +43,32 @@ public class UserAccount {
     @Transient
     Iterable<Recommendation> recommendations;
 
+    @GraphEntityTraversal(traversalBuilder = TopRatedRestaurantTraverser.class, elementClass = Restaurant.class)
+    @Transient
+    Iterable<Restaurant> topRatedRestaurants;
+
+    public Collection<RatedRestaurant> getTopNRatedRestaurants(int n) {
+        return new TopRatedRestaurantFinder().getTopNRatedRestaurants(this,n);
+    }
+
+    public Collection<RatedRestaurant> getTop5RatedRestaurants() {
+        return getTopNRatedRestaurants(5);
+    }
+
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "S-")
     private Date birthDate;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private Set<Restaurant> favorites = new java.util.HashSet<Restaurant>();
+    public Set<UserAccount> getFriends() {
+		return friends;
+	}
+
+	public void setFriends(Set<UserAccount> friends) {
+		this.friends = friends;
+	}
+
+	@ManyToMany(cascade = CascadeType.ALL)
+    private Set<Restaurant> favorites;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -126,6 +143,18 @@ public class UserAccount {
         this.favorites = favorites;
     }
 
+    @Transactional
+    public void knows(UserAccount friend) {
+        relateTo(friend, DynamicRelationshipType.withName("friends"));
+    /*
+        if (friends==null) {
+            friends=new HashSet<UserAccount>();
+        }
+        else friends.add(friend);
+    */
+    }
+
+	@Transactional
     public Recommendation rate(Restaurant restaurant, int stars, String comment) {
         Recommendation recommendation = (Recommendation) relateTo(restaurant, Recommendation.class, "recommends");
         recommendation.rate(stars, comment);

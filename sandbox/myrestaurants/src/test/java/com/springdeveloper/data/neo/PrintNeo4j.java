@@ -12,7 +12,7 @@ public class PrintNeo4j {
 
 	public static void main(String[] args) {
 		System.out.println("Hello Neo4j!");
-		GraphDatabaseService graphDb = new EmbeddedGraphDatabase( "target/data/myrestaurants" );
+		GraphDatabaseService graphDb = new EmbeddedGraphDatabase( "target/data/test" );
 		Transaction tx = graphDb.beginTx();
 
 		tx = graphDb.beginTx();
@@ -20,21 +20,21 @@ public class PrintNeo4j {
 			for (Node n : graphDb.getAllNodes()) {
 				System.out.print("=> " + n.getId() + " :: ");
 				for (String s : n.getPropertyKeys()) {
-					System.out.print(" -> " + s + " = " + n.getProperty(s));
+					System.out.print(" : " + s + " = " + n.getProperty(s));
 				}
 				for (Relationship r : n.getRelationships()) {
 					long start = r.getStartNode().getId();
 					long end = r.getEndNode().getId();
 					if (n.getId() == start) {
-						System.out.print(" ** " + r.getType().name() + "--> ");
+						System.out.print(" ** " + r.getType().name() + "--> " + end);
 						
 					}
 					if (n.getId() == end) {
-						System.out.print(" ** " + " <--" + r.getType().name());
+						System.out.print(" ** " + start + " <--" + r.getType().name());
 						
 					}
 					for (String s : r.getPropertyKeys()) {
-						System.out.print(" -> " + s + " = " + r.getProperty(s));
+						System.out.print(" :: " + s + " = " + r.getProperty(s));
 					}
 				}
 				System.out.println("!");

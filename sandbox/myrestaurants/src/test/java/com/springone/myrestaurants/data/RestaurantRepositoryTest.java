@@ -15,9 +15,11 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.datastore.graph.neo4j.spi.node.Neo4jHelper;
 import org.springframework.datastore.graph.neo4j.support.GraphDatabaseContext;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.BeforeTransaction;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,7 +27,8 @@ import com.springone.myrestaurants.domain.Restaurant;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
-public class RestaurantRepositoryTests {
+@DirtiesContext
+public class RestaurantRepositoryTest {
 
     protected final Log log = LogFactory.getLog(getClass());
 
@@ -42,8 +45,7 @@ public class RestaurantRepositoryTests {
     RestaurantRepository repo;
 
     @Transactional
-    @Rollback(false)
-    @Before
+    @BeforeTransaction
     public void cleanDb() {
         Neo4jHelper.cleanDb(graphDatabaseContext);
     }

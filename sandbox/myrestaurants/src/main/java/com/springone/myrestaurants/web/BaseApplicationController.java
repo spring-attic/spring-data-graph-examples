@@ -14,7 +14,7 @@ import com.springone.myrestaurants.data.UserAccountRepository;
 import com.springone.myrestaurants.domain.Restaurant;
 import com.springone.myrestaurants.domain.UserAccount;
 
-//@Transactional
+@Transactional
 public class BaseApplicationController {
 
 	@Autowired
@@ -24,15 +24,23 @@ public class BaseApplicationController {
 	UserAccountRepository userAccountRepository;
 
 	@ModelAttribute("currentUserAccountId")
-	public String populateCurrentUserName() {
-		String currentUser = SecurityContextHolder.getContext()
-				.getAuthentication().getName();
-		UserAccount userAccount = userAccountRepository.findByName(currentUser);
+	public String populateModelWithCurrentUserAccountIdAsString() {
+		UserAccount userAccount = getCurrentUserAccount();
 		if (userAccount != null) {
 			return userAccount.getId().toString();
 		} else {
 			return "USER-ID-NOT-AVAILABLE";
 		}
+	}
+
+	private UserAccount getCurrentUserAccount() {
+		String currentUser = SecurityContextHolder.getContext()
+				.getAuthentication().getName();
+		UserAccount userAccount = userAccountRepository.findByName(currentUser);
+		if (userAccount != null) {
+			userAccount.getId();
+		}
+		return userAccount;
 	}
 
 	void addDateTimeFormatPatterns(Model model) {

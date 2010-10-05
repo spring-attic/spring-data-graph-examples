@@ -19,6 +19,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.datastore.graph.neo4j.spi.node.Neo4jHelper;
 import org.springframework.datastore.graph.neo4j.support.GraphDatabaseContext;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -31,49 +32,11 @@ import com.springone.myrestaurants.domain.UserAccount;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
-public class UserAccountRepositoryTests {
+@DirtiesContext
+public class UserAccountRepositoryTest extends AbstractTestWithUserAccount {
 
-    protected final Log log = LogFactory.getLog(getClass());
-    
-    private Long userId;
-
-    @Autowired
-    PlatformTransactionManager transactionManager;
-
-    @Autowired
-    private GraphDatabaseContext graphDatabaseContext;
-
-    @PersistenceContext
-    EntityManager em;
-    
-    @PersistenceUnit
-    EntityManagerFactory emf;
-    
     @Autowired
     UserAccountRepository repo;
-
-    @BeforeTransaction
-    public void setUp() {
-    	EntityManager setUpEm = emf.createEntityManager();
-    	EntityTransaction setUpTx = setUpEm.getTransaction();
-    	setUpTx.begin();
-    	UserAccount u = new UserAccount();
-    	u.setFirstName("Bubba");
-    	u.setLastName("Jones");
-    	u.setBirthDate(new Date());
-    	u.setUserName("user");
-    	setUpEm.persist(u);
-    	setUpEm.flush();
-    	this.userId = u.getId();
-    	setUpTx.commit();
-    }
-    
-    @Transactional
-    @Rollback(false)
-    @Before
-    public void cleanDb() {
-        Neo4jHelper.cleanDb(graphDatabaseContext);
-    }
 
     @Transactional
     @Test
@@ -94,17 +57,24 @@ public class UserAccountRepositoryTests {
     @Transactional
     @Test
     public void testPersist() {
-    	UserAccount u = new UserAccount();
-    	u.setFirstName("John");
-    	u.setLastName("Doe");
-    	u.setBirthDate(new Date());
-    	u.setUserName("jdoe");
-    	repo.persist(u);
+    	UserAccount newUser = new UserAccount();
+    	newUser.setFirstName("John");
+    	newUser.setLastName("Doe");
+    	newUser.setBirthDate(new Date());
+    	newUser.setNickname("Bubba");
+    	newUser.setUserName("jdoe");
+    	repo.persist(newUser);
     	em.flush();
 		List results = em.createNativeQuery("select id, user_name, first_name from user_account where user_name = ?")
-    			.setParameter(1, u.getUserName()).getResultList();
+    			.setParameter(1, newUser.getUserName()).getResultList();
     	Assert.assertEquals("should have found the entry", 1, results.size());
     	Assert.assertEquals("should have found the correct entry", "John", ((Object[])results.get(0))[2]);
+    	UserAccount persistedUser = repo.findByName(newUser.getUserName());
+    	Assert.assertEquals("should have the correct value", newUser.getFirstName(), persistedUser.getFirstName());
+    	Assert.assertEquals("should have the correct value", newUser.getLastName(), persistedUser.getLastName());
+    	Assert.assertEquals("should have the correct value", newUser.getNickname(), persistedUser.getNickname());
+    	Assert.assertEquals("should have the correct value", newUser.getUserName(), persistedUser.getUserName());
+    	Assert.assertEquals("should have the correct value", newUser.getBirthDate(), persistedUser.getBirthDate());
     }
     
     @Transactional
@@ -128,17 +98,6 @@ public class UserAccountRepositoryTests {
 				.setParameter(1, userId).getResultList();
 		Assert.assertEquals("should have found the entry", 1, results.size());
 		Assert.assertEquals("should have found the updated entry", "Hendrix", ((Object[])results.get(0))[2]);
-    }
-
-    @AfterTransaction
-    public void tearDown() {
-    	EntityManager tearDownEm = emf.createEntityManager();
-    	EntityTransaction tearDownTx = tearDownEm.getTransaction();
-    	tearDownTx.begin();
-    	UserAccount u = tearDownEm.find(UserAccount.class, this.userId);
-    	tearDownEm.remove(u);
-    	tearDownEm.flush();
-    	tearDownTx.commit();    	
     }
 
 }
