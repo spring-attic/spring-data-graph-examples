@@ -30,8 +30,10 @@ public class RecommendationController extends BaseApplicationController {
 		if (foundRec != null) {
 			bean.setComments(foundRec.getComment());
 			bean.setRating(foundRec.getStars());
-			Restaurant r = foundRec.getRestaurant();
-			bean.setName(r.getName());
+            bean.setId(foundRec.getId());
+            Restaurant r = foundRec.getRestaurant();
+            bean.setName(r.getName());
+            bean.setRestaurantId(r.getId());
 		}
 		model.addAttribute("recommendation", bean);
         return "recommendations/show";
@@ -64,10 +66,12 @@ public class RecommendationController extends BaseApplicationController {
 		List<RecommendationFormBean> listRecs = new ArrayList<RecommendationFormBean>();
 		for (Recommendation recommendation : recs) {
 			RecommendationFormBean rfb = new RecommendationFormBean();
-			rfb.setComments(recommendation.getComment());	
-			rfb.setName(recommendation.getRestaurant().getName());
+            final Restaurant restaurant = recommendation.getRestaurant();
+            rfb.setComments(recommendation.getComment());
+            rfb.setName(restaurant.getName());
 			rfb.setRating(recommendation.getStars());		
 			rfb.setId(recommendation.getId());
+            rfb.setRestaurantId(restaurant.getId());
 			listRecs.add(rfb);
 		}		                    
 		model.addAttribute("recommendations", listRecs);
