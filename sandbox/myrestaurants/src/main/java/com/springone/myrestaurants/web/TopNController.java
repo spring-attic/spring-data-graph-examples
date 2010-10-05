@@ -40,6 +40,7 @@ public class TopNController extends BaseApplicationController {
     			count++;
     		}
     		rrb.setRating(totPoints / count);
+    		rrb.setRecommendations(count);
     		topn.add(rrb);
     	}
     	model.addAttribute("topn", topn);

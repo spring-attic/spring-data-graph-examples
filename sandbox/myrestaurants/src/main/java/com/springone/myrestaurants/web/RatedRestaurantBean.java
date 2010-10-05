@@ -7,6 +7,8 @@ public class RatedRestaurantBean {
 	// Restaurant name
 	private String name;
 	
+	private long recommendations;
+	
 	private double rating;
 		
 	public String getName() {
@@ -23,6 +25,14 @@ public class RatedRestaurantBean {
 
 	public void setId(long restaurantId) {
 		this.id = restaurantId;
+	}
+
+	public long getRecommendations() {
+		return recommendations;
+	}
+
+	public void setRecommendations(long recommendations) {
+		this.recommendations = recommendations;
 	}
 
 	public double getRating() {
