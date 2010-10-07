@@ -383,8 +383,8 @@
 	    </dependency>
 		<dependency>
 			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-datastore-graph</artifactId>
-			<version>1.0.0.M1-SNAPSHOT</version>
+			<artifactId>spring-datastore-neo4j</artifactId>
+			<version>1.0.0.BUILD-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -440,7 +440,7 @@
 						</aspectLibrary>
 						<aspectLibrary>
 							<groupId>org.springframework.data</groupId>
-							<artifactId>spring-datastore-graph</artifactId>
+							<artifactId>spring-datastore-neo4j</artifactId>
 						</aspectLibrary>
 					</aspectLibraries>
 					<source>1.6</source>
