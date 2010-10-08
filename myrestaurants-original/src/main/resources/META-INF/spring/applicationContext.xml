@@ -59,21 +59,22 @@
         <context:exclude-filter expression=".*_Roo_.*" type="regex"/>
         <context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
     </context:component-scan>
-    <!--
+    
+    <!-- 
     <bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="dataSource">
         <property name="driverClassName" value="${database.driverClassName}"/>
         <property name="url" value="${database.url}"/>
         <property name="username" value="${database.username}"/>
         <property name="password" value="${database.password}"/>
-        <property name="validationQuery" value="SELECT 1 FROM DUAL"/>
         <property name="testOnBorrow" value="true"/>
     </bean>
     -->
+
 	<jdbc:embedded-database id="dataSource" type="HSQL">
         <jdbc:script location="classpath:schema.sql"/>
         <jdbc:script location="classpath:restaurants-sample-data.sql"/>
     </jdbc:embedded-database>
-    
+   
     <bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
