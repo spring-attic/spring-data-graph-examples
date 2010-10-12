@@ -1,3 +1,38 @@
+#!/bin/sh
+
+#
+# persistence.xml
+#
 ../fix-persistence-xml.sh < src/main/resources/META-INF/persistence.xml > src/main/resources/META-INF/persistence.xml.new
 mv src/main/resources/META-INF/persistence.xml src/main/resources/META-INF/persistence.xml.old
 mv src/main/resources/META-INF/persistence.xml.new src/main/resources/META-INF/persistence.xml
+#
+# Actor_Roo_ToString.aj
+#
+if [ -f src/main/java/org/neo4j/examples/imdb/domain/Actor_Roo_ToString.aj ]
+then
+  ../fix-actor-to-string.sh < src/main/java/org/neo4j/examples/imdb/domain/Actor.java > src/main/java/org/neo4j/examples/imdb/domain/Actor.java.new
+  mv src/main/java/org/neo4j/examples/imdb/domain/Actor.java src/main/java/org/neo4j/examples/imdb/domain/Actor.java.old
+  mv src/main/java/org/neo4j/examples/imdb/domain/Actor.java.new src/main/java/org/neo4j/examples/imdb/domain/Actor.java
+  rm src/main/java/org/neo4j/examples/imdb/domain/Actor_Roo_ToString.aj
+fi
+#
+# Movie_Roo_ToString.aj
+#
+if [ -f src/main/java/org/neo4j/examples/imdb/domain/Movie_Roo_ToString.aj ]
+then
+  ../fix-movie-to-string.sh < src/main/java/org/neo4j/examples/imdb/domain/Movie.java > src/main/java/org/neo4j/examples/imdb/domain/Movie.java.new
+  mv src/main/java/org/neo4j/examples/imdb/domain/Movie.java src/main/java/org/neo4j/examples/imdb/domain/Movie.java.old
+  mv src/main/java/org/neo4j/examples/imdb/domain/Movie.java.new src/main/java/org/neo4j/examples/imdb/domain/Movie.java
+  rm src/main/java/org/neo4j/examples/imdb/domain/Movie_Roo_ToString.aj
+fi
+#
+# Role_Roo_ToString.aj
+#
+if [ -f src/main/java/org/neo4j/examples/imdb/domain/Role_Roo_ToString.aj ]
+then
+  ../fix-role-to-string.sh < src/main/java/org/neo4j/examples/imdb/domain/Role.java > src/main/java/org/neo4j/examples/imdb/domain/Role.java.new
+  mv src/main/java/org/neo4j/examples/imdb/domain/Role.java src/main/java/org/neo4j/examples/imdb/domain/Role.java.old
+  mv src/main/java/org/neo4j/examples/imdb/domain/Role.java.new src/main/java/org/neo4j/examples/imdb/domain/Role.java
+  rm src/main/java/org/neo4j/examples/imdb/domain/Role_Roo_ToString.aj
+fi
