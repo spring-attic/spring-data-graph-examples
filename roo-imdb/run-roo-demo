@@ -1,0 +1,15 @@
+#!/bin/sh
+
+echo Cleaning $ROO_HOME/bootstrap/target/osgi
+rm -rf $ROO_HOME/bootstrap/target/osgi
+mkdir $ROO_HOME/bootstrap/target/osgi
+mkdir $ROO_HOME/bootstrap/target/osgi/bundle
+
+# My add-ons
+echo Copying my graph add-on
+cp ~/.m2/repository/org/springframework/datastore/graph/roo/addon/org.springframework.datastore.graph.roo.addon/0.1.0-SNAPSHOT/org.springframework.datastore.graph.roo.addon-0.1.0-SNAPSHOT.jar $ROO_HOME/bootstrap/target/osgi/bundle/.
+ls $ROO_HOME/bootstrap/target/osgi/bundle/
+
+$ROO_HOME/bootstrap/roo-dev
+
+../fix

@@ -1,0 +1,12 @@
+project --topLevelPackage org.neo4j.examples.imdb
+graph setup --provider NEO4J  --databaseLocation target/neo4j/imdb
+graph entity --class ~.domain.Movie
+field string title
+field number --fieldName year --type java.lang.Integer --permitReservedWords --primitive
+graph entity --class ~.domain.Actor
+field string name
+graph relationship --to Movie --from Actor --fieldName movies --type ACTS_IN --cardinality MANY_TO_MANY
+graph relationship --via ~.domain.Role --to Movie --from Actor --fieldName roles --type ACTS_IN --cardinality ONE_TO_MANY
+graph relationship --from Movie --to Actor --type ACTS_IN --fieldName actors --direction INCOMING --cardinality MANY_TO_MANY
+field string --fieldName role --class ~.domain.Role --permitReservedWords
+controller all --package ~.web

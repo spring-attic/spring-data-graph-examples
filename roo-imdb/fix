@@ -1,0 +1,3 @@
+../fix-persistence-xml.sh < src/main/resources/META-INF/persistence.xml > src/main/resources/META-INF/persistence.xml.new
+mv src/main/resources/META-INF/persistence.xml src/main/resources/META-INF/persistence.xml.old
+mv src/main/resources/META-INF/persistence.xml.new src/main/resources/META-INF/persistence.xml
