@@ -1,4 +1,4 @@
-This project contains scripts for the Roo IMDB Demo
+This project contains scripts for the Roo PetClinic Graph Demo
 
 Copy these scripts to a base directory.
 
@@ -8,8 +8,8 @@ Next set the $ROO_HOME environment variable:
 
 Then create the directory for the demo app:
 
-  > mkdir imdb
-  > cd imdb
+  > mkdir petclinic
+  > cd petclinic
 
 Now we can start Roo:
 
@@ -17,11 +17,11 @@ Now we can start Roo:
 
 Inside Roo
 
-  roo> script ../imdb-script
+  roo> script ../petclinic-script
   ...
   roo> exit
 
-Then run ../fix-imdb script 
+Then run ../fix-petclinic script 
 
 At last you can now do:
 

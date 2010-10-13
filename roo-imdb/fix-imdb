@@ -3,9 +3,15 @@
 #
 # persistence.xml
 #
-../fix-persistence-xml.sh < src/main/resources/META-INF/persistence.xml > src/main/resources/META-INF/persistence.xml.new
+../fix-imdb-persistence-xml.sh < src/main/resources/META-INF/persistence.xml > src/main/resources/META-INF/persistence.xml.new
 mv src/main/resources/META-INF/persistence.xml src/main/resources/META-INF/persistence.xml.old
 mv src/main/resources/META-INF/persistence.xml.new src/main/resources/META-INF/persistence.xml
+#
+# webmvc-config.xml
+#
+../fix-webmvc-config.sh < src/main/webapp/WEB-INF/spring/webmvc-config.xml > src/main/webapp/WEB-INF/spring/webmvc-config.xml.new
+mv src/main/webapp/WEB-INF/spring/webmvc-config.xml src/main/webapp/WEB-INF/spring/webmvc-config.xml.old
+mv src/main/webapp/WEB-INF/spring/webmvc-config.xml.new src/main/webapp/WEB-INF/spring/webmvc-config.xml
 #
 # Actor_Roo_ToString.aj
 #
