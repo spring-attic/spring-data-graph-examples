@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_springone_petclinic_domain_Pet" items="${pets}" z="/vnGY2hGTTJ/xlUX5rHIW+y0ui0=">
+        <table:table data="${pets}" id="l_com_springone_petclinic_domain_Pet" path="/pets" z="0atirfSjhD/A/NFJLiw1nTxcl60=">
+            <table:column id="c_com_springone_petclinic_domain_Pet_name" property="name" z="S8jlmGrVsbHXTL+o5OQF1Z0aeGQ="/>
+        <table:column id="c_com_springone_petclinic_domain_Pet_type" property="type" z="Cpm3LaNQ+Nyh5mOLl3htmy9iPYU="/>
+        <table:column id="c_com_springone_petclinic_domain_Pet_weight" property="weight" z="ZINWKtRWp0/m1mAa3eNjKJbE1js="/>
+        <table:column id="c_com_springone_petclinic_domain_Pet_sendReminders" property="sendReminders" z="l6elhLp2SY0Vd8XFHz2S56qGSjA="/>
+            <table:column id="c_com_springone_petclinic_domain_Pet_owner" property="owner" z="aUwgAyuyE0zdpfcogg4srrHDv18="/>
+        </table:table>
+    </page:list>
+</div>

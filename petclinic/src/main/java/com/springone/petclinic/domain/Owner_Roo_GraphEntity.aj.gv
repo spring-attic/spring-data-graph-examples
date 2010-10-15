@@ -1,0 +1,39 @@
+digraph Owner {
+  node [
+    fontname = "Bitstream Vera Sans"
+    shape = "Mrecord"
+  ]
+  edge [
+    fontname = "Bitstream Vera Sans"
+  ]
+
+  Owner [
+    
+    label = "{@GraphEntity\
+    \l@RooToString\
+    \l@RooJavaBean\
+    \l@RooEntity\
+    \lpublic class Owner \{\
+    \l\    @Size(min = 3, max = 30)\
+    \l\    private String firstName;\
+    \l\    @NotNull\
+    \l\    @Size(min = 3, max = 30)\
+    \l\    private String lastName;\
+    \l\    @NotNull\
+    \l\    @Size(min = 1, max = 50)\
+    \l\    private String address;\
+    \l\    @NotNull\
+    \l\    @Size(max = 30)\
+    \l\    private String city;\
+    \l\    @NotNull\
+    \l\    private String telephone;\
+    \l\    @Size(min = 6, max = 30)\
+    \l\    private String email;\
+    \l\    @GraphEntityRelationship(type = \"OWNS\", direction = Direction.OUTGOING, elementClass = Pet.class)\
+    \l\    @OneToMany(targetEntity = Pet.class)\
+    \l\    private Set\<com.springone.petclinic.domain.Pet\> pets;\
+    \l\}\
+    \l}"
+  ]
+
+}

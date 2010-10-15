@@ -1,0 +1,35 @@
+digraph Pet {
+  node [
+    fontname = "Bitstream Vera Sans"
+    shape = "Mrecord"
+  ]
+  edge [
+    fontname = "Bitstream Vera Sans"
+  ]
+
+  Pet [
+    
+    label = "{@GraphEntity\
+    \l@RooToString\
+    \l@RooJavaBean\
+    \l@RooEntity\
+    \lpublic class Pet \{\
+    \l\    @NotNull\
+    \l\    @Size(min = 1)\
+    \l\    private String name;\
+    \l\    @NotNull\
+    \l\    @Enumerated\
+    \l\    private PetType type;\
+    \l\    @NotNull\
+    \l\    @Min(0L)\
+    \l\    private Float weight;\
+    \l\    @NotNull\
+    \l\    private boolean sendReminders;\
+    \l\    @GraphEntityRelationship(type = \"OWNS\", direction = Direction.INCOMING, elementClass = Owner.class)\
+    \l\    @ManyToOne(targetEntity = Owner.class)\
+    \l\    private Set\<com.springone.petclinic.domain.Owner\> owner;\
+    \l\}\
+    \l}"
+  ]
+
+}

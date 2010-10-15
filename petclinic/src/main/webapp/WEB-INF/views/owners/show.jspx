@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_springone_petclinic_domain_Owner" object="${owner}" path="/owners" z="C/VCtVcXwgtfXcCsgu+u9oGcYg8=">
+        <field:display field="firstName" id="s_com_springone_petclinic_domain_Owner_firstName" object="${owner}" z="C6subfZNPxeGnASFtLZ3QDjzmJs="/>
+        <field:display field="lastName" id="s_com_springone_petclinic_domain_Owner_lastName" object="${owner}" z="oNBwFx9hbEj0N/LDUh8IQcZZTe4="/>
+        <field:display field="address" id="s_com_springone_petclinic_domain_Owner_address" object="${owner}" z="rvUJpbiUgjhiIQhLCXxZQCljFeE="/>
+        <field:display field="city" id="s_com_springone_petclinic_domain_Owner_city" object="${owner}" z="5x/uam404N9oLhv0pqi9m323Fgs="/>
+        <field:display field="telephone" id="s_com_springone_petclinic_domain_Owner_telephone" object="${owner}" z="vAwSwXlYSEb/bC/kNQPKKtclpQ4="/>
+        <field:display field="email" id="s_com_springone_petclinic_domain_Owner_email" object="${owner}" z="8FapizMXHo5ZVZQir14gpyzd0+0="/>
+        <field:display field="pets" id="s_com_springone_petclinic_domain_Owner_pets" object="${owner}" z="a7QzYp2w0NPv7Za59JsZVwOajI0="/>
+    </page:show>
+</div>

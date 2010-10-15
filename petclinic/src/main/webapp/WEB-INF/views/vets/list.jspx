@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_springone_petclinic_domain_Vet" items="${vets}" z="9KS/EK5NFUtJh8qwSr4OksFYauU=">
+        <table:table data="${vets}" id="l_com_springone_petclinic_domain_Vet" path="/vets" z="a3zTuSK+SW6BlUq2IM+lNY4uzVo=">
+            <table:column id="c_com_springone_petclinic_domain_Vet_firstName" property="firstName" z="GlLWux0V0N1xSvri/prf6fF5ZZY="/>
+            <table:column id="c_com_springone_petclinic_domain_Vet_lastName" property="lastName" z="wstBkLPgWR42Equ5GrDw2U3bNzk="/>
+            <table:column id="c_com_springone_petclinic_domain_Vet_specialty" property="specialty" z="xpYz3Dt8CbRbiEvWZmGHSuAW1pg="/>
+            <table:column id="c_com_springone_petclinic_domain_Vet_telephone" property="telephone" z="LFboYDToFHTL3hHeGc9NgWWs98o="/>
+            <table:column id="c_com_springone_petclinic_domain_Vet_homePage" property="homePage" z="G/VpZ4rGbs4Aae+MvB2sga5dTRM="/>
+            <table:column id="c_com_springone_petclinic_domain_Vet_email" property="email" z="6VXJB32xVZ+aJVEAV3757MRlbZQ="/>
+        </table:table>
+    </page:list>
+</div>

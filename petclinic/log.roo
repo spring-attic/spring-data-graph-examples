@@ -1,0 +1,50 @@
+// Spring Roo 1.1.0.RC1 [rev 51cb976] log opened at 2010-10-15 12:30:09
+project --topLevelPackage com.springone.petclinic --projectName petclinic --java 6
+// Spring Roo 1.1.0.RC1 [rev 51cb976] log closed at 2010-10-15 12:30:11
+// Spring Roo 1.1.0.RC1 [rev 51cb976] log opened at 2010-10-15 12:30:16
+graph setup --provider NEO4J --databaseLocation ${user.home}/neo4j/petclinic
+
+// [failed] graph setup --provider NEO4J --databaseLocation ${user.home}/neo4j/petclinic
+graph entity --class ~.domain.Pet
+
+field string --fieldName name --notNull --sizeMin 1
+
+controller all --package ~.web
+enum type --class ~.reference.PetType
+enum constant --name Dog
+enum constant --name Cat
+enum constant --name Bird
+field enum --fieldName type --type ~.reference.PetType --notNull --class ~.domain.Pet
+field number --fieldName weight --type java.lang.Float --notNull --min 0
+controller all --package ~.web
+// script petclinic/2
+field boolean --fieldName sendReminders --notNull --primitive --class ~.domain.Pet
+graph entity --class ~.domain.Owner
+field string --fieldName firstName --sizeMin 3 --sizeMax 30 --class ~.domain.Owner
+field string --fieldName lastName --notNull --sizeMin 3 --sizeMax 30
+field string --fieldName address --notNull --sizeMax 50 --sizeMin 1
+field string --fieldName city --notNull --sizeMax 30
+field string --fieldName telephone --notNull
+field string --fieldName email --sizeMax 30 --sizeMin 6
+graph relationship --to ~.domain.Pet --from ~.domain.Owner --fieldName pets --type OWNS --cardinality ONE_TO_MANY
+graph relationship --from ~.domain.Pet --to ~.domain.Owner --fieldName owner --type OWNS --cardinality MANY_TO_ONE --direction INCOMING
+controller all --package ~.web
+// script petclinic/3
+enum type --class ~.reference.Specialty
+enum constant --name Cardiology
+enum constant --name Dentistry
+enum constant --name Nutrition
+graph entity --class ~.domain.Vet
+field string --fieldName firstName --sizeMin 3 --sizeMax 30
+field string --fieldName lastName --notNull --sizeMin 3 --sizeMax 30
+field enum --fieldName specialty --type ~.reference.Specialty --notNull false
+field string --fieldName telephone --notNull
+field string --fieldName homePage --sizeMax 30
+field string --fieldName email --sizeMax 30 --sizeMin 6
+graph entity --class ~.domain.Visit
+field string --fieldName description --sizeMax 255 --class ~.domain.Visit
+field date --fieldName visitDate --type java.util.Date --notNull --past
+graph relationship --to ~.domain.Pet --from ~.domain.Visit --fieldName pet --type PATIENT --cardinality MANY_TO_ONE
+graph relationship --to ~.domain.Vet --from ~.domain.Visit --fieldName vet --type DOCTOR --cardinality MANY_TO_ONE
+controller all --package ~.web
+// script petclinic/4
