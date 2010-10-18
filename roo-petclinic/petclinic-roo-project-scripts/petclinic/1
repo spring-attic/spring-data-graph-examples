@@ -1,0 +1,3 @@
+graph entity --class ~.domain.Pet
+field string --fieldName name --notNull --sizeMin 1
+controller all --package ~.web

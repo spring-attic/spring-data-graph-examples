@@ -1,0 +1,11 @@
+field boolean --fieldName sendReminders --notNull --primitive --class ~.domain.Pet
+graph entity --class ~.domain.Owner
+field string --fieldName firstName --sizeMin 3 --sizeMax 30 --class ~.domain.Owner
+field string --fieldName lastName --notNull --sizeMin 3 --sizeMax 30
+field string --fieldName address --notNull --sizeMax 50 --sizeMin 1
+field string --fieldName city --notNull --sizeMax 30
+field string --fieldName telephone --notNull
+field string --fieldName email --sizeMax 30 --sizeMin 6
+graph relationship --to ~.domain.Pet --from ~.domain.Owner --fieldName pets --type OWNS --cardinality ONE_TO_MANY
+graph relationship --from ~.domain.Pet --to ~.domain.Owner --fieldName owner --type OWNS --cardinality MANY_TO_ONE --direction INCOMING
+controller all --package ~.web
