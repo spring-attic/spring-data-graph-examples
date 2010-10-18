@@ -9,7 +9,7 @@ digraph Vet {
 
   Vet [
     
-    label = "{@GraphEntity\
+    label = "{@NodeEntity\
     \l@RooToString\
     \l@RooJavaBean\
     \l@RooEntity\

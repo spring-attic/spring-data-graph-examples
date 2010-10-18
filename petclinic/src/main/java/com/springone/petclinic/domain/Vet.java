@@ -1,6 +1,6 @@
 package com.springone.petclinic.domain;
 
-import org.springframework.datastore.graph.api.GraphEntity;
+import org.springframework.datastore.graph.annotation.NodeEntity;
 import org.springframework.roo.addon.tostring.RooToString;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.entity.RooEntity;
@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import com.springone.petclinic.reference.Specialty;
 import javax.persistence.Enumerated;
 
-@GraphEntity
+@NodeEntity
 @RooToString
 @RooJavaBean
 @RooEntity

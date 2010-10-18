@@ -9,7 +9,7 @@ digraph Visit {
 
   Visit [
     
-    label = "{@GraphEntity\
+    label = "{@NodeEntity\
     \l@RooToString\
     \l@RooJavaBean\
     \l@RooEntity\
@@ -21,10 +21,10 @@ digraph Visit {
     \l\    @Temporal(TemporalType.TIMESTAMP)\
     \l\    @DateTimeFormat(style = \"S-\")\
     \l\    private Date visitDate;\
-    \l\    @GraphEntityRelationship(type = \"PATIENT\", direction = Direction.OUTGOING, elementClass = Pet.class)\
+    \l\    @RelatedTo(type = \"PATIENT\", direction = Direction.OUTGOING, elementClass = Pet.class)\
     \l\    @ManyToOne(targetEntity = Pet.class)\
     \l\    private Set\<com.springone.petclinic.domain.Pet\> pet;\
-    \l\    @GraphEntityRelationship(type = \"DOCTOR\", direction = Direction.OUTGOING, elementClass = Vet.class)\
+    \l\    @RelatedTo(type = \"DOCTOR\", direction = Direction.OUTGOING, elementClass = Vet.class)\
     \l\    @ManyToOne(targetEntity = Vet.class)\
     \l\    private Set\<com.springone.petclinic.domain.Vet\> vet;\
     \l\}\

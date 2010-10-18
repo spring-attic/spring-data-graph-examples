@@ -9,7 +9,7 @@ digraph Pet {
 
   Pet [
     
-    label = "{@GraphEntity\
+    label = "{@NodeEntity\
     \l@RooToString\
     \l@RooJavaBean\
     \l@RooEntity\
@@ -25,7 +25,7 @@ digraph Pet {
     \l\    private Float weight;\
     \l\    @NotNull\
     \l\    private boolean sendReminders;\
-    \l\    @GraphEntityRelationship(type = \"OWNS\", direction = Direction.INCOMING, elementClass = Owner.class)\
+    \l\    @RelatedTo(type = \"OWNS\", direction = Direction.INCOMING, elementClass = Owner.class)\
     \l\    @ManyToOne(targetEntity = Owner.class)\
     \l\    private Set\<com.springone.petclinic.domain.Owner\> owner;\
     \l\}\

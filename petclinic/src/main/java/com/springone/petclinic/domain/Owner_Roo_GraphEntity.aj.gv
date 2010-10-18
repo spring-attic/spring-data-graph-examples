@@ -9,7 +9,7 @@ digraph Owner {
 
   Owner [
     
-    label = "{@GraphEntity\
+    label = "{@NodeEntity\
     \l@RooToString\
     \l@RooJavaBean\
     \l@RooEntity\
@@ -29,7 +29,7 @@ digraph Owner {
     \l\    private String telephone;\
     \l\    @Size(min = 6, max = 30)\
     \l\    private String email;\
-    \l\    @GraphEntityRelationship(type = \"OWNS\", direction = Direction.OUTGOING, elementClass = Pet.class)\
+    \l\    @RelatedTo(type = \"OWNS\", direction = Direction.OUTGOING, elementClass = Pet.class)\
     \l\    @OneToMany(targetEntity = Pet.class)\
     \l\    private Set\<com.springone.petclinic.domain.Pet\> pets;\
     \l\}\

@@ -1,18 +1,18 @@
 package com.springone.petclinic.domain;
 
-import org.springframework.datastore.graph.api.GraphEntity;
+import org.springframework.datastore.graph.annotation.NodeEntity;
 import org.springframework.roo.addon.tostring.RooToString;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.entity.RooEntity;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
-import org.springframework.datastore.graph.api.GraphEntityRelationship;
+import org.springframework.datastore.graph.annotation.RelatedTo;
 import org.springframework.datastore.graph.api.Direction;
 import com.springone.petclinic.domain.Pet;
 import javax.persistence.OneToMany;
 
-@GraphEntity
+@NodeEntity
 @RooToString
 @RooJavaBean
 @RooEntity
@@ -39,7 +39,7 @@ public class Owner {
     @Size(min = 6, max = 30)
     private String email;
 
-    @GraphEntityRelationship(type = "OWNS", direction = Direction.OUTGOING, elementClass = Pet.class)
+    @RelatedTo(type = "OWNS", direction = Direction.OUTGOING, elementClass = Pet.class)
     @OneToMany(targetEntity = Pet.class)
     private Set<com.springone.petclinic.domain.Pet> pets;
 }
