@@ -1,6 +1,8 @@
 package com.springone.myrestaurants.domain;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,13 +18,17 @@ import javax.persistence.Transient;
 import javax.persistence.Version;
 
 import org.neo4j.graphdb.DynamicRelationshipType;
-import org.springframework.datastore.graph.api.*;
+import org.springframework.datastore.graph.annotation.GraphProperty;
+import org.springframework.datastore.graph.annotation.GraphTraversal;
+import org.springframework.datastore.graph.annotation.NodeEntity;
+import org.springframework.datastore.graph.annotation.RelatedTo;
+import org.springframework.datastore.graph.annotation.RelatedToVia;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.transaction.annotation.Transactional;
 
 @Entity
 @Table(name = "user_account")
-@GraphEntity(partial = true)
+@NodeEntity(partial = true)
 public class UserAccount {
 
     private String userName;
@@ -31,19 +37,19 @@ public class UserAccount {
 
     private String lastName;
 
-    @GraphEntityProperty
+    @GraphProperty
     @Transient
     String nickname;
 
-    @GraphEntityRelationship(type = "friends", elementClass = UserAccount.class)
+    @RelatedTo(type = "friends", elementClass = UserAccount.class)
     @Transient
     Set<UserAccount> friends;
 
-    @GraphEntityRelationshipEntity(type = "recommends", elementClass = Recommendation.class)
+    @RelatedToVia(type = "recommends", elementClass = Recommendation.class)
     @Transient
     Iterable<Recommendation> recommendations;
 
-    @GraphEntityTraversal(traversalBuilder = TopRatedRestaurantTraverser.class, elementClass = Restaurant.class)
+    @GraphTraversal(traversalBuilder = TopRatedRestaurantTraverser.class, elementClass = Restaurant.class)
     @Transient
     Iterable<Restaurant> topRatedRestaurants;
 

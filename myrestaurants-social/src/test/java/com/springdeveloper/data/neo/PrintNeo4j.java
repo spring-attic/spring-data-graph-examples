@@ -12,7 +12,8 @@ public class PrintNeo4j {
 
 	public static void main(String[] args) {
 		System.out.println("Hello Neo4j!");
-		GraphDatabaseService graphDb = new EmbeddedGraphDatabase( "target/data/test" );
+//		GraphDatabaseService graphDb = new EmbeddedGraphDatabase( "target/data/test" );
+		GraphDatabaseService graphDb = new EmbeddedGraphDatabase( "/Users/trisberg/neo4j/imdb" );
 		Transaction tx = graphDb.beginTx();
 
 		tx = graphDb.beginTx();

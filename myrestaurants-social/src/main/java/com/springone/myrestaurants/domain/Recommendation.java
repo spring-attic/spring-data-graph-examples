@@ -1,14 +1,14 @@
 package com.springone.myrestaurants.domain;
 
-import org.springframework.datastore.graph.api.GraphRelationship;
-import org.springframework.datastore.graph.api.GraphRelationshipEndNode;
-import org.springframework.datastore.graph.api.GraphRelationshipStartNode;
+import org.springframework.datastore.graph.annotation.EndNode;
+import org.springframework.datastore.graph.annotation.RelationshipEntity;
+import org.springframework.datastore.graph.annotation.StartNode;
 
-@GraphRelationship
+@RelationshipEntity
 public class Recommendation {
-    @GraphRelationshipStartNode
+    @StartNode
     private UserAccount user;
-    @GraphRelationshipEndNode
+    @EndNode
     private Restaurant restaurant;
 
     private int stars;
