@@ -384,7 +384,7 @@
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-datastore-neo4j</artifactId>
-			<version>1.0.0.M1-SNAPSHOT</version>
+			<version>1.0.0.BUILD-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	<build>
