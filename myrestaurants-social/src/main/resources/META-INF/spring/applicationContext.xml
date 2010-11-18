@@ -78,41 +78,41 @@
 
     <tx:annotation-driven mode="aspectj" transaction-manager="transactionManager"/>
 
-    <bean class="org.springframework.datastore.graph.neo4j.spi.node.Neo4jNodeBacking" factory-method="aspectOf" />
+    <bean class="org.springframework.data.graph.neo4j.spi.node.Neo4jNodeBacking" factory-method="aspectOf" />
 
-	<bean class="org.springframework.datastore.graph.neo4j.spi.relationship.Neo4jRelationshipBacking" factory-method="aspectOf" depends-on="nodeEntityStateAccessorsFactory"/>
+	<bean class="org.springframework.data.graph.neo4j.spi.relationship.Neo4jRelationshipBacking" factory-method="aspectOf" depends-on="nodeEntityStateAccessorsFactory"/>
     	<bean id="graphDbService" class="org.neo4j.kernel.EmbeddedGraphDatabase" 
 			destroy-method="shutdown" scope="singleton">
 		 <constructor-arg index="0" value="target/data/myrestaurants" />
 	</bean>
-    <bean id="nodeTypeStrategy" class="org.springframework.datastore.graph.neo4j.support.SubReferenceNodeTypeStrategy">
+    <bean id="nodeTypeStrategy" class="org.springframework.data.graph.neo4j.support.SubReferenceNodeTypeStrategy">
         <constructor-arg index="0" ref="graphDatabaseContext"/>
     </bean>
     <bean id="indexService" class="org.neo4j.index.lucene.LuceneIndexService" destroy-method="shutdown">
         <constructor-arg index="0" ref="graphDbService" />
     </bean>
-    <bean id="graphDatabaseContext" class="org.springframework.datastore.graph.neo4j.support.GraphDatabaseContext"/>
+    <bean id="graphDatabaseContext" class="org.springframework.data.graph.neo4j.support.GraphDatabaseContext"/>
 
-    <bean id="nodeEntityStateAccessorsFactory" class="org.springframework.datastore.graph.neo4j.fieldaccess.NodeEntityStateAccessorsFactory" />
-    <bean id="relationshipEntityStateAccessorsFactory" class="org.springframework.datastore.graph.neo4j.fieldaccess.RelationshipEntityStateAccessorsFactory" />
-    <bean id="nodeDelegatingFieldAccessorFactory" class="org.springframework.datastore.graph.neo4j.fieldaccess.NodeDelegatingFieldAccessorFactory">
+    <bean id="nodeEntityStateAccessorsFactory" class="org.springframework.data.graph.neo4j.fieldaccess.NodeEntityStateAccessorsFactory" />
+    <bean id="relationshipEntityStateAccessorsFactory" class="org.springframework.data.graph.neo4j.fieldaccess.RelationshipEntityStateAccessorsFactory" />
+    <bean id="nodeDelegatingFieldAccessorFactory" class="org.springframework.data.graph.neo4j.fieldaccess.NodeDelegatingFieldAccessorFactory">
         <constructor-arg ref="graphDatabaseContext"/>
     </bean>
 
-	<bean id="finderFactory" class="org.springframework.datastore.graph.neo4j.finder.FinderFactory">
+	<bean id="finderFactory" class="org.springframework.data.graph.neo4j.finder.FinderFactory">
 		<constructor-arg ref="graphDatabaseContext" />
 	</bean>
 	
-    <bean id="graphEntityInstantiator" name="gei" class="org.springframework.datastore.graph.neo4j.spi.node.PartialNeo4jEntityInstantiator">
+    <bean id="graphEntityInstantiator" name="gei" class="org.springframework.data.graph.neo4j.spi.node.PartialNeo4jEntityInstantiator">
         <property name="entityInstantiator" >
-            <bean class="org.springframework.datastore.graph.neo4j.spi.node.Neo4jConstructorGraphEntityInstantiator"/>
+            <bean class="org.springframework.data.graph.neo4j.spi.node.Neo4jConstructorGraphEntityInstantiator"/>
         </property>
     </bean>
 
-	<bean id="relationshipEntityInstantiator" name="rei" class="org.springframework.datastore.graph.neo4j.spi.relationship.ConstructorBypassingGraphRelationshipInstantiator" />
+	<bean id="relationshipEntityInstantiator" name="rei" class="org.springframework.data.graph.neo4j.spi.relationship.ConstructorBypassingGraphRelationshipInstantiator" />
 	
 	<!-- conversion support -->
-	<bean id="conversionService" class="org.springframework.datastore.graph.neo4j.fieldaccess.Neo4jConversionServiceFactoryBean"/>
+	<bean id="conversionService" class="org.springframework.data.graph.neo4j.fieldaccess.Neo4jConversionServiceFactoryBean"/>
 
     <bean id="transactionManager" class="org.springframework.persistence.transaction.NaiveDoubleTransactionManager" >
 		<constructor-arg>
@@ -137,7 +137,7 @@
 	    <constructor-arg index="0" ref="graphDbService" />
 	</bean>
 
-    <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory" depends-on="org.springframework.datastore.graph.neo4j.spi.node.Neo4jNodeBacking">
+    <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory" depends-on="org.springframework.data.graph.neo4j.spi.node.Neo4jNodeBacking">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 

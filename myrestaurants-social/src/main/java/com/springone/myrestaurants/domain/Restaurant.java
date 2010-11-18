@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Version;
 
-import org.springframework.datastore.graph.annotation.NodeEntity;
+import org.springframework.data.graph.annotation.NodeEntity;
 
 @Entity
 @NodeEntity(partial = true)

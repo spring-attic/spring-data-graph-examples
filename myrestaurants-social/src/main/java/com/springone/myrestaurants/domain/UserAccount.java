@@ -18,11 +18,11 @@ import javax.persistence.Transient;
 import javax.persistence.Version;
 
 import org.neo4j.graphdb.DynamicRelationshipType;
-import org.springframework.datastore.graph.annotation.GraphProperty;
-import org.springframework.datastore.graph.annotation.GraphTraversal;
-import org.springframework.datastore.graph.annotation.NodeEntity;
-import org.springframework.datastore.graph.annotation.RelatedTo;
-import org.springframework.datastore.graph.annotation.RelatedToVia;
+import org.springframework.data.graph.annotation.GraphProperty;
+import org.springframework.data.graph.annotation.GraphTraversal;
+import org.springframework.data.graph.annotation.NodeEntity;
+import org.springframework.data.graph.annotation.RelatedTo;
+import org.springframework.data.graph.annotation.RelatedToVia;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.transaction.annotation.Transactional;
 

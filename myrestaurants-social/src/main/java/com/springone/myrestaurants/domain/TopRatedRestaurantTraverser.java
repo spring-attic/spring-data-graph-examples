@@ -6,8 +6,8 @@ import org.neo4j.graphdb.traversal.BranchSelector;
 import org.neo4j.graphdb.traversal.TraversalBranch;
 import org.neo4j.graphdb.traversal.TraversalDescription;
 import org.neo4j.kernel.impl.traversal.TraversalDescriptionImpl;
-import org.springframework.datastore.graph.api.FieldTraversalDescriptionBuilder;
-import org.springframework.datastore.graph.api.NodeBacked;
+import org.springframework.data.graph.api.FieldTraversalDescriptionBuilder;
+import org.springframework.data.graph.api.NodeBacked;
 
 import java.lang.reflect.Field;
 

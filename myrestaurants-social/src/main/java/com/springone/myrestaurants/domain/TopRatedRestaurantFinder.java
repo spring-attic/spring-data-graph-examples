@@ -8,7 +8,7 @@ import org.neo4j.kernel.Traversal;
 import org.neo4j.kernel.impl.traversal.TraversalDescriptionImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.datastore.graph.neo4j.support.GraphDatabaseContext;
+import org.springframework.data.graph.neo4j.support.GraphDatabaseContext;
 
 import java.util.*;
 
