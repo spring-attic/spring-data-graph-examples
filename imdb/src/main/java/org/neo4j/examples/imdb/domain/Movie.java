@@ -2,11 +2,10 @@ package org.neo4j.examples.imdb.domain;
 
 import java.util.Set;
 
-import org.springframework.datastore.graph.annotation.GraphProperty;
-import org.springframework.datastore.graph.annotation.NodeEntity;
-import org.springframework.datastore.graph.annotation.RelatedTo;
-import org.springframework.datastore.graph.annotation.GraphInactive.Relationship;
-import org.springframework.datastore.graph.api.Direction;
+import org.springframework.data.graph.annotation.GraphProperty;
+import org.springframework.data.graph.annotation.NodeEntity;
+import org.springframework.data.graph.annotation.RelatedTo;
+import org.springframework.data.graph.core.Direction;
 
 // START SNIPPET: MovieClass
 @NodeEntity

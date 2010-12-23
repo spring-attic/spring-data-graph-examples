@@ -6,8 +6,9 @@ import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Node;
 import org.neo4j.index.IndexService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.datastore.graph.api.NodeBacked;
-import org.springframework.persistence.support.EntityInstantiator;
+import org.springframework.data.graph.core.NodeBacked;
+import org.springframework.data.graph.neo4j.finder.Finder;
+import org.springframework.data.graph.neo4j.finder.FinderFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Iterator;
@@ -19,7 +20,7 @@ class ImdbServiceImpl implements ImdbService {
     @Autowired
     private GraphDatabaseService graphDbService;
     @Autowired
-    private EntityInstantiator<NodeBacked,Node> graphEntityInstantiator;
+    private FinderFactory finderFactory;
     @Autowired
     private IndexService indexService;
     @Autowired
@@ -57,7 +58,7 @@ class ImdbServiceImpl implements ImdbService {
             actorNode = searchEngine.searchActor(name);
         }
         if (actorNode != null) {
-            return graphEntityInstantiator.createEntityFromState(actorNode, Actor.class);
+            return createEntityFromState(actorNode, Actor.class);
         }
         return null;
     }
@@ -68,7 +69,7 @@ class ImdbServiceImpl implements ImdbService {
             movieNode = searchEngine.searchMovie(title);
         }
         if (movieNode != null) {
-            return graphEntityInstantiator.createEntityFromState(movieNode, Movie.class);
+            return createEntityFromState(movieNode, Movie.class);
         }
         return null;
     }
@@ -76,9 +77,13 @@ class ImdbServiceImpl implements ImdbService {
     public Movie getExactMovie(final String title) {
         Node movieNode = getExactMovieNode(title);
         if (movieNode != null) {
-            return graphEntityInstantiator.createEntityFromState(movieNode, Movie.class);
+            return createEntityFromState(movieNode, Movie.class);
         }
         return null;
+    }
+
+    private <T extends NodeBacked> T createEntityFromState(Node node, Class<T> type) {
+        return finderFactory.getFinderForClass(type).findById(node.getId());
     }
 
     private Node getExactMovieNode(final String title) {
@@ -130,9 +135,9 @@ class ImdbServiceImpl implements ImdbService {
         int mod = 0;
         for (Node node : list) {
             if (mod++ % 2 == 0) {
-                actorAndMovieList.add(graphEntityInstantiator.createEntityFromState(node, Actor.class));
+                actorAndMovieList.add(createEntityFromState(node,Actor.class));
             } else {
-                actorAndMovieList.add(graphEntityInstantiator.createEntityFromState(node, Movie.class));
+                actorAndMovieList.add(createEntityFromState(node, Movie.class));
             }
         }
         return actorAndMovieList;
