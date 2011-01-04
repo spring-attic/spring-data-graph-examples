@@ -13,7 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.graph.neo4j.spi.node.Neo4jHelper;
+import org.springframework.data.graph.neo4j.support.node.Neo4jHelper;
 import org.springframework.data.graph.neo4j.support.GraphDatabaseContext;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.Rollback;

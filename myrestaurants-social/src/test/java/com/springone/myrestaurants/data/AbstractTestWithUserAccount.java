@@ -12,7 +12,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.graph.neo4j.spi.node.Neo4jHelper;
+import org.springframework.data.graph.neo4j.support.node.Neo4jHelper;
 import org.springframework.data.graph.neo4j.support.GraphDatabaseContext;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.transaction.AfterTransaction;
