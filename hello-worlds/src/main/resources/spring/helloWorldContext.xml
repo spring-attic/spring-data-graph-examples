@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:tx="http://www.springframework.org/schema/tx"
+  xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+  <!-- Spring Data Graph setup using Neo4j Configuration -->
+  <tx:annotation-driven mode="aspectj" transaction-manager="transactionManager"/>
+  <bean id="neo4jConfiguration" class="org.neo4j.examples.spring.hellograph.HelloWorldNeo4jConfiguration"/>
+  <bean class="org.springframework.context.annotation.ConfigurationClassPostProcessor"/>
+
+</beans>
+
