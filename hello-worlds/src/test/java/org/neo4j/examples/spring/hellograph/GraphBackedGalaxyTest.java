@@ -1,9 +1,16 @@
 package org.neo4j.examples.spring.hellograph;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.graph.core.NodeBacked;
+import org.springframework.data.graph.neo4j.support.GraphDatabaseContext;
+import org.springframework.data.graph.neo4j.support.node.Neo4jHelper;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.BeforeTransaction;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 
@@ -17,27 +24,34 @@ import static org.junit.internal.matchers.StringContains.containsString;
  * Exploratory testing of Spring Data Graph using
  * the GraphBackedGalaxy.
  */
+@ContextConfiguration(locations = "/spring/helloWorldContext.xml")
+@RunWith(SpringJUnit4ClassRunner.class)
+@Transactional
 public class GraphBackedGalaxyTest
 {
 
-    private GraphBackedGalaxy galaxy;
+    @Autowired
+	private GraphBackedGalaxy galaxy;
 
-    @Before
-    public void createGalaxy()
-    {
-        galaxy = new GraphBackedGalaxy();
-    }
+	@Autowired
+	private GraphDatabaseContext graphDatabaseContext;
 
-    @After
-    public void destroyGalaxy()
+	@Rollback(false)
+    @BeforeTransaction
+    public void clearDatabase()
     {
-        galaxy.shutdownEverythingAndLeaveNoTrace();
+		Neo4jHelper.cleanDb(graphDatabaseContext);
     }
 
     @Test
     public void shouldAllowDirectWorldCreation()
     {
-        World myWorld = new World( "mine" );
+        assertEquals(0, galaxy.countWorlds());
+        World myWorld = new World( "mine", 0 );
+        assertEquals(1, galaxy.countWorlds());
+        Iterable<World> foundWorlds = galaxy.findAllWorlds();
+        World mine = foundWorlds.iterator().next();
+        assertEquals(myWorld.getName(), mine.getName());
     }
 
     @Test
@@ -45,6 +59,14 @@ public class GraphBackedGalaxyTest
     {
         Iterable<World> worlds = galaxy.makeSomeWorlds();
         assertNotNull( worlds );
+    }
+
+
+    @Test
+    public void shouldHaveCorrectNumberOfWorlds()
+    {
+        galaxy.makeSomeWorlds();
+        assertEquals(13, galaxy.countWorlds());
     }
 
     @Test
@@ -73,15 +95,6 @@ public class GraphBackedGalaxyTest
     }
 
     @Test
-    public void shouldKnowCountOfWorlds()
-    {
-        Collection<World> madeWorlds = galaxy.makeSomeWorlds();
-
-        assertEquals( madeWorlds.size(), galaxy.countWorlds() );
-
-    }
-
-    @Test
     public void shouldFindWorldsByName()
     {
         for ( World w : galaxy.makeSomeWorlds() )
@@ -90,27 +103,27 @@ public class GraphBackedGalaxyTest
         }
     }
 
+	@SuppressWarnings("unchecked")
     @Test
     public void shouldFindWorldsWith1Moon()
     {
-        Collection<World> knownWorlds = galaxy.makeSomeWorlds();
-
+        galaxy.makeSomeWorlds();
         for ( World worldWithOneMoon : galaxy.findWorldsWithMoons( 1 ) )
         {
-            assertThat( worldWithOneMoon.getName(), is( anyOf( containsString( "Earth" ), containsString( "Midgard" ) ) ) );
+        	assertThat( worldWithOneMoon.getName(), is( anyOf( containsString( "Earth" ), containsString( "Midgard" ) ) ) );
         }
     }
 
     @Test
     public void shouldReachMarsFromEarth()
     {
-        Collection<World> knownWorlds = galaxy.makeSomeWorlds();
+        galaxy.makeSomeWorlds();
 
         World earth = galaxy.findWorldNamed( "Earth" );
         World mars = galaxy.findWorldNamed( "Mars" );
 
         assertTrue( mars.canBeReachedFrom( earth ) );
-        // assertFalse( earth.canBeReachedFrom( mars ) ); // ABKNOTE: why is the relationship one way?
+        assertTrue( earth.canBeReachedFrom( mars ) );
     }
 
 }

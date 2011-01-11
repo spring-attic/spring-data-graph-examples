@@ -1,50 +1,51 @@
 package org.neo4j.examples.spring.hellograph;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.graph.neo4j.support.GraphDatabaseContext;
+import org.springframework.data.graph.neo4j.support.node.Neo4jHelper;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.BeforeTransaction;
+import org.springframework.transaction.annotation.Transactional;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
-import static org.junit.matchers.JUnitMatchers.containsString;
+import static org.junit.Assert.assertNull;
 
 /**
  * Exploratory unit-tests for the Spring Data Graph annotated World entity.
+ * 
+ * Since the World is a @NodeEntity, the SpringDataGraph must
+ * be setup before you can even create instances of the POJO.
  */
+@ContextConfiguration(locations = "/spring/helloWorldContext.xml")
+@RunWith(SpringJUnit4ClassRunner.class)
+@Transactional
 public class WorldTest
 {
-    private GraphBackedGalaxy galaxy;
 
-    /**
-     * Since the World is a @NodeEntity, the SpringDataGraph must
-     * be setup before you can even create instances of the POJO.
-     *
-     * The GraphBackedGalaxy takes care of all the setup, so use that.
-     */
-    @Before
-    public void setupSpringDataGraph()
-    {
-        galaxy = new GraphBackedGalaxy();
-    }
+	@Autowired
+	private GraphDatabaseContext graphDatabaseContext;
 
-    @After
-    public void shutdownSpringDataGraph()
+	@Rollback(false)
+    @BeforeTransaction
+    public void clearDatabase()
     {
-        galaxy.shutdownEverythingAndLeaveNoTrace();
+		Neo4jHelper.cleanDb(graphDatabaseContext);
     }
 
     @Test
     public void shouldBeSimpleToCreateNewEntities()
     {
-        World w = new World();
+        @SuppressWarnings("unused")
+		World w = new World();
     }
 
     @Test
-    public void shouldHaveDefaultName()
+    public void shouldHaveNullNameUsingDefaultConstructor()
     {
-        final String expectedName = "world";
         World w = new World();
-
-        assertThat( expectedName, containsString( w.getName() ) );
+        assertNull(w.getName());
     }
 }

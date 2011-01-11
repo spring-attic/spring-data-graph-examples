@@ -1,38 +1,23 @@
 package org.neo4j.examples.spring.hellograph;
 
-import org.neo4j.graphdb.GraphDatabaseService;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.graph.neo4j.finder.FinderFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 
 /**
  * Spring Data Graph backed application context for Worlds.
  */
+@Component
 public class GraphBackedGalaxy
 {
-    private ConfigurableApplicationContext applicationContext;
-    private FinderFactory finderFactory;
+	@Autowired
+	private FinderFactory finderFactory;
 
-    public GraphBackedGalaxy()
-    {
-        createApplicationBeansFrom( "/spring/helloWorldContext.xml" );
-    }
-
-    public void createApplicationBeansFrom( String springApplicationContextFilename )
-    {
-        // open/read the application context file
-        applicationContext = new ClassPathXmlApplicationContext( springApplicationContextFilename );
-
-        finderFactory = (FinderFactory) applicationContext.getBean( "finderFactory" );
-
-    }
-
-    @Transactional
+	@Transactional
     public Collection<World> makeSomeWorlds()
     {
         ArrayList<World> newWorlds = new ArrayList<World>();
@@ -80,45 +65,18 @@ public class GraphBackedGalaxy
         return (World) finderFactory.getFinderForClass( World.class ).findByPropertyValue( "name", name );
     }
 
-    public Iterable<World> findWorldsWithMoons( Integer moonCount )
+    public World findWorldWithMoons( long moonCount )
+    {
+        return finderFactory.getFinderForClass( World.class ).findById( moonCount );
+    }
+    public Iterable<World> findWorldsWithMoons( int moonCount )
     {
         return (Iterable<World>) finderFactory.getFinderForClass( World.class ).findAllByPropertyValue( "moons", moonCount );
     }
 
     public Iterable<World> exploreWorldsBeyond( World homeWorld )
     {
-        return null;  //To change body of created methods use File | Settings | File Templates.
-    }
-
-    public void shutdownEverythingAndLeaveNoTrace()
-    {
-        // explicitly grab the GraphDatabaseService and shutdown.
-        GraphDatabaseService graphDB = (GraphDatabaseService) applicationContext.getBean( "graphDatabaseService" );
-        graphDB.shutdown();
-
-        HelloWorldNeo4jConfiguration neo4jConfiguration = (HelloWorldNeo4jConfiguration) applicationContext.getBean( "neo4jConfiguration" );
-        deleteDirectory( new File( neo4jConfiguration.getStoreDir() ) );
-
-        applicationContext.stop();
-    }
-
-    private void deleteDirectory( File path )
-    {
-        if ( path.exists() )
-        {
-            File[] files = path.listFiles();
-            for ( int i = 0; i < files.length; i++ )
-            {
-                if ( files[i].isDirectory() )
-                {
-                    deleteDirectory( files[i] );
-                }
-                else
-                {
-                    files[i].delete();
-                }
-            }
-        }
+        return null;
     }
 
 }

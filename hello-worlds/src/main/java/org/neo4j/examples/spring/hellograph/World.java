@@ -31,14 +31,14 @@ public class World
         this.moons = moons;
     }
 
-    public World( String name )
-    {
-        this( name, 0 );
-    }
+//    public World( String name )
+//    {
+//        this( name, 0 );
+//    }
 
     public World()
     {
-        this( "world" );
+//        this( "world" );
     }
 
     public String getName()
@@ -63,8 +63,6 @@ public class World
     public void addRocketRouteTo( World otherWorld )
     {
         ((NodeBacked) this).relateTo( otherWorld, RelationshipTypes.REACHABLE_BY_ROCKET );
-//        this.reachableByRocket.add(otherWorld); // ABKNOTE: same behavior
-//        otherWorld.addRocketRouteTo( this );
     }
 
     public boolean canBeReachedFrom( World otherWorld )

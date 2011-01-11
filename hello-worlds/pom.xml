@@ -120,6 +120,12 @@
       <artifactId>spring-data-neo4j</artifactId>
       <version>${datastore-graph.version}</version>
     </dependency>
+    <dependency>
+      <groupId>cglib</groupId>
+      <artifactId>cglib-nodep</artifactId>
+      <version>2.2</version>
+    </dependency>
+    
     <!-- Neo4j Libraries -->
     <dependency>
       <groupId>org.neo4j</groupId>

@@ -1,5 +1,8 @@
 package org.neo4j.examples.spring.hellograph;
 
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 /**
  * Hello world(s)!
  * <p/>
@@ -10,7 +13,11 @@ public class App
 
     public static void main( String[] args )
     {
-        GraphBackedGalaxy galaxy = new GraphBackedGalaxy();
+    	
+        ConfigurableApplicationContext applicationContext =  
+        	new ClassPathXmlApplicationContext( "/spring/helloWorldContext.xml");
+
+        GraphBackedGalaxy galaxy = applicationContext.getBean(GraphBackedGalaxy.class);
 
         Iterable<World> worlds = galaxy.makeSomeWorlds();
 
@@ -20,9 +27,11 @@ public class App
         World foundHomeWorld = galaxy.findWorldNamed( homeWorld.getName() );
         System.out.println( "found home world: " + foundHomeWorld );
 
-        Iterable<World> foundWorlds = galaxy.exploreWorldsBeyond( homeWorld );
+        Iterable<World> worldsBeyond = galaxy.exploreWorldsBeyond( homeWorld );
+        System.out.println( "found worlds beyond: " + worldsBeyond );
 
-        galaxy.shutdownEverythingAndLeaveNoTrace();
+        applicationContext.close();
+        
     }
 
 }
