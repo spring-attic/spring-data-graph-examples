@@ -17,7 +17,7 @@ public class App
         ConfigurableApplicationContext applicationContext =  
         	new ClassPathXmlApplicationContext( "/spring/helloWorldContext.xml");
 
-        GraphBackedGalaxy galaxy = applicationContext.getBean(GraphBackedGalaxy.class);
+        WorldRepository galaxy = applicationContext.getBean(WorldRepository.class);
 
         Iterable<World> worlds = galaxy.makeSomeWorlds();
 

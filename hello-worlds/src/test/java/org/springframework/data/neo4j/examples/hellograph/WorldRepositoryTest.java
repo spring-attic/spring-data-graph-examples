@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.graph.core.NodeBacked;
 import org.springframework.data.graph.neo4j.support.GraphDatabaseContext;
 import org.springframework.data.graph.neo4j.support.node.Neo4jHelper;
-import org.springframework.data.neo4j.examples.hellograph.GraphBackedGalaxy;
+import org.springframework.data.neo4j.examples.hellograph.WorldRepository;
 import org.springframework.data.neo4j.examples.hellograph.World;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
@@ -24,16 +24,16 @@ import static org.junit.internal.matchers.StringContains.containsString;
 
 /**
  * Exploratory testing of Spring Data Graph using
- * the GraphBackedGalaxy.
+ * the WorldRepository.
  */
 @ContextConfiguration(locations = "/spring/helloWorldContext.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
-public class GraphBackedGalaxyTest
+public class WorldRepositoryTest
 {
 
     @Autowired
-	private GraphBackedGalaxy galaxy;
+	private WorldRepository galaxy;
 
 	@Autowired
 	private GraphDatabaseContext graphDatabaseContext;

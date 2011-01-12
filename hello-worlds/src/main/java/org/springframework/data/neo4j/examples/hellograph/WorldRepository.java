@@ -2,7 +2,7 @@ package org.springframework.data.neo4j.examples.hellograph;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.graph.neo4j.finder.FinderFactory;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -11,8 +11,8 @@ import java.util.Collection;
 /**
  * Spring Data Graph backed application context for Worlds.
  */
-@Component
-public class GraphBackedGalaxy
+@Repository
+public class WorldRepository
 {
 	@Autowired
 	private FinderFactory finderFactory;
