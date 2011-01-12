@@ -1,4 +1,4 @@
-package org.neo4j.examples.spring.hellograph;
+package org.springframework.data.neo4j.examples.hellograph;
 
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.kernel.EmbeddedGraphDatabase;

@@ -11,7 +11,7 @@
 
 	<context:spring-configured/>
 
-	<context:component-scan base-package="org.neo4j.examples.spring.hellograph"/>
+	<context:component-scan base-package="org.springframework.data.neo4j.examples.hellograph"/>
 
     <tx:annotation-driven mode="aspectj" transaction-manager="transactionManager"/>
 

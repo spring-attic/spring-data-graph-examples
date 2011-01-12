@@ -1,10 +1,11 @@
-package org.neo4j.examples.spring.hellograph;
+package org.springframework.data.neo4j.examples.hellograph;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.graph.neo4j.support.GraphDatabaseContext;
 import org.springframework.data.graph.neo4j.support.node.Neo4jHelper;
+import org.springframework.data.neo4j.examples.hellograph.World;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;

@@ -1,4 +1,4 @@
-package org.neo4j.examples.spring.hellograph;
+package org.springframework.data.neo4j.examples.hellograph;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.graph.neo4j.finder.FinderFactory;

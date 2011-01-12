@@ -2,12 +2,12 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.neo4j.examples.spring</groupId>
-  <artifactId>hello-worlds</artifactId>
+  <groupId>org.springframework.data.examples</groupId>
+  <artifactId>spring-data-neo4j-hello-worlds</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>hello-worlds</name>
+  <name>Spring Data Neo4j hello-worlds</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -214,7 +214,7 @@
           </execution>
         </executions>
         <configuration>
-          <mainClass>org.neo4j.examples.spring.hellograph.App</mainClass>
+          <mainClass>org.springframework.data.neo4j.examples.hellograph.App</mainClass>
         </configuration>
       </plugin>
     </plugins>

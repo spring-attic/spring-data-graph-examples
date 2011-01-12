@@ -1,4 +1,4 @@
-package org.neo4j.examples.spring.hellograph;
+package org.springframework.data.neo4j.examples.hellograph;
 
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
