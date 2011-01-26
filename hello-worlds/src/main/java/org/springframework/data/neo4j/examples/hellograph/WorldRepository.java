@@ -2,6 +2,7 @@ package org.springframework.data.neo4j.examples.hellograph;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.graph.neo4j.finder.FinderFactory;
+import org.springframework.data.graph.neo4j.finder.NodeFinder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,31 +48,35 @@ public class WorldRepository
 
     public World findWorldIdentifiedBy( long id )
     {
-        return (World) finderFactory.getFinderForClass( World.class ).findById( id );
+        return (World) createFinder().findById(id);
     }
 
     public Iterable<World> findAllWorlds()
     {
-        return (Iterable<World>) finderFactory.getFinderForClass( World.class ).findAll();
+        return (Iterable<World>) createFinder().findAll();
     }
 
     public long countWorlds()
     {
-        return finderFactory.getFinderForClass( World.class ).count();
+        return createFinder().count();
     }
 
     public World findWorldNamed( String name )
     {
-        return (World) finderFactory.getFinderForClass( World.class ).findByPropertyValue( "name", name );
+        return (World) createFinder().findByPropertyValue("node","name", name);
     }
 
     public World findWorldWithMoons( long moonCount )
     {
-        return finderFactory.getFinderForClass( World.class ).findById( moonCount );
+        return createFinder().findById(moonCount);
     }
     public Iterable<World> findWorldsWithMoons( int moonCount )
     {
-        return (Iterable<World>) finderFactory.getFinderForClass( World.class ).findAllByPropertyValue( "moons", moonCount );
+        return (Iterable<World>) createFinder().findAllByPropertyValue("node","moons", moonCount);
+    }
+
+    private NodeFinder<World> createFinder() {
+        return finderFactory.createNodeEntityFinder( World.class );
     }
 
     public Iterable<World> exploreWorldsBeyond( World homeWorld )

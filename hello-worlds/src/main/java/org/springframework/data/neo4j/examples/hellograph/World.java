@@ -1,5 +1,6 @@
 package org.springframework.data.neo4j.examples.hellograph;
 
+import org.springframework.data.annotation.Indexed;
 import org.springframework.data.graph.annotation.GraphProperty;
 import org.springframework.data.graph.annotation.NodeEntity;
 import org.springframework.data.graph.annotation.RelatedTo;
@@ -17,6 +18,7 @@ import java.util.Set;
 public class World
 {
     @GraphProperty
+    @Indexed
     private String name;
 
     @GraphProperty
