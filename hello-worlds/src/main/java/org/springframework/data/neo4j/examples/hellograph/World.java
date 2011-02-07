@@ -1,5 +1,6 @@
 package org.springframework.data.neo4j.examples.hellograph;
 
+import org.springframework.data.annotation.Indexed;
 import org.springframework.data.graph.annotation.GraphProperty;
 import org.springframework.data.graph.annotation.NodeEntity;
 import org.springframework.data.graph.annotation.RelatedTo;
@@ -16,10 +17,10 @@ import java.util.Set;
 @NodeEntity
 public class World
 {
-    @GraphProperty
+    @Indexed
     private String name;
 
-    @GraphProperty
+    @Indexed(indexName = "moon-index")
     private int moons;
 
     @RelatedTo(type = "REACHABLE_BY_ROCKET", elementClass = World.class, direction = Direction.BOTH)
@@ -31,14 +32,8 @@ public class World
         this.moons = moons;
     }
 
-//    public World( String name )
-//    {
-//        this( name, 0 );
-//    }
-
     public World()
     {
-//        this( "world" );
     }
 
     public String getName()
@@ -54,15 +49,12 @@ public class World
     @Override
     public String toString()
     {
-        return "World{" +
-                "name='" + name + '\'' +
-                ", moons=" + moons +
-                '}';
+        return String.format("World{name='%s, moons=%d}", name, moons);
     }
 
     public void addRocketRouteTo( World otherWorld )
     {
-        ((NodeBacked) this).relateTo( otherWorld, RelationshipTypes.REACHABLE_BY_ROCKET );
+        relateTo( otherWorld, RelationshipTypes.REACHABLE_BY_ROCKET );
     }
 
     public boolean canBeReachedFrom( World otherWorld )

@@ -2,6 +2,7 @@ package org.neo4j.examples.imdb.domain;
 
 import java.util.Set;
 
+import org.springframework.data.annotation.Indexed;
 import org.springframework.data.graph.annotation.GraphProperty;
 import org.springframework.data.graph.annotation.NodeEntity;
 import org.springframework.data.graph.annotation.RelatedTo;
@@ -10,7 +11,7 @@ import org.springframework.data.graph.core.Direction;
 // START SNIPPET: MovieClass
 @NodeEntity
 public class Movie {
-    @GraphProperty(index = true)
+    @Indexed
     String title;
     int year;
 

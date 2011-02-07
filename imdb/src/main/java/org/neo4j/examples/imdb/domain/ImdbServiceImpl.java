@@ -2,13 +2,13 @@ package org.neo4j.examples.imdb.domain;
 
 import org.neo4j.examples.imdb.util.PathFinder;
 import org.neo4j.graphdb.Direction;
-import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Node;
-import org.neo4j.index.IndexService;
+import org.neo4j.graphdb.NotFoundException;
+import org.neo4j.graphdb.index.Index;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.graph.core.NodeBacked;
-import org.springframework.data.graph.neo4j.finder.Finder;
 import org.springframework.data.graph.neo4j.finder.FinderFactory;
+import org.springframework.data.graph.neo4j.support.GraphDatabaseContext;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Iterator;
@@ -18,11 +18,7 @@ import java.util.NoSuchElementException;
 
 class ImdbServiceImpl implements ImdbService {
     @Autowired
-    private GraphDatabaseService graphDbService;
-    @Autowired
-    private FinderFactory finderFactory;
-    @Autowired
-    private IndexService indexService;
+    private GraphDatabaseContext graphDatabaseContext;
     @Autowired
     private PathFinder pathFinder;
     @Autowired
@@ -53,7 +49,7 @@ class ImdbServiceImpl implements ImdbService {
     }
 
     public Actor getActor(final String name) {
-        Node actorNode = indexService.getSingleNode(Actor.NAME_INDEX, name);
+        Node actorNode = getSingleNode(Actor.NAME_INDEX, name);
         if (actorNode == null) {
             actorNode = searchEngine.searchActor(name);
         }
@@ -61,6 +57,17 @@ class ImdbServiceImpl implements ImdbService {
             return createEntityFromState(actorNode, Actor.class);
         }
         return null;
+    }
+
+    private Node getSingleNode(String property, String value) {
+        for (Node node : nodeIndex().get(property, value)) {
+            return node;
+        }
+        return null;
+    }
+
+    private Index<Node> nodeIndex() {
+        return graphDatabaseContext.getNodeIndex(null);
     }
 
     public Movie getMovie(final String title) {
@@ -83,16 +90,16 @@ class ImdbServiceImpl implements ImdbService {
     }
 
     private <T extends NodeBacked> T createEntityFromState(Node node, Class<T> type) {
-        return finderFactory.getFinderForClass(type).findById(node.getId());
+        return graphDatabaseContext.createEntityFromState(node,type);
     }
 
     private Node getExactMovieNode(final String title) {
         Node movieNode = null;
         try {
-            movieNode = indexService.getSingleNode(Movie.TITLE_INDEX, title);
+            movieNode = getSingleNode(Movie.TITLE_INDEX, title);
         } catch (RuntimeException e) {
             System.out.println("Duplicate index for movie title: " + title);
-            Iterator<Node> movieNodes = indexService.getNodes(Movie.TITLE_INDEX,
+            Iterator<Node> movieNodes = nodeIndex().get(Movie.TITLE_INDEX,
                     title).iterator();
             if (movieNodes.hasNext()) {
                 movieNode = movieNodes.next();
@@ -103,12 +110,12 @@ class ImdbServiceImpl implements ImdbService {
 
     @Transactional
     public void setupReferenceRelationship() {
-        Node baconNode = indexService.getSingleNode("name", "Bacon, Kevin");
+        Node baconNode = getSingleNode("name", "Bacon, Kevin");
         if (baconNode == null) {
             throw new NoSuchElementException(
                     "Unable to find Kevin Bacon actor");
         }
-        Node referenceNode = graphDbService.getReferenceNode();
+        Node referenceNode = graphDatabaseContext.getReferenceNode();
         referenceNode.createRelationshipTo(baconNode, RelTypes.IMDB);
     }
 
@@ -118,7 +125,7 @@ class ImdbServiceImpl implements ImdbService {
             throw new IllegalArgumentException("Null actor");
         }
         try {
-            baconNode = graphDbService.getReferenceNode().getSingleRelationship(
+            baconNode = graphDatabaseContext.getReferenceNode().getSingleRelationship(
                     RelTypes.IMDB, Direction.OUTGOING).getEndNode();
         } catch (NoSuchElementException e) {
             throw new NoSuchElementException(
