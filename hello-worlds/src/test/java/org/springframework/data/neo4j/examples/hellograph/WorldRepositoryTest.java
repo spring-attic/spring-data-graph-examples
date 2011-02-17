@@ -26,7 +26,7 @@ import static org.junit.internal.matchers.StringContains.containsString;
  * Exploratory testing of Spring Data Graph using
  * the WorldRepository.
  */
-@ContextConfiguration(locations = "/spring/helloWorldContext.xml")
+@ContextConfiguration(locations = "classpath:spring/helloWorldContext.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
 public class WorldRepositoryTest

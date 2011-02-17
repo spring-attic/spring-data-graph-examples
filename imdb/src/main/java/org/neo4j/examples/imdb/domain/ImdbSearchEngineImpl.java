@@ -8,9 +8,12 @@ import java.util.Locale;
 
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Node;
+import org.neo4j.graphdb.NotFoundException;
 import org.neo4j.graphdb.Relationship;
+import org.neo4j.graphdb.index.Index;
 import org.neo4j.index.IndexService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.graph.neo4j.support.GraphDatabaseContext;
 
 public class ImdbSearchEngineImpl implements ImdbSearchEngine
 {
@@ -20,10 +23,7 @@ public class ImdbSearchEngineImpl implements ImdbSearchEngine
     private static final String TITLE_PART_INDEX = "title.part";
 
     @Autowired
-    private GraphDatabaseService graphDbService;
-
-    @Autowired
-    private IndexService indexService;
+    private GraphDatabaseContext graphDatabaseContext;
 
     public void indexActor( Actor actor )
     {
@@ -35,6 +35,18 @@ public class ImdbSearchEngineImpl implements ImdbSearchEngine
     {
         index( movie.getTitle(), ((Movie) movie).getUnderlyingState(),
             TITLE_PART_INDEX, ImdbSearchRelTypes.PART_OF_TITLE );
+    }
+
+
+    private Node getSingleNode(String property, String value) {
+        for (Node node : nodeIndex().get(property, value)) {
+            return node;
+        }
+        return null;
+    }
+
+    private Index<Node> nodeIndex() {
+        return graphDatabaseContext.getNodeIndex(null);
     }
 
     public Node searchActor( String name )
@@ -57,12 +69,12 @@ public class ImdbSearchEngineImpl implements ImdbSearchEngine
     {
         for ( String part : splitSearchString( value ) )
         {
-            Node wordNode = indexService.getSingleNode( partIndexName, part );
+            Node wordNode = getSingleNode( partIndexName, part );
             if ( wordNode == null )
             {
-                wordNode = graphDbService.createNode();
+                wordNode = graphDatabaseContext.createNode();
                 // not needed for the functionality
-                indexService.index( wordNode, partIndexName, part );
+                nodeIndex().add( wordNode, partIndexName, part );
 
                 wordNode.setProperty( WORD_PROPERTY, part );
             }
@@ -123,7 +135,7 @@ public class ImdbSearchEngineImpl implements ImdbSearchEngine
         // prepare search terms
         for ( String part : splitSearchString( userInput ) )
         {
-            Node wordNode = indexService.getSingleNode( partIndexName, part );
+            Node wordNode = getSingleNode( partIndexName, part );
             if ( wordNode == null || !wordNode.hasRelationship()
                 || wordList.contains( wordNode ) )
             {

@@ -5,48 +5,41 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.graph.neo4j.support.GraphDatabaseContext;
 import org.springframework.data.graph.neo4j.support.node.Neo4jHelper;
-import org.springframework.data.neo4j.examples.hellograph.World;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.BeforeTransaction;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.Assert.assertNull;
+import java.util.Map;
+
+import static java.util.Arrays.asList;
+import static org.junit.Assert.assertEquals;
 
 /**
- * Exploratory unit-tests for the Spring Data Graph annotated World entity.
- * 
- * Since the World is a @NodeEntity, the SpringDataGraph must
- * be setup before you can even create instances of the POJO.
+ * @author mh
+ * @since 17.02.11
+ * Added to check for some aspectj-snapshot build errors.
  */
 @ContextConfiguration(locations = "classpath:spring/helloWorldContext.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
-public class WorldTest
-{
+public class WorldCounterTest {
 
-	@Autowired
-	private GraphDatabaseContext graphDatabaseContext;
+    @Autowired
+    private GraphDatabaseContext graphDatabaseContext;
 
-	@Rollback(false)
+    @Rollback(false)
     @BeforeTransaction
     public void clearDatabase()
     {
-		Neo4jHelper.cleanDb(graphDatabaseContext);
+        Neo4jHelper.cleanDb(graphDatabaseContext);
     }
 
     @Test
-    public void shouldBeSimpleToCreateNewEntities()
-    {
-        @SuppressWarnings("unused")
-		World w = new World();
-    }
-
-    @Test
-    public void shouldHaveNullNameUsingDefaultConstructor()
-    {
-        World w = new World();
-        assertNull(w.getName());
+    public void testCountMoons() throws Exception {
+        WorldCounter counter = new WorldCounter();
+        Map<String,Integer> result = counter.countMoons(asList(new World("earth", 1)));
+        assertEquals("earth has one moon",(Integer)1,result.get("earth"));
     }
 }

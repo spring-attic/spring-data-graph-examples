@@ -48,35 +48,35 @@ public class WorldRepository
 
     public World findWorldIdentifiedBy( long id )
     {
-        return (World) createFinder().findById(id);
+        return finder().findById(id);
+    }
+
+    private NodeFinder<World> finder() {
+        return finderFactory.createNodeEntityFinder( World.class );
     }
 
     public Iterable<World> findAllWorlds()
     {
-        return (Iterable<World>) createFinder().findAll();
+        return finder().findAll();
     }
 
     public long countWorlds()
     {
-        return createFinder().count();
+        return finder().count();
     }
 
     public World findWorldNamed( String name )
     {
-        return (World) createFinder().findByPropertyValue("node","name", name);
+        return finder().findByPropertyValue( null, "name", name );
     }
 
     public World findWorldWithMoons( long moonCount )
     {
-        return createFinder().findById(moonCount);
+        return finder().findByPropertyValue( "moon-index","moons",moonCount );
     }
     public Iterable<World> findWorldsWithMoons( int moonCount )
     {
-        return (Iterable<World>) createFinder().findAllByPropertyValue("node","moons", moonCount);
-    }
-
-    private NodeFinder<World> createFinder() {
-        return finderFactory.createNodeEntityFinder( World.class );
+        return  finder().findAllByPropertyValue( "moon-index","moons", moonCount );
     }
 
     public Iterable<World> exploreWorldsBeyond( World homeWorld )

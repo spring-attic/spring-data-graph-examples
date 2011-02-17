@@ -1,15 +1,15 @@
 package org.neo4j.examples.imdb.domain;
 
-import java.util.Set;
-
-import org.springframework.data.graph.annotation.GraphProperty;
+import org.springframework.data.annotation.Indexed;
 import org.springframework.data.graph.annotation.NodeEntity;
 import org.springframework.data.graph.annotation.RelatedTo;
+
+import java.util.Set;
 
 // START SNIPPET: ActorClass
 @NodeEntity
 public class Actor {
-    @GraphProperty(index = true)
+    @Indexed
     private String name;
 
     @RelatedTo(type="ACTS_IN",elementClass = Movie.class)
