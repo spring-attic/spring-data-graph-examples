@@ -2,6 +2,7 @@ package com.springone.myrestaurants;
 
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.kernel.EmbeddedGraphDatabase;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.graph.neo4j.config.AbstractNeo4jConfiguration;
 
 /**
@@ -15,6 +16,7 @@ public class DataStoreConfig extends AbstractNeo4jConfiguration {
     }
 
     @Override
+    @Bean
     public GraphDatabaseService graphDatabaseService() {
         return new EmbeddedGraphDatabase("target/data/recommendation");
     }
