@@ -24,12 +24,12 @@ public class BaseApplicationController {
 	UserAccountRepository userAccountRepository;
 
 	@ModelAttribute("currentUserAccountId")
-	public String populateModelWithCurrentUserAccountIdAsString() {
+	public Long populateModelWithCurrentUserAccountIdAsLong() {
 		UserAccount userAccount = getCurrentUserAccount();
 		if (userAccount != null) {
-			return userAccount.getId().toString();
+			return userAccount.getId();
 		} else {
-			return "USER-ID-NOT-AVAILABLE";
+			return -1L;
 		}
 	}
 
@@ -38,7 +38,7 @@ public class BaseApplicationController {
 				.getAuthentication().getName();
 		UserAccount userAccount = userAccountRepository.findByName(currentUser);
 		if (userAccount != null) {
-			userAccount.getId();
+			userAccount.persist();
 		}
 		return userAccount;
 	}

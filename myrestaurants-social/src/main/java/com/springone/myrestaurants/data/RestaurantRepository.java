@@ -21,7 +21,7 @@ public class RestaurantRepository {
 		if (id == null) return null;
 		final Restaurant rest = entityManager.find(Restaurant.class, id);
 		if (rest != null) {
-			rest.getId();
+			rest.persist();
 		}
 		return rest;
     }

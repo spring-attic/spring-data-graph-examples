@@ -22,7 +22,7 @@ public class UserAccountRepository {
         if (id == null) return null;
         final UserAccount userAccount = entityManager.find(UserAccount.class, id);
         if (userAccount != null) {
-        	userAccount.getId();
+        	userAccount.persist();
         }
         return userAccount;
     }
@@ -37,7 +37,7 @@ public class UserAccountRepository {
 		{
             final UserAccount userAccount = (UserAccount) resultList.get(0);
             if (userAccount != null) {
-            	userAccount.getId();
+            	userAccount.persist();
             }
             return userAccount;
 		} 
@@ -65,12 +65,13 @@ public class UserAccountRepository {
 	@Transactional
     public void persist(UserAccount userAccount) {
         this.entityManager.persist(userAccount);
-        userAccount.getId();
+        this.entityManager.flush();
+        userAccount.persist();
     }
 
 	@Transactional
     public UserAccount merge(UserAccount userAccount) {
-        userAccount.getId();
+        userAccount.persist();
         UserAccount merged = this.entityManager.merge(userAccount);
         this.entityManager.flush();
         return merged;

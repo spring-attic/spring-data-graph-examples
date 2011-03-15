@@ -25,7 +25,7 @@ public class TopRatedRestaurantFinder {
     private static final int MAXIMUM_DEPTH = 5;
     public Collection<RatedRestaurant> getTopNRatedRestaurants(final UserAccount user, final int n) {
         final CalculateRatingPredicate calculateRatingPredicate = new CalculateRatingPredicate();
-        final Node userNode=user.getUnderlyingState();
+        final Node userNode=user.getPersistentState();
         final TraversalDescription traversalDescription = new TraversalDescriptionImpl()
                 .order(Traversal.postorderBreadthFirst())
                 .prune(Traversal.pruneAfterDepth(MAXIMUM_DEPTH))

@@ -19,7 +19,7 @@ import java.lang.reflect.Field;
  */
 class TopRatedRestaurantTraverser implements FieldTraversalDescriptionBuilder {
     @Override
-    public TraversalDescription build(NodeBacked start, Field field) {
+    public TraversalDescription build(NodeBacked start, Field field, String... params) {
         return new TraversalDescriptionImpl()
                 .breadthFirst()
                 .relationships(DynamicRelationshipType.withName("friends"))
@@ -40,4 +40,5 @@ class TopRatedRestaurantTraverser implements FieldTraversalDescriptionBuilder {
                     }
                 });
     }
+
 }

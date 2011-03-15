@@ -41,10 +41,10 @@ public class UserAccountRelationshipsTest extends AbstractTestWithUserAccount {
     	newUser.setNickname("Bubba");
     	newUser.setUserName("jdoe");
     	em.persist(newUser);
+        newUser.persist();
     	Assert.assertEquals("Should have zero friends", 0, newUser.getFriends().size());    	
     	newUser.getFriends().add(user);
-    	em.flush();
-    	Assert.assertEquals("Should have a list of friends", 1, newUser.getFriends().size());    	
+    	Assert.assertEquals("Should have a list of friends", 1, newUser.getFriends().size());
     }
     
     @Transactional
@@ -59,13 +59,12 @@ public class UserAccountRelationshipsTest extends AbstractTestWithUserAccount {
     	newUser.setUserName("jdoe");
     	userAccountRepo.persist(newUser);
     	em.flush();
+        newUser.persist();
     	user.getFriends().add(newUser);
-    	em.flush();
     	UserAccount updatedUser = userAccountRepo.findUserAccount(userId);
     	Assert.assertNotNull("should have found something" ,updatedUser);
     	Assert.assertEquals("user should now have correct number of friends", 1, updatedUser.getFriends().size());
     	user.getFriends().remove(newUser);
-    	em.flush();
     	Assert.assertEquals("user should now have correct number of friends", 0, updatedUser.getFriends().size());
     }
 

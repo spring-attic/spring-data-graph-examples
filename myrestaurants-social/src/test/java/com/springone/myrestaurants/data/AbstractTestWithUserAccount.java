@@ -36,7 +36,7 @@ public class AbstractTestWithUserAccount {
 	protected EntityManagerFactory emf;
 
 	@BeforeTransaction
-	public void setUp() {
+	public void setUpBeforeTransaction() {
 		EntityManager setUpEm = emf.createEntityManager();
 		EntityTransaction setUpTx = setUpEm.getTransaction();
 		setUpTx.begin();
@@ -47,11 +47,17 @@ public class AbstractTestWithUserAccount {
 		u.setUserName("user");
 		setUpEm.persist(u);
 		setUpEm.flush();
+        u.persist();
 		this.userId = u.getId();
 		setUpTx.commit();
 	}
 
-	@Transactional
+    @Before
+    public void setUp() throws Exception {
+    //    em = emf.createEntityManager();
+    }
+
+    @Transactional
 	@BeforeTransaction
 	public void cleanDb() {
 	    Neo4jHelper.cleanDb(graphDatabaseContext);

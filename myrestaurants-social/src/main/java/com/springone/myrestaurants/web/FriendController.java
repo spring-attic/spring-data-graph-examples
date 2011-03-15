@@ -24,14 +24,14 @@ public class FriendController extends BaseApplicationController {
 	
     @RequestMapping(method = RequestMethod.POST)
     public String create(FriendFormBean friend, 
-    					 @ModelAttribute("currentUserAccountId") String userIdAsString,
+    					 @ModelAttribute("currentUserAccountId") Long userId,
     					 BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("friend", friend);
             return "friends/create";
         }
         //TODO additional error checking
-        UserAccount account = this.userAccountRepository.findUserAccount(Long.parseLong(userIdAsString));
+        UserAccount account = this.userAccountRepository.findUserAccount(userId);
         UserAccount friendAccount = this.userAccountRepository.findByName(friend.getUserName());
         if (friendAccount != null) {
         	account.getFriends().add(friendAccount);
@@ -56,10 +56,10 @@ public class FriendController extends BaseApplicationController {
     @RequestMapping(method = RequestMethod.GET)
     public String list(@RequestParam(value = "page", required = false) Integer page, 
     		           @RequestParam(value = "size", required = false) Integer size, 
-    		           @ModelAttribute("currentUserAccountId") String userIdAsString,    		           
+    		           @ModelAttribute("currentUserAccountId") Long userId,
     		           Model model) {
     	
-    	UserAccount currentUser = this.userAccountRepository.findUserAccount(Long.parseLong(userIdAsString));
+    	UserAccount currentUser = this.userAccountRepository.findUserAccount(userId);
     	Set<UserAccount> friends = currentUser.getFriends();
     	model.addAttribute("friends", friends);
     	
@@ -68,10 +68,10 @@ public class FriendController extends BaseApplicationController {
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public String delete(@PathVariable("id") Long id, 
-    			         @ModelAttribute("currentUserAccountId") String userIdAsString,    		
+    			         @ModelAttribute("currentUserAccountId") Long userId,
     		             @RequestParam(value = "page", required = false) Integer page, 
     		             @RequestParam(value = "size", required = false) Integer size, Model model) {
-    	UserAccount account = this.userAccountRepository.findUserAccount(Long.parseLong(userIdAsString));  
+    	UserAccount account = this.userAccountRepository.findUserAccount(userId);
     	UserAccount friendAccount = this.userAccountRepository.findUserAccount(id);
     	if (account.getFriends().contains(friendAccount)) {
     		account.getFriends().remove(friendAccount);

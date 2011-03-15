@@ -81,7 +81,7 @@ public class TopRatedRestaurantFinderTest {
     }
 
     private Node node(UserAccount a) {
-        return a.getUnderlyingState();
+        return a.getPersistentState();
     }
 
     private UserAccount user(String name) {
@@ -89,7 +89,7 @@ public class TopRatedRestaurantFinderTest {
         //userAccount.setId((long) name.hashCode());
         em.persist(userAccount);
         em.flush();
-        userAccount.getId();
+        userAccount.persist();
         userAccount.setNickname(name);
         return userAccount;
     }
@@ -100,7 +100,7 @@ public class TopRatedRestaurantFinderTest {
         //restaurant.setId((long) name.hashCode());
         em.persist(restaurant);
         em.flush();
-        restaurant.getId();
+        restaurant.persist();
         return restaurant;
     }
 

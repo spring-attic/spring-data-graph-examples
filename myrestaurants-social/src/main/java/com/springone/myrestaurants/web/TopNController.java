@@ -24,9 +24,9 @@ public class TopNController extends BaseApplicationController {
 	
 	
     @RequestMapping(method = RequestMethod.GET)
-    public String list(@ModelAttribute("currentUserAccountId") String userIdAsString,    		           
+    public String list(@ModelAttribute("currentUserAccountId") Long userId,
     		           Model model) {
-    	UserAccount currentUser = this.userAccountRepository.findUserAccount(Long.parseLong(userIdAsString));
+    	UserAccount currentUser = this.userAccountRepository.findUserAccount(userId);
     	Collection<RatedRestaurant> top5 = currentUser.getTop5RatedRestaurants();
     	List<RatedRestaurantBean> topn = new ArrayList<RatedRestaurantBean>();
     	for (RatedRestaurant rr : top5) {

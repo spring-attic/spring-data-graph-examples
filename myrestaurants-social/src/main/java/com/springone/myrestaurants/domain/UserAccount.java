@@ -151,7 +151,7 @@ public class UserAccount {
 
     @Transactional
     public void knows(UserAccount friend) {
-        relateTo(friend, DynamicRelationshipType.withName("friends"));
+        relateTo(friend, "friends");
     /*
         if (friends==null) {
             friends=new HashSet<UserAccount>();
