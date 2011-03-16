@@ -9,7 +9,11 @@
 	<context:annotation-config />
     <context:spring-configured/>
 
-    <bean class="org.neo4j.examples.imdb.util.ImdbConfig"/>
+    <bean class="org.springframework.data.graph.neo4j.config.Neo4jConfiguration"/>
+
+    <bean name="graphDatabaseService" class="org.neo4j.kernel.EmbeddedGraphDatabase" destroy-method="shutdown">
+        <constructor-arg value="target/neo4j-db"/>
+    </bean>
 
     <tx:annotation-driven mode="aspectj" transaction-manager="transactionManager"/>
 
@@ -17,16 +21,14 @@
 
 	<bean id="imdbService" class="org.neo4j.examples.imdb.domain.ImdbServiceImpl" />
 	<bean id="searchEngine" class="org.neo4j.examples.imdb.domain.ImdbSearchEngineImpl" />
-	<bean id="pathFinder" class="org.neo4j.examples.imdb.util.SimplePathFinder" />
 	<bean id="imdbReader" class="org.neo4j.examples.imdb.parser.ImdbReaderImpl" />
 
 	<!-- Web -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.JstlView"></property>
-		<property name="prefix" value="/jsp/"></property>
-		<property name="suffix" value=".jsp"></property>
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+		<property name="prefix" value="/jsp/"/>
+		<property name="suffix" value=".jsp"/>
 	</bean>
 	<bean name="/actor.html" class="org.neo4j.examples.imdb.web.FindController">
 		<constructor-arg index="0" ref="findActor" />

@@ -1,12 +1,11 @@
 package org.neo4j.examples.imdb.domain;
 
-import java.util.Set;
-
 import org.springframework.data.annotation.Indexed;
-import org.springframework.data.graph.annotation.GraphProperty;
 import org.springframework.data.graph.annotation.NodeEntity;
 import org.springframework.data.graph.annotation.RelatedTo;
 import org.springframework.data.graph.core.Direction;
+
+import java.util.Set;
 
 // START SNIPPET: MovieClass
 @NodeEntity
@@ -15,11 +14,10 @@ public class Movie {
     String title;
     int year;
 
-    @RelatedTo(type="ACTS_IN",elementClass = Actor.class, direction = Direction.INCOMING)
+    @RelatedTo(type = "ACTS_IN", elementClass = Actor.class, direction = Direction.INCOMING)
     Set<Actor> actors;
-    static final String TITLE_INDEX = "title";
 
-    public Iterable<Actor> getActors() {
+    public Set<Actor> getActors() {
         return actors;
     }
 
@@ -42,6 +40,10 @@ public class Movie {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    int getActorsCount() {
+        return getActors().size();
     }
 }
 // END SNIPPET: MovieClass

@@ -8,11 +8,10 @@
   <name>imdb</name>
   <properties>
     <spring.version>3.0.5.RELEASE</spring.version>
-    <aspectj.version>1.6.10.BUILD-SNAPSHOT</aspectj.version>
+    <aspectj.version>1.6.11.M2</aspectj.version>
     <slf4j.version>1.6.1</slf4j.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <data-graph.version>1.0.0.M2</data-graph.version>
-    <neo4j.version>1.2-1.2</neo4j.version>
+    <data-graph.version>1.0.0.M4</data-graph.version>
   </properties>
 
   <repositories>
@@ -174,16 +173,6 @@
           <artifactId>jaxb-impl</artifactId>
         </exclusion>
       </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.neo4j</groupId>
-      <artifactId>neo4j-kernel</artifactId>
-      <version>${neo4j.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.neo4j</groupId>
-      <artifactId>neo4j-utils</artifactId>
-      <version>${neo4j.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.tiles</groupId>

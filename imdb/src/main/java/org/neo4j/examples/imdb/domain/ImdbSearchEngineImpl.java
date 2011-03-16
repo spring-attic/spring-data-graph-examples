@@ -1,163 +1,107 @@
 package org.neo4j.examples.imdb.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Locale;
-
-import org.neo4j.graphdb.GraphDatabaseService;
-import org.neo4j.graphdb.Node;
-import org.neo4j.graphdb.NotFoundException;
-import org.neo4j.graphdb.Relationship;
-import org.neo4j.graphdb.index.Index;
-import org.neo4j.index.IndexService;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.graph.neo4j.support.GraphDatabaseContext;
+import org.springframework.data.graph.neo4j.finder.FinderFactory;
+import org.springframework.data.graph.neo4j.finder.NodeFinder;
 
-public class ImdbSearchEngineImpl implements ImdbSearchEngine
-{
-    private static final String NAME_PART_INDEX = "name.part";
-    private static final String WORD_PROPERTY = "word";
-    private static final String COUNT_PROPERTY = "count_uses";
-    private static final String TITLE_PART_INDEX = "title.part";
+import java.util.*;
 
+/**
+ * example-implementation of an in-graph index using splitted names and titles and Lookup - Entities
+ * representing them to navigate to the "indexed" entities via their relationships.
+ * Lookup[word] - name.part -*> Actor | Lookup[word] - title.part -*> Movie
+ */
+public class ImdbSearchEngineImpl implements ImdbSearchEngine, InitializingBean {
     @Autowired
-    private GraphDatabaseContext graphDatabaseContext;
+    FinderFactory finderFactory;
+    protected NodeFinder<Lookup> lookupFinder;
 
-    public void indexActor( Actor actor )
-    {
-        index( actor.getName(), ((Actor) actor).getUnderlyingState(),
-            NAME_PART_INDEX, ImdbSearchRelTypes.PART_OF_NAME );
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        lookupFinder = finderFactory.createNodeEntityFinder(Lookup.class);
     }
 
-    public void indexMovie( Movie movie )
-    {
-        index( movie.getTitle(), ((Movie) movie).getUnderlyingState(),
-            TITLE_PART_INDEX, ImdbSearchRelTypes.PART_OF_TITLE );
-    }
-
-
-    private Node getSingleNode(String property, String value) {
-        for (Node node : nodeIndex().get(property, value)) {
-            return node;
+    public void indexActor(Actor actor) {
+        for (Lookup lookup : obtainLookups(actor.getName())) {
+            lookup.addActor(actor);
         }
-        return null;
     }
 
-    private Index<Node> nodeIndex() {
-        return graphDatabaseContext.getNodeIndex(null);
+    public void indexMovie(Movie movie) {
+        String name = movie.getTitle();
+        for (Lookup lookup : obtainLookups(name)) {
+            lookup.addMovie(movie);
+        }
     }
 
-    public Node searchActor( String name )
-    {
-        return searchSingle( name, NAME_PART_INDEX, ImdbSearchRelTypes.PART_OF_NAME );
-    }
-
-    public Node searchMovie( String title )
-    {
-        return searchSingle( title, TITLE_PART_INDEX, ImdbSearchRelTypes.PART_OF_TITLE );
-    }
-
-    private String[] splitSearchString( final String value )
-    {
-        return value.toLowerCase( Locale.ENGLISH ).split( "[^\\w]+" );
-    }
-
-    private void index( final String value, final Node node,
-        final String partIndexName, final ImdbSearchRelTypes relType )
-    {
-        for ( String part : splitSearchString( value ) )
-        {
-            Node wordNode = getSingleNode( partIndexName, part );
-            if ( wordNode == null )
-            {
-                wordNode = graphDatabaseContext.createNode();
-                // not needed for the functionality
-                nodeIndex().add( wordNode, partIndexName, part );
-
-                wordNode.setProperty( WORD_PROPERTY, part );
+    public Actor searchActor(String name) {
+        Set<Actor> result = null;
+        for (Lookup lookup : findLookups(name)) {
+            result = merge(result, lookup.getActors());
+        }
+        return firstOrMax(result, new Comparator<Actor>() {
+            public int compare(Actor actor1, Actor actor2) {
+                return actor1.getMovieCount() - actor2.getMovieCount();
             }
-            wordNode.createRelationshipTo( node, relType );
-            wordNode.setProperty( COUNT_PROPERTY, ((Integer) wordNode
-                .getProperty( COUNT_PROPERTY, 0 )) + 1 );
-        }
+        });
     }
 
-    private Node searchSingle( final String value, final String indexName,
-        final ImdbSearchRelTypes wordRelType )
-    {
-        // get the words in the search
-        final List<Node> wordList = findSearchWords( value, indexName );
-        if ( wordList.isEmpty() )
-        {
-            return null;
+
+    public Movie searchMovie(String title) {
+        Set<Movie> result = null;
+        for (Lookup lookup : findLookups(title)) {
+            result = merge(result, lookup.getMovies());
         }
-        final Node startNode = wordList.remove( 0 );
-        // set up a match to use if everything else fails
-        Node match = startNode.getRelationships( wordRelType ).iterator()
-            .next().getEndNode();
-        // check if there is only one node in the list
-        if ( wordList.isEmpty() )
-        {
-            return match;
-        }
-        int bestCount = 0;
-        final int listSize = wordList.size();
-        for ( Relationship targetRel : startNode.getRelationships( wordRelType ) )
-        {
-            Node targetNode = targetRel.getEndNode();
-            int hitCount = 0;
-            for ( Relationship wordRel : targetNode
-                .getRelationships( wordRelType ) )
-            {
-                if ( wordList.contains( wordRel.getStartNode() ) )
-                {
-                    if ( ++hitCount == listSize )
-                    {
-                        return targetNode;
-                    }
-                }
+        return firstOrMax(result, new Comparator<Movie>(){
+            public int compare(Movie movie1, Movie movie2) {
+                return movie1.getActorsCount() - movie2.getActorsCount();
             }
-            if ( hitCount > bestCount )
-            {
-                match = targetNode;
-                bestCount = hitCount;
+        });
+    }
+
+    private List<Lookup> obtainLookups(String name) {
+        List<Lookup> result = new ArrayList<Lookup>();
+        for (String part : splitSearchString(name)) {
+            Lookup lookup = findLookup(part);
+            if (lookup == null) {
+                result.add((Lookup) new Lookup(part).persist());
+            } else {
+                result.add(lookup);
             }
         }
-        return match;
+        return result;
     }
 
-    private List<Node> findSearchWords( final String userInput,
-        final String partIndexName )
-    {
-        final List<Node> wordList = new ArrayList<Node>();
-        // prepare search terms
-        for ( String part : splitSearchString( userInput ) )
-        {
-            Node wordNode = getSingleNode( partIndexName, part );
-            if ( wordNode == null || !wordNode.hasRelationship()
-                || wordList.contains( wordNode ) )
-            {
-                continue;
-            }
-            wordList.add( wordNode );
+    private <T> T firstOrMax(Set<T> result, Comparator<T> comparator) {
+        if (result == null || result.isEmpty()) return null;
+        return Collections.max(result, comparator);
+    }
+
+    private <T> Set<T> merge(Set<T> result, Collection<T> values) {
+        if (result == null) {
+            return new HashSet<T>(values);
         }
-        if ( wordList.isEmpty() )
-        {
-            return Collections.emptyList();
+
+        result.retainAll(values);
+        return result;
+    }
+
+    private List<Lookup> findLookups(String name) {
+        List<Lookup> result = new ArrayList<Lookup>();
+        for (String part : splitSearchString(name)) {
+            Lookup lookup = findLookup(part);
+            if (lookup != null) result.add(lookup);
         }
-        // sort words according to the number of relationships (ascending)
-        Collections.sort( wordList, new Comparator<Node>()
-        {
-            public int compare( final Node left, final Node right )
-            {
-                int leftCount = (Integer) left.getProperty( COUNT_PROPERTY, 0 );
-                int rightCount = (Integer) right
-                    .getProperty( COUNT_PROPERTY, 0 );
-                return leftCount - rightCount;
-            }
-        } );
-        return wordList;
+        return result;
+    }
+
+    private Lookup findLookup(String part) {
+        return lookupFinder.findByPropertyValue(null, "word", part);
+    }
+
+    private String[] splitSearchString(final String value) {
+        return value.toLowerCase(Locale.ENGLISH).split("[^\\w]+");
     }
 }

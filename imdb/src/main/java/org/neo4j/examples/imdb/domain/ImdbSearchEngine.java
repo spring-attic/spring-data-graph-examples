@@ -1,14 +1,11 @@
 package org.neo4j.examples.imdb.domain;
 
-import org.neo4j.graphdb.Node;
+public interface ImdbSearchEngine {
+    void indexActor(Actor actor);
 
-public interface ImdbSearchEngine
-{
-    void indexActor( Actor actor );
+    void indexMovie(Movie movie);
 
-    void indexMovie( Movie movie );
+    Actor searchActor(String name);
 
-    Node searchActor( String name );
-
-    Node searchMovie( String title );
+    Movie searchMovie(String title);
 }

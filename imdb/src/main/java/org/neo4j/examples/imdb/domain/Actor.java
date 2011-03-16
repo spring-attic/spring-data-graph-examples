@@ -12,9 +12,8 @@ public class Actor {
     @Indexed
     private String name;
 
-    @RelatedTo(type="ACTS_IN",elementClass = Movie.class)
+    @RelatedTo(type = "ACTS_IN", elementClass = Movie.class)
     private Set<Movie> movies;
-    static final String NAME_INDEX = "name";
 
     public String getName() {
         return name;
@@ -24,17 +23,25 @@ public class Actor {
         this.name = name;
     }
 
-    public Iterable<Movie> getMovies() {
+    public Set<Movie> getMovies() {
         return movies;
     }
 
     public Role getRole(final Movie inMovie) {
-        return (Role)getRelationshipTo((Movie)inMovie, Role.class, RelTypes.ACTS_IN.name());
+        return getRelationshipTo(inMovie, Role.class, RelTypes.ACTS_IN.name());
     }
 
     @Override
     public String toString() {
         return "Actor '" + this.getName() + "'";
+    }
+
+    public void actsIn(Movie movie, final String role) {
+        relateTo(movie, Role.class, RelTypes.ACTS_IN.name()).play(role);
+    }
+
+    public int getMovieCount() {
+        return getMovies().size();
     }
 }
 // END SNIPPET: ActorClass

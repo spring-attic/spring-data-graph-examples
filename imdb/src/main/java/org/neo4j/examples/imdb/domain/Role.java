@@ -13,7 +13,6 @@ public class Role {
     Movie movie;
 
     @Override
-
     public String toString() {
         return String.format("%s-[%s]->%s", this.getActor(), role, this.getMovie());
     }
@@ -30,7 +29,8 @@ public class Role {
         return role;
     }
 
-    public void setName(String name) {
+    public Role play(String name) {
         this.role = name;
+        return this;
     }
 }
