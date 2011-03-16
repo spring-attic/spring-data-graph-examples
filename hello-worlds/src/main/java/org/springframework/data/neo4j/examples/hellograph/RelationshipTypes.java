@@ -1,8 +1,6 @@
 package org.springframework.data.neo4j.examples.hellograph;
 
-import org.neo4j.graphdb.RelationshipType;
-
-public enum RelationshipTypes implements RelationshipType
+public abstract class RelationshipTypes
 {
-    REACHABLE_BY_ROCKET
+    public static final String REACHABLE_BY_ROCKET = "REACHABLE_BY_ROCKET";
 }

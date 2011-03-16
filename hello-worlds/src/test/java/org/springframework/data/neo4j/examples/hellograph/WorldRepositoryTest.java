@@ -49,7 +49,7 @@ public class WorldRepositoryTest
     public void shouldAllowDirectWorldCreation()
     {
         assertEquals(0, galaxy.countWorlds());
-        World myWorld = new World( "mine", 0 );
+        World myWorld = new World( "mine", 0 ).persist();
         assertEquals(1, galaxy.countWorlds());
         Iterable<World> foundWorlds = galaxy.findAllWorlds();
         World mine = foundWorlds.iterator().next();

@@ -28,7 +28,9 @@ public class App
         System.out.println( "found home world: " + foundHomeWorld );
 
         Iterable<World> worldsBeyond = galaxy.exploreWorldsBeyond( homeWorld );
-        System.out.println( "found worlds beyond: " + worldsBeyond );
+        for (World world : worldsBeyond) {
+            System.out.println( "found worlds beyond: " + world );
+        }
 
         applicationContext.close();
         

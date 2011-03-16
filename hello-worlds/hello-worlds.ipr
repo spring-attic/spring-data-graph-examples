@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AjcSettings">
-    <option name="ajcPath" value="$MAVEN_REPOSITORY$/org/aspectj/aspectjtools/1.6.10.RELEASE/aspectjtools-1.6.10.RELEASE.jar" />
+    <option name="ajcPath" value="$MAVEN_REPOSITORY$/org/aspectj/aspectjtools/1.6.11.BUILD-SNAPSHOT/aspectjtools-1.6.11.BUILD-SNAPSHOT.jar" />
     <option name="cmdLineParams" value=" -target 1.6" />
   </component>
   <component name="AntConfiguration">
@@ -206,6 +206,17 @@
         <root url="jar://$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Maven: asm:asm:3.1">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/asm/asm/3.1/asm-3.1.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/asm/asm/3.1/asm-3.1-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/asm/asm/3.1/asm-3.1-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="Maven: cglib:cglib-nodep:2.2">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/cglib/cglib-nodep/2.2/cglib-nodep-2.2.jar!/" />
@@ -217,15 +228,26 @@
         <root url="jar://$MAVEN_REPOSITORY$/cglib/cglib-nodep/2.2/cglib-nodep-2.2-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: com.google.protobuf:protobuf-java:2.3.0">
+    <library name="Maven: cglib:cglib:2.2">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/protobuf/protobuf-java/2.3.0/protobuf-java-2.3.0.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/cglib/cglib/2.2/cglib-2.2.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/protobuf/protobuf-java/2.3.0/protobuf-java-2.3.0-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/cglib/cglib/2.2/cglib-2.2-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/protobuf/protobuf-java/2.3.0/protobuf-java-2.3.0-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/cglib/cglib/2.2/cglib-2.2-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: javax.validation:validation-api:1.0.0.GA">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/javax/validation/validation-api/1.0.0.GA/validation-api-1.0.0.GA.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/javax/validation/validation-api/1.0.0.GA/validation-api-1.0.0.GA-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/javax/validation/validation-api/1.0.0.GA/validation-api-1.0.0.GA-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: junit:junit:4.8.1">
@@ -261,17 +283,6 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/apache/geronimo/specs/geronimo-jta_1.1_spec/1.1.1/geronimo-jta_1.1_spec-1.1.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.apache.servicemix.bundles:org.apache.servicemix.bundles.jline:0.9.94_1">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/apache/servicemix/bundles/org.apache.servicemix.bundles.jline/0.9.94_1/org.apache.servicemix.bundles.jline-0.9.94_1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/apache/servicemix/bundles/org.apache.servicemix.bundles.jline/0.9.94_1/org.apache.servicemix.bundles.jline-0.9.94_1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/apache/servicemix/bundles/org.apache.servicemix.bundles.jline/0.9.94_1/org.apache.servicemix.bundles.jline-0.9.94_1-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Maven: org.apache.servicemix.bundles:org.apache.servicemix.bundles.lucene:3.0.1_2">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/org/apache/servicemix/bundles/org.apache.servicemix.bundles.lucene/3.0.1_2/org.apache.servicemix.bundles.lucene-3.0.1_2.jar!/" />
@@ -281,6 +292,17 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/org/apache/servicemix/bundles/org.apache.servicemix.bundles.lucene/3.0.1_2/org.apache.servicemix.bundles.lucene-3.0.1_2-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.servicemix.bundles:org.apache.servicemix.bundles.netty:3.2.3.Final_1">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/servicemix/bundles/org.apache.servicemix.bundles.netty/3.2.3.Final_1/org.apache.servicemix.bundles.netty-3.2.3.Final_1.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/servicemix/bundles/org.apache.servicemix.bundles.netty/3.2.3.Final_1/org.apache.servicemix.bundles.netty-3.2.3.Final_1-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/servicemix/bundles/org.apache.servicemix.bundles.netty/3.2.3.Final_1/org.apache.servicemix.bundles.netty-3.2.3.Final_1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.apache.zookeeper:zookeeper:3.3.2">
@@ -294,15 +316,15 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/apache/zookeeper/zookeeper/3.3.2/zookeeper-3.3.2-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.aspectj:aspectjrt:1.6.10.RELEASE">
+    <library name="Maven: org.aspectj:aspectjrt:1.6.11.M2">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/aspectj/aspectjrt/1.6.10.RELEASE/aspectjrt-1.6.10.RELEASE.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/aspectj/aspectjrt/1.6.11.M2/aspectjrt-1.6.11.M2.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/aspectj/aspectjrt/1.6.10.RELEASE/aspectjrt-1.6.10.RELEASE-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/aspectj/aspectjrt/1.6.11.M2/aspectjrt-1.6.11.M2-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/aspectj/aspectjrt/1.6.10.RELEASE/aspectjrt-1.6.10.RELEASE-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/aspectj/aspectjrt/1.6.11.M2/aspectjrt-1.6.11.M2-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.0.Final">
@@ -316,147 +338,92 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/javax/persistence/hibernate-jpa-2.0-api/1.0.0.Final/hibernate-jpa-2.0-api-1.0.0.Final-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.jboss.netty:netty:3.2.1.Final">
+    <library name="Maven: org.neo4j:neo4j-com:1.3.M04">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/jboss/netty/netty/3.2.1.Final/netty-3.2.1.Final.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-com/1.3.M04/neo4j-com-1.3.M04.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/jboss/netty/netty/3.2.1.Final/netty-3.2.1.Final-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-com/1.3.M04/neo4j-com-1.3.M04-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/jboss/netty/netty/3.2.1.Final/netty-3.2.1.Final-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-com/1.3.M04/neo4j-com-1.3.M04-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.neo4j:neo4j-graph-algo:0.7-1.2">
+    <library name="Maven: org.neo4j:neo4j-graph-algo:1.3.M04">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-graph-algo/0.7-1.2/neo4j-graph-algo-0.7-1.2.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-graph-algo/1.3.M04/neo4j-graph-algo-1.3.M04.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-graph-algo/0.7-1.2/neo4j-graph-algo-0.7-1.2-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-graph-algo/1.3.M04/neo4j-graph-algo-1.3.M04-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-graph-algo/0.7-1.2/neo4j-graph-algo-0.7-1.2-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-graph-algo/1.3.M04/neo4j-graph-algo-1.3.M04-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.neo4j:neo4j-ha:0.5-1.2">
+    <library name="Maven: org.neo4j:neo4j-ha:1.3.M04">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-ha/0.5-1.2/neo4j-ha-0.5-1.2.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-ha/1.3.M04/neo4j-ha-1.3.M04.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-ha/0.5-1.2/neo4j-ha-0.5-1.2-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-ha/1.3.M04/neo4j-ha-1.3.M04-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-ha/0.5-1.2/neo4j-ha-0.5-1.2-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-ha/1.3.M04/neo4j-ha-1.3.M04-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.neo4j:neo4j-index:1.2-1.2">
+    <library name="Maven: org.neo4j:neo4j-kernel:1.3.M04">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-index/1.2-1.2/neo4j-index-1.2-1.2.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-kernel/1.3.M04/neo4j-kernel-1.3.M04.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-index/1.2-1.2/neo4j-index-1.2-1.2-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-kernel/1.3.M04/neo4j-kernel-1.3.M04-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-index/1.2-1.2/neo4j-index-1.2-1.2-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-kernel/1.3.M04/neo4j-kernel-1.3.M04-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.neo4j:neo4j-kernel:1.2-1.2">
+    <library name="Maven: org.neo4j:neo4j-lucene-index:1.3.M04">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-kernel/1.2-1.2/neo4j-kernel-1.2-1.2.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-lucene-index/1.3.M04/neo4j-lucene-index-1.3.M04.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-kernel/1.2-1.2/neo4j-kernel-1.2-1.2-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-lucene-index/1.3.M04/neo4j-lucene-index-1.3.M04-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-kernel/1.2-1.2/neo4j-kernel-1.2-1.2-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-lucene-index/1.3.M04/neo4j-lucene-index-1.3.M04-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.neo4j:neo4j-lucene-index:0.2-1.2">
+    <library name="Maven: org.neo4j:neo4j-management:1.3.M04">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-lucene-index/0.2-1.2/neo4j-lucene-index-0.2-1.2.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-management/1.3.M04/neo4j-management-1.3.M04.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-lucene-index/0.2-1.2/neo4j-lucene-index-0.2-1.2-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-management/1.3.M04/neo4j-management-1.3.M04-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-lucene-index/0.2-1.2/neo4j-lucene-index-0.2-1.2-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-management/1.3.M04/neo4j-management-1.3.M04-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.neo4j:neo4j-management:1.2-1.2">
+    <library name="Maven: org.neo4j:neo4j-udc:1.3.M04">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-management/1.2-1.2/neo4j-management-1.2-1.2.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-udc/1.3.M04/neo4j-udc-1.3.M04.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-management/1.2-1.2/neo4j-management-1.2-1.2-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-udc/1.3.M04/neo4j-udc-1.3.M04-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-management/1.2-1.2/neo4j-management-1.2-1.2-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-udc/1.3.M04/neo4j-udc-1.3.M04-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.neo4j:neo4j-online-backup:0.7-1.2">
+    <library name="Maven: org.neo4j:neo4j:1.3.M04">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-online-backup/0.7-1.2/neo4j-online-backup-0.7-1.2.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j/1.3.M04/neo4j-1.3.M04.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-online-backup/0.7-1.2/neo4j-online-backup-0.7-1.2-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j/1.3.M04/neo4j-1.3.M04-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-online-backup/0.7-1.2/neo4j-online-backup-0.7-1.2-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.neo4j:neo4j-remote-graphdb:0.8-1.2">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-remote-graphdb/0.8-1.2/neo4j-remote-graphdb-0.8-1.2.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-remote-graphdb/0.8-1.2/neo4j-remote-graphdb-0.8-1.2-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-remote-graphdb/0.8-1.2/neo4j-remote-graphdb-0.8-1.2-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.neo4j:neo4j-shell:1.2-1.2">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-shell/1.2-1.2/neo4j-shell-1.2-1.2.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-shell/1.2-1.2/neo4j-shell-1.2-1.2-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-shell/1.2-1.2/neo4j-shell-1.2-1.2-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.neo4j:neo4j-udc:0.1-1.2">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-udc/0.1-1.2/neo4j-udc-0.1-1.2.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-udc/0.1-1.2/neo4j-udc-0.1-1.2-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-udc/0.1-1.2/neo4j-udc-0.1-1.2-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.neo4j:neo4j-utils:1.2-1.2">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-utils/1.2-1.2/neo4j-utils-1.2-1.2.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-utils/1.2-1.2/neo4j-utils-1.2-1.2-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-utils/1.2-1.2/neo4j-utils-1.2-1.2-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.neo4j:neo4j:1.2">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j/1.2/neo4j-1.2.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j/1.2/neo4j-1.2-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j/1.2/neo4j-1.2-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j/1.3.M04/neo4j-1.3.M04-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.slf4j:jcl-over-slf4j:1.5.10">
@@ -492,48 +459,37 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-log4j12/1.5.10/slf4j-log4j12-1.5.10-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.springframework.data:spring-data-commons-aspects:1.0.0.M2">
+    <library name="Maven: org.springframework.data:spring-data-commons-core:1.0.0.M4">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons-aspects/1.0.0.M2/spring-data-commons-aspects-1.0.0.M2.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons-core/1.0.0.M4/spring-data-commons-core-1.0.0.M4.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons-aspects/1.0.0.M2/spring-data-commons-aspects-1.0.0.M2-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons-core/1.0.0.M4/spring-data-commons-core-1.0.0.M4-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons-aspects/1.0.0.M2/spring-data-commons-aspects-1.0.0.M2-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons-core/1.0.0.M4/spring-data-commons-core-1.0.0.M4-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.springframework.data:spring-data-commons-core:1.0.0.M2">
+    <library name="Maven: org.springframework.data:spring-data-graph-core:1.0.0.M4">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons-core/1.0.0.M2/spring-data-commons-core-1.0.0.M2.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-graph-core/1.0.0.M4/spring-data-graph-core-1.0.0.M4.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons-core/1.0.0.M2/spring-data-commons-core-1.0.0.M2-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-graph-core/1.0.0.M4/spring-data-graph-core-1.0.0.M4-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons-core/1.0.0.M2/spring-data-commons-core-1.0.0.M2-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-graph-core/1.0.0.M4/spring-data-graph-core-1.0.0.M4-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.springframework.data:spring-data-graph-core:1.0.0.M2">
+    <library name="Maven: org.springframework.data:spring-data-neo4j:1.0.0.M4">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-graph-core/1.0.0.M2/spring-data-graph-core-1.0.0.M2.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-neo4j/1.0.0.M4/spring-data-neo4j-1.0.0.M4.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-graph-core/1.0.0.M2/spring-data-graph-core-1.0.0.M2-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-neo4j/1.0.0.M4/spring-data-neo4j-1.0.0.M4-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-graph-core/1.0.0.M2/spring-data-graph-core-1.0.0.M2-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.springframework.data:spring-data-neo4j:1.0.0.M2">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-neo4j/1.0.0.M2/spring-data-neo4j-1.0.0.M2.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-neo4j/1.0.0.M2/spring-data-neo4j-1.0.0.M2-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-neo4j/1.0.0.M2/spring-data-neo4j-1.0.0.M2-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-neo4j/1.0.0.M4/spring-data-neo4j-1.0.0.M4-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.springframework:spring-aop:3.0.5.RELEASE">
