@@ -4,10 +4,7 @@ import org.neo4j.graphalgo.GraphAlgoFactory;
 import org.neo4j.graphdb.Node;
 import org.neo4j.graphdb.Path;
 import org.neo4j.kernel.StandardExpander;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.graph.neo4j.finder.FinderFactory;
-import org.springframework.data.graph.neo4j.finder.NodeFinder;
 import org.springframework.data.graph.neo4j.support.GraphDatabaseContext;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,21 +13,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-class ImdbServiceImpl implements ImdbService, InitializingBean {
+class ImdbServiceImpl implements ImdbService {
     @Autowired
     private GraphDatabaseContext graphDatabaseContext;
     @Autowired
-    private FinderFactory finderFactory;
-    @Autowired
     private ImdbSearchEngine searchEngine;
-    protected NodeFinder<Movie> movieFinder;
-    protected NodeFinder<Actor> actorFinder;
-
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        movieFinder = finderFactory.createNodeEntityFinder(Movie.class);
-        actorFinder = finderFactory.createNodeEntityFinder(Actor.class);
-    }
+    @Autowired
+    private MovieRepository movieRepository;
+    @Autowired
+    private ActorRepository actorRepository;
 
     public Actor createActor(final String name) {
         final Actor actor = new Actor().persist();
@@ -48,7 +39,7 @@ class ImdbServiceImpl implements ImdbService, InitializingBean {
     }
 
     public Actor getActor(final String name) {
-        Actor actor = actorFinder.findByPropertyValue(null, "name", name);
+        Actor actor = actorRepository.findByPropertyValue(null, "name", name);
         if (actor != null) return actor;
         return searchEngine.searchActor(name);
     }
@@ -61,14 +52,14 @@ class ImdbServiceImpl implements ImdbService, InitializingBean {
     }
 
     public Movie getExactMovie(final String title) {
-        return movieFinder.findByPropertyValue(null, "title", title);
+        return movieRepository.findByPropertyValue(null, "title", title);
     }
 
 
     @Transactional
     public void setupReferenceRelationship() {
         Node referenceNode = graphDatabaseContext.getReferenceNode();
-        Actor bacon = actorFinder.findByPropertyValue(null, "name", "Bacon, Kevin");
+        Actor bacon = actorRepository.findByPropertyValue(null, "name", "Bacon, Kevin");
 
         if (bacon == null) throw new NoSuchElementException("Unable to find Kevin Bacon actor");
 
@@ -78,7 +69,7 @@ class ImdbServiceImpl implements ImdbService, InitializingBean {
     public List<?> getBaconPath(final Actor actor) {
         if (actor == null) throw new IllegalArgumentException("Null actor");
 
-        Actor bacon = actorFinder.findByPropertyValue(null, "name", "Bacon, Kevin");
+        Actor bacon = actorRepository.findByPropertyValue(null, "name", "Bacon, Kevin");
 
         Path path = GraphAlgoFactory.shortestPath(StandardExpander.DEFAULT.add(RelTypes.ACTS_IN), 10).findSinglePath(bacon.getPersistentState(), actor.getPersistentState());
         if (path==null) return Collections.emptyList();

@@ -1,9 +1,6 @@
 package org.neo4j.examples.imdb.domain;
 
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.graph.neo4j.finder.FinderFactory;
-import org.springframework.data.graph.neo4j.finder.NodeFinder;
 
 import java.util.*;
 
@@ -12,16 +9,10 @@ import java.util.*;
  * representing them to navigate to the "indexed" entities via their relationships.
  * Lookup[word] - name.part -*> Actor | Lookup[word] - title.part -*> Movie
  */
-public class ImdbSearchEngineImpl implements ImdbSearchEngine, InitializingBean {
+public class ImdbSearchEngineImpl implements ImdbSearchEngine {
+
     @Autowired
-    FinderFactory finderFactory;
-    protected NodeFinder<Lookup> lookupFinder;
-
-
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        lookupFinder = finderFactory.createNodeEntityFinder(Lookup.class);
-    }
+    private LookupRepository lookupRepository;
 
     public void indexActor(Actor actor) {
         for (Lookup lookup : obtainLookups(actor.getName())) {
@@ -98,7 +89,7 @@ public class ImdbSearchEngineImpl implements ImdbSearchEngine, InitializingBean 
     }
 
     private Lookup findLookup(String part) {
-        return lookupFinder.findByPropertyValue(null, "word", part);
+        return lookupRepository.findByPropertyValue(null, "word", part);
     }
 
     private String[] splitSearchString(final String value) {
