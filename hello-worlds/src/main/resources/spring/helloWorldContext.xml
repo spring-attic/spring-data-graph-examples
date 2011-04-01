@@ -11,15 +11,7 @@
 
 	<context:spring-configured/>
 
-    <bean id="graphDbService" class="org.neo4j.kernel.EmbeddedGraphDatabase" destroy-method="shutdown">
-        <constructor-arg index="0" value="target/neo4j-db" />
-    </bean>
-
-    <bean class="org.springframework.data.graph.neo4j.config.Neo4jConfiguration"/>
-	<context:component-scan base-package="org.springframework.data.neo4j.examples.hellograph"/>
-
-    <!--bean class="org.springframework.data.repository.support.RepositoryInterfaceAwareBeanPostProcessor"/-->
-
+    <datagraph:config storeDirectory="target/neo4j-db"/>
     <datagraph:repositories base-package="org.springframework.data.neo4j.examples.hellograph" graph-database-context-ref="graphDatabaseContext"/>
 
     <tx:annotation-driven mode="aspectj" transaction-manager="transactionManager"/>
