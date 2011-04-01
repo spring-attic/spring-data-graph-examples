@@ -17,7 +17,7 @@ public class App
         ConfigurableApplicationContext applicationContext =  
         	new ClassPathXmlApplicationContext( "/spring/helloWorldContext.xml");
 
-        WorldRepository galaxy = applicationContext.getBean(WorldRepository.class);
+        WorldRepositoryImpl galaxy = applicationContext.getBean(WorldRepositoryImpl.class);
 
         Iterable<World> worlds = galaxy.makeSomeWorlds();
 

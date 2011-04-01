@@ -20,6 +20,21 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <line_breakpoints>
+      <breakpoint url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-neo4j/1.0.0.BUILD-SNAPSHOT/spring-data-neo4j-1.0.0.BUILD-SNAPSHOT-sources.jar!/org/springframework/data/graph/neo4j/repository/AbstractGraphRepository.java" line="96" class="org.springframework.data.graph.neo4j.repository.AbstractGraphRepository" package="org.springframework.data.graph.neo4j.repository">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </line_breakpoints>
     <breakpoint_any>
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -67,8 +82,8 @@
       <property name="field_breakpoints_groupByClasses" value="true" />
       <property name="method_breakpoints_groupByClasses" value="true" />
       <property name="exception_breakpoints_viewId" value="TABLE" />
-      <property name="field_breakpoints_viewId" value="TABLE" />
       <property name="exception_breakpoints_groupByClasses" value="true" />
+      <property name="field_breakpoints_viewId" value="TABLE" />
       <property name="method_breakpoints_groupByMethods" value="false" />
     </ui_properties>
   </component>
@@ -77,29 +92,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+      <file leaf-file-name="WorldRepositoryImpl.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/springframework/data/neo4j/examples/hellograph/WorldRepositoryImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="115" column="70" selection-start="3920" selection-end="3920" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WorldRepository.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/springframework/data/neo4j/examples/hellograph/WorldRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="97" column="42" selection-start="3036" selection-end="3054" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NodeFinder.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-neo4j/1.0.0.M4/spring-data-neo4j-1.0.0.M4.jar!/org/springframework/data/graph/neo4j/finder/NodeFinder.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="218" selection-start="842" selection-end="842" vertical-scroll-proportion="-5.28">
-              <folding />
+            <state line="17" column="12" selection-start="627" selection-end="627" vertical-scroll-proportion="0.44619423">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -107,7 +106,7 @@
       <file leaf-file-name="World.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/springframework/data/neo4j/examples/hellograph/World.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="66" selection-start="958" selection-end="958" vertical-scroll-proportion="0.0">
+            <state line="49" column="59" selection-start="1124" selection-end="1130" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -116,25 +115,75 @@
       <file leaf-file-name="WorldRepositoryTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/org/springframework/data/neo4j/examples/hellograph/WorldRepositoryTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="81" selection-start="1559" selection-end="1559" vertical-scroll-proportion="0.0">
+            <state line="99" column="41" selection-start="2933" selection-end="2933" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="App.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/springframework/data/neo4j/examples/hellograph/App.java">
+      <file leaf-file-name="MyWorldRepository.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/springframework/data/neo4j/examples/hellograph/MyWorldRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="26" selection-start="344" selection-end="344" vertical-scroll-proportion="0.30125523">
+            <state line="12" column="22" selection-start="276" selection-end="276" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="helloWorldContext.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/spring/helloWorldContext.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="3" selection-start="59" selection-end="59" vertical-scroll-proportion="-0.59574467">
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="com.intellij.spring.perspectives.SpringBeansStructureEditorProvider">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="36" selection-start="801" selection-end="821" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RelationshipTypes.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/springframework/data/neo4j/examples/hellograph/RelationshipTypes.java">
+      <file leaf-file-name="WorldRepository.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/springframework/data/neo4j/examples/hellograph/WorldRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="75" selection-start="181" selection-end="181" vertical-scroll-proportion="0.0">
+            <state line="8" column="68" selection-start="247" selection-end="247" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AbstractGraphRepository.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-neo4j/1.0.0.BUILD-SNAPSHOT/spring-data-neo4j-1.0.0.BUILD-SNAPSHOT-sources.jar!/org/springframework/data/graph/neo4j/repository/AbstractGraphRepository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="110" column="0" selection-start="3814" selection-end="3814" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LuceneIndex.class" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-lucene-index/1.3.M05/neo4j-lucene-index-1.3.M05.jar!/org/neo4j/index/impl/lucene/LuceneIndex.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="39" column="48" selection-start="1914" selection-end="1914" vertical-scroll-proportion="-8.56">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GraphDatabaseContext.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-neo4j/1.0.0.BUILD-SNAPSHOT/spring-data-neo4j-1.0.0.BUILD-SNAPSHOT-sources.jar!/org/springframework/data/graph/neo4j/support/GraphDatabaseContext.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="65" column="0" selection-start="2596" selection-end="2596" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -147,21 +196,29 @@
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
+  <component name="Git.Settings">
+    <option name="CHECKOUT_INCLUDE_TAGS" value="false" />
+    <option name="UPDATE_CHANGES_POLICY" value="STASH" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/org/neo4j/examples/spring/hellograph/HelloWorldNeo4jConfiguration.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/neo4j/examples/spring/hellograph/GraphBackedGalaxy.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/springframework/data/neo4j/examples/hellograph/World.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/spring/helloWorldContext.xml" />
         <option value="$PROJECT_DIR$/src/main/java/org/springframework/data/neo4j/examples/hellograph/WorldCounter.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/springframework/data/neo4j/examples/hellograph/WorldTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/springframework/data/neo4j/examples/hellograph/WorldCounterTest.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/org/springframework/data/neo4j/examples/hellograph/RelationshipTypes.java" />
-        <option value="$PROJECT_DIR$/src/test/java/org/springframework/data/neo4j/examples/hellograph/WorldRepositoryTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/springframework/data/neo4j/examples/hellograph/WorldRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/springframework/data/neo4j/examples/hellograph/App.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$MAVEN_REPOSITORY$/org/springframework/data/spring-data-neo4j/1.0.0.BUILD-SNAPSHOT/spring-data-neo4j-1.0.0.BUILD-SNAPSHOT-sources.jar!/org/springframework/data/graph/neo4j/repository/AbstractGraphRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/springframework/data/neo4j/examples/hellograph/WorldRepository.java" />
+        <option value="$PROJECT_DIR$/src/test/java/org/springframework/data/neo4j/examples/hellograph/MyWorldRepository.java" />
+        <option value="$PROJECT_DIR$/src/test/java/org/springframework/data/neo4j/examples/hellograph/WorldRepositoryTest.java" />
+        <option value="$MAVEN_REPOSITORY$/org/springframework/data/spring-data-neo4j/1.0.0.BUILD-SNAPSHOT/spring-data-neo4j-1.0.0.BUILD-SNAPSHOT-sources.jar!/org/springframework/data/graph/neo4j/repository/GraphRepositoryFactoryBean.java" />
+        <option value="$MAVEN_REPOSITORY$/org/springframework/data/spring-data-neo4j/1.0.0.BUILD-SNAPSHOT/spring-data-neo4j-1.0.0.BUILD-SNAPSHOT-sources.jar!/org/springframework/data/graph/neo4j/repository/GraphRepositoryFactory.java" />
+        <option value="$MAVEN_REPOSITORY$/org/springframework/data/spring-data-neo4j/1.0.0.BUILD-SNAPSHOT/spring-data-neo4j-1.0.0.BUILD-SNAPSHOT-sources.jar!/org/springframework/data/graph/neo4j/config/Neo4jConfiguration.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/springframework/data/neo4j/examples/hellograph/World.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/spring/helloWorldContext.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/org/springframework/data/neo4j/examples/hellograph/WorldRepositoryImpl.java" />
       </list>
     </option>
   </component>
@@ -193,6 +250,103 @@
     <option name="LAST_EDITED_MODULE_NAME" />
     <option name="LAST_EDITED_TAB_NAME" />
   </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id>Abstraction issues</id>
+          </State>
+          <State>
+            <id>Class structure</id>
+          </State>
+          <State>
+            <id>Code style issues</id>
+          </State>
+          <State>
+            <id>Control Flow</id>
+          </State>
+          <State>
+            <id>Control flow issues</id>
+          </State>
+          <State>
+            <id>Data Flow Issues</id>
+          </State>
+          <State>
+            <id>Data flow issues</id>
+          </State>
+          <State>
+            <id>Declaration Redundancy</id>
+          </State>
+          <State>
+            <id>Error handling</id>
+          </State>
+          <State>
+            <id>General</id>
+          </State>
+          <State>
+            <id>Groovy</id>
+          </State>
+          <State>
+            <id>Guice Inspections</id>
+          </State>
+          <State>
+            <id>Imports</id>
+          </State>
+          <State>
+            <id>Inspections</id>
+          </State>
+          <State>
+            <id>Java language level migration aids</id>
+          </State>
+          <State>
+            <id>JavaBeans issues</id>
+          </State>
+          <State>
+            <id>JavaScript</id>
+          </State>
+          <State>
+            <id>JavaScript function metrics</id>
+          </State>
+          <State>
+            <id>Javadoc issues</id>
+          </State>
+          <State>
+            <id>Method Metrics</id>
+          </State>
+          <State>
+            <id>Method metrics</id>
+          </State>
+          <State>
+            <id>Numeric issues</id>
+          </State>
+          <State>
+            <id>Performance issues</id>
+          </State>
+          <State>
+            <id>Potentially confusing code constructs</id>
+          </State>
+          <State>
+            <id>Probable bugs</id>
+          </State>
+          <State>
+            <id>Properties Files</id>
+          </State>
+          <State>
+            <id>Serialization issues</id>
+          </State>
+          <State>
+            <id>Verbose or redundant code constructs</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>UnnecessaryCallToStringValueOf</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
@@ -220,6 +374,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="Favorites" />
       <pane id="ProjectPane">
         <subPane>
@@ -341,24 +496,33 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
-    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
-    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers" value="false" />
+    <property name="options.splitter.main.proportions" value="0.3" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="MemberChooser.showClasses" value="true" />
-    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="options.lastSelected" value="Errors" />
     <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="org.springframework.data.neo4j.examples.hellograph" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.springframework.data.neo4j.examples.hellograph" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="org.springframework.data.neo4j.examples.hellograph" />
     </key>
   </component>
@@ -389,6 +553,74 @@
       <method>
         <option name="Make" enabled="false" />
       </method>
+    </configuration>
+    <configuration default="false" name="org.springframework.data.neo4j.examples.hellograph in hello-worlds" type="JUnit" factoryName="JUnit" temporary="true">
+      <extension name="coverage" enabled="false" merge="false">
+        <pattern>
+          <option name="PATTERN" value="org.springframework.data.neo4j.examples.hellograph.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="hello-worlds" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="org.springframework.data.neo4j.examples.hellograph" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="53554" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="WorldRepositoryTest.shouldFindWorldsByName" type="JUnit" factoryName="JUnit" temporary="true">
+      <extension name="coverage" enabled="false" merge="false">
+        <pattern>
+          <option name="PATTERN" value="org.springframework.data.neo4j.examples.hellograph.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="hello-worlds" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="org.springframework.data.neo4j.examples.hellograph" />
+      <option name="MAIN_CLASS_NAME" value="org.springframework.data.neo4j.examples.hellograph.WorldRepositoryTest" />
+      <option name="METHOD_NAME" value="shouldFindWorldsByName" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="54209" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
     </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
@@ -505,9 +737,11 @@
         <option name="Make" enabled="false" />
       </method>
     </configuration>
-    <list size="2">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Application.App" />
       <item index="1" class="java.lang.String" itemvalue="JUnit.WorldRepositoryTest" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.org.springframework.data.neo4j.examples.hellograph in hello-worlds" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.WorldRepositoryTest.shouldFindWorldsByName" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -518,6 +752,8 @@
   <component name="SvnConfiguration" maxAnnotateRevisions="500">
     <option name="USER" value="" />
     <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
     <option name="LAST_MERGED_REVISION" />
     <option name="MERGE_DRY_RUN" value="false" />
     <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
@@ -528,6 +764,7 @@
     <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
     <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
     <option name="FORCE_UPDATE" value="false" />
+    <configuration useDefault="true">$USER_HOME$/.subversion_IDEA</configuration>
     <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
   </component>
   <component name="TaskManager">
@@ -539,36 +776,45 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1205" y="248" width="1288" height="905" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="22" width="2560" height="1327" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32974318" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="JavaRebel Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39920425" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="JavaRebel Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3985087" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="JavaRebel" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32866243" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="JavaRebel" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32808617" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32997844" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3292978" sideWeight="0.6713376" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32866243" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3289526" sideWeight="0.67191386" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24970132" sideWeight="0.67191386" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32808617" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="CHECK_NEW_TODO" value="true" />
+    <option name="myTodoPanelSettings">
+      <value>
+        <are-packages-shown value="false" />
+        <are-modules-shown value="false" />
+        <flatten-packages value="false" />
+        <is-autoscroll-to-source value="false" />
+      </value>
+    </option>
     <option name="PERFORM_UPDATE_IN_BACKGROUND" value="true" />
     <option name="PERFORM_COMMIT_IN_BACKGROUND" value="true" />
     <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
@@ -603,75 +849,122 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/helloWorldContext.xml">
-      <provider editor-type-id="com.intellij.spring.perspectives.SpringBeansStructureEditorProvider">
-        <state />
-      </provider>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-neo4j/1.0.0.BUILD-SNAPSHOT/spring-data-neo4j-1.0.0.BUILD-SNAPSHOT-sources.jar!/org/springframework/data/graph/neo4j/repository/GraphRepositoryFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="77" selection-start="768" selection-end="768" vertical-scroll-proportion="-3.319149" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/org/springframework/data/neo4j/examples/hellograph/WorldTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="73" selection-start="1042" selection-end="1042" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/org/springframework/data/neo4j/examples/hellograph/WorldCounterTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="73" selection-start="928" selection-end="928" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/springframework/data/neo4j/examples/hellograph/WorldCounter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="151" selection-end="454" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="115" column="70" selection-start="3920" selection-end="3920" vertical-scroll-proportion="0.0">
+        <state line="42" column="11" selection-start="1593" selection-end="1593" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/springframework/data/neo4j/examples/hellograph/RelationshipTypes.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-neo4j/1.0.0.BUILD-SNAPSHOT/spring-data-neo4j-1.0.0.BUILD-SNAPSHOT-sources.jar!/org/springframework/data/graph/neo4j/repository/GraphRepositoryFactoryBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="75" selection-start="181" selection-end="181" vertical-scroll-proportion="0.0">
+        <state line="11" column="84" selection-start="507" selection-end="507" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/springframework/data/neo4j/examples/hellograph/World.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons-core/1.0.0.M6/spring-data-commons-core-1.0.0.M6-sources.jar!/org/springframework/data/repository/support/RepositoryInterfaceAwareBeanPostProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="66" selection-start="958" selection-end="958" vertical-scroll-proportion="0.0">
+        <state line="72" column="21" selection-start="2660" selection-end="2660" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-neo4j/1.0.0.BUILD-SNAPSHOT/spring-data-neo4j-1.0.0.BUILD-SNAPSHOT-sources.jar!/org/springframework/data/graph/neo4j/config/Neo4jConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="178" column="6" selection-start="8247" selection-end="8247" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons-core/1.0.0.M6/spring-data-commons-core-1.0.0.M6-sources.jar!/org/springframework/data/repository/support/RepositoryFactoryBeanSupport.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="107" column="28" selection-start="3515" selection-end="3515" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-neo4j/1.0.0.BUILD-SNAPSHOT/spring-data-neo4j-1.0.0.BUILD-SNAPSHOT-sources.jar!/org/springframework/data/graph/neo4j/support/GraphDatabaseContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="0" selection-start="2596" selection-end="2596" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-neo4j/1.0.0.BUILD-SNAPSHOT/spring-data-neo4j-1.0.0.BUILD-SNAPSHOT-sources.jar!/org/springframework/data/graph/neo4j/repository/AbstractGraphRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="110" column="0" selection-start="3814" selection-end="3814" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/neo4j/neo4j-lucene-index/1.3.M05/neo4j-lucene-index-1.3.M05.jar!/org/neo4j/index/impl/lucene/LuceneIndex.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="48" selection-start="1914" selection-end="1914" vertical-scroll-proportion="-8.56">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/org/springframework/data/neo4j/examples/hellograph/WorldRepositoryTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="81" selection-start="1559" selection-end="1559" vertical-scroll-proportion="0.0">
+        <state line="99" column="41" selection-start="2933" selection-end="2933" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/springframework/data/neo4j/examples/hellograph/MyWorldRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="22" selection-start="276" selection-end="276" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/springframework/data/neo4j/examples/hellograph/World.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="59" selection-start="1124" selection-end="1130" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-neo4j/1.0.0.BUILD-SNAPSHOT/spring-data-neo4j-1.0.0.BUILD-SNAPSHOT.jar!/org/springframework/data/graph/neo4j/config/datagraph-1.0.xsd">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="27" selection-start="393" selection-end="393" vertical-scroll-proportion="0.15748031">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/helloWorldContext.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="3" selection-start="59" selection-end="59" vertical-scroll-proportion="-0.59574467">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.spring.perspectives.SpringBeansStructureEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="36" selection-start="801" selection-end="821" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/springframework/data/neo4j/examples/hellograph/WorldRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="97" column="42" selection-start="3036" selection-end="3054" vertical-scroll-proportion="0.0">
+        <state line="8" column="68" selection-start="247" selection-end="247" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-neo4j/1.0.0.M4/spring-data-neo4j-1.0.0.M4.jar!/org/springframework/data/graph/neo4j/finder/NodeFinder.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/springframework/data/neo4j/examples/hellograph/WorldRepositoryImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="218" selection-start="842" selection-end="842" vertical-scroll-proportion="-5.28">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/springframework/data/neo4j/examples/hellograph/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="26" selection-start="344" selection-end="344" vertical-scroll-proportion="0.30125523">
-          <folding />
+        <state line="17" column="12" selection-start="627" selection-end="627" vertical-scroll-proportion="0.44619423">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

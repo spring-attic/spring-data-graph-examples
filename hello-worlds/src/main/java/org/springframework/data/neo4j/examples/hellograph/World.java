@@ -59,6 +59,6 @@ public class World
 
     public boolean canBeReachedFrom( World otherWorld )
     {
-        return this.reachableByRocket.contains( otherWorld );
+        return reachableByRocket.contains( otherWorld );
     }
 }

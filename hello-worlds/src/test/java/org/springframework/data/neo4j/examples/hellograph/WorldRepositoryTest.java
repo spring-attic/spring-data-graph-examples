@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.graph.core.NodeBacked;
 import org.springframework.data.graph.neo4j.support.GraphDatabaseContext;
 import org.springframework.data.graph.neo4j.support.node.Neo4jHelper;
-import org.springframework.data.neo4j.examples.hellograph.WorldRepository;
-import org.springframework.data.neo4j.examples.hellograph.World;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -24,7 +22,7 @@ import static org.junit.internal.matchers.StringContains.containsString;
 
 /**
  * Exploratory testing of Spring Data Graph using
- * the WorldRepository.
+ * the WorldRepositoryImpl.
  */
 @ContextConfiguration(locations = "classpath:spring/helloWorldContext.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -48,10 +46,10 @@ public class WorldRepositoryTest
     @Test
     public void shouldAllowDirectWorldCreation()
     {
-        assertEquals(0, galaxy.countWorlds());
+        assertEquals(0, (long) galaxy.count());
         World myWorld = new World( "mine", 0 ).persist();
-        assertEquals(1, galaxy.countWorlds());
-        Iterable<World> foundWorlds = galaxy.findAllWorlds();
+        assertEquals(1, (long) galaxy.count());
+        Iterable<World> foundWorlds = galaxy.findAll();
         World mine = foundWorlds.iterator().next();
         assertEquals(myWorld.getName(), mine.getName());
     }
@@ -68,7 +66,7 @@ public class WorldRepositoryTest
     public void shouldHaveCorrectNumberOfWorlds()
     {
         galaxy.makeSomeWorlds();
-        assertEquals(13, galaxy.countWorlds());
+        assertEquals(13, (long) galaxy.count());
     }
 
     @Test
@@ -76,7 +74,7 @@ public class WorldRepositoryTest
     {
         for ( World w : galaxy.makeSomeWorlds() )
         {
-            assertNotNull( galaxy.findWorldIdentifiedBy( ((NodeBacked) w).getNodeId() ) );
+            assertNotNull(galaxy.findOne(((NodeBacked) w).getNodeId()));
         }
     }
 
@@ -84,7 +82,7 @@ public class WorldRepositoryTest
     public void shouldFindAllWorlds()
     {
         Collection<World> madeWorlds = galaxy.makeSomeWorlds();
-        Iterable<World> foundWorlds = galaxy.findAllWorlds();
+        Iterable<World> foundWorlds = galaxy.findAll();
 
         int countOfFoundWorlds = 0;
         for ( World foundWorld : foundWorlds )

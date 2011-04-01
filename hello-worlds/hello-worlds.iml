@@ -4,9 +4,9 @@
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
@@ -23,29 +23,29 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-aspects:3.0.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context-support:3.0.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:3.0.5.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-neo4j:1.0.0.M4" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-neo4j:1.0.0.BUILD-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-orm:3.0.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:3.0.5.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons-core:1.0.0.M4" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons-core:1.0.0.M6" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.5.10" level="project" />
     <orderEntry type="library" name="Maven: log4j:log4j:1.2.15" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-graph-core:1.0.0.M4" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-graph-core:1.0.0.BUILD-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:jcl-over-slf4j:1.5.10" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.slf4j:slf4j-log4j12:1.5.10" level="project" />
-    <orderEntry type="library" name="Maven: org.aspectj:aspectjrt:1.6.11.M2" level="project" />
+    <orderEntry type="library" name="Maven: org.aspectj:aspectjrt:1.6.11.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: cglib:cglib:2.2" level="project" />
     <orderEntry type="library" name="Maven: asm:asm:3.1" level="project" />
-    <orderEntry type="library" name="Maven: org.neo4j:neo4j:1.3.M04" level="project" />
-    <orderEntry type="library" name="Maven: org.neo4j:neo4j-kernel:1.3.M04" level="project" />
+    <orderEntry type="library" name="Maven: org.neo4j:neo4j:1.3.M05" level="project" />
+    <orderEntry type="library" name="Maven: org.neo4j:neo4j-kernel:1.3.M05" level="project" />
     <orderEntry type="library" name="Maven: org.apache.geronimo.specs:geronimo-jta_1.1_spec:1.1.1" level="project" />
-    <orderEntry type="library" name="Maven: org.neo4j:neo4j-lucene-index:1.3.M04" level="project" />
+    <orderEntry type="library" name="Maven: org.neo4j:neo4j-lucene-index:1.3.M05" level="project" />
     <orderEntry type="library" name="Maven: org.apache.servicemix.bundles:org.apache.servicemix.bundles.lucene:3.0.1_2" level="project" />
-    <orderEntry type="library" name="Maven: org.neo4j:neo4j-graph-algo:1.3.M04" level="project" />
-    <orderEntry type="library" name="Maven: org.neo4j:neo4j-udc:1.3.M04" level="project" />
-    <orderEntry type="library" name="Maven: org.neo4j:neo4j-management:1.3.M04" level="project" />
-    <orderEntry type="library" name="Maven: org.neo4j:neo4j-com:1.3.M04" level="project" />
+    <orderEntry type="library" name="Maven: org.neo4j:neo4j-graph-algo:1.3.M05" level="project" />
+    <orderEntry type="library" name="Maven: org.neo4j:neo4j-udc:1.3.M05" level="project" />
+    <orderEntry type="library" name="Maven: org.neo4j:neo4j-management:1.3.M05" level="project" />
+    <orderEntry type="library" name="Maven: org.neo4j:neo4j-com:1.3.M05" level="project" />
     <orderEntry type="library" name="Maven: org.apache.servicemix.bundles:org.apache.servicemix.bundles.netty:3.2.3.Final_1" level="project" />
-    <orderEntry type="library" name="Maven: org.neo4j:neo4j-ha:1.3.M04" level="project" />
+    <orderEntry type="library" name="Maven: org.neo4j:neo4j-ha:1.3.M05" level="project" />
     <orderEntry type="library" name="Maven: org.apache.zookeeper:zookeeper:3.3.2" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.0.Final" level="project" />
     <orderEntry type="library" name="Maven: javax.validation:validation-api:1.0.0.GA" level="project" />
