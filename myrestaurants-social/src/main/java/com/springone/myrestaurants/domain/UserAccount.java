@@ -38,19 +38,15 @@ public class UserAccount {
     private String lastName;
 
     @GraphProperty
-    @Transient
     String nickname;
 
     @RelatedTo(type = "friends", elementClass = UserAccount.class)
-    @Transient
     Set<UserAccount> friends;
 
     @RelatedToVia(type = "recommends", elementClass = Recommendation.class)
-    @Transient
     Iterable<Recommendation> recommendations;
 
     @GraphTraversal(traversalBuilder = TopRatedRestaurantTraverser.class, elementClass = Restaurant.class)
-    @Transient
     Iterable<Restaurant> topRatedRestaurants;
 
     public Collection<RatedRestaurant> getTopNRatedRestaurants(int n) {
