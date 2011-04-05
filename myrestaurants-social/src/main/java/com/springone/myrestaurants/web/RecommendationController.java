@@ -155,7 +155,7 @@ public class RecommendationController extends BaseApplicationController {
     					 Model model) {
     	Recommendation foundRec = findRecommendation(userId, id);
     	if (foundRec != null) {
-    		if (foundRec.hasUnderlyingRelationship()) {
+    		if (foundRec.hasPersistentState()) {
     			foundRec.getPersistentState().delete();
     		}
     	}
