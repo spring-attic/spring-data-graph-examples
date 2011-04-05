@@ -1,8 +1,8 @@
 package org.neo4j.examples.imdb.domain;
 
-import org.springframework.data.annotation.Indexed;
 import org.springframework.data.graph.annotation.NodeEntity;
 import org.springframework.data.graph.annotation.RelatedTo;
+import org.springframework.data.graph.neo4j.annotation.Indexed;
 
 import java.util.Set;
 

@@ -1,11 +1,11 @@
 package org.springframework.data.neo4j.examples.hellograph;
 
-import org.springframework.data.annotation.Indexed;
 import org.springframework.data.graph.annotation.GraphProperty;
 import org.springframework.data.graph.annotation.NodeEntity;
 import org.springframework.data.graph.annotation.RelatedTo;
 import org.springframework.data.graph.core.Direction;
 import org.springframework.data.graph.core.NodeBacked;
+import org.springframework.data.graph.neo4j.annotation.Indexed;
 
 import java.util.Set;
 
