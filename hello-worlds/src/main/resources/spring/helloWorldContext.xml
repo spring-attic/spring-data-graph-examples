@@ -10,6 +10,7 @@
 		http://www.springframework.org/schema/data/graph http://www.springframework.org/schema/data/graph/datagraph-1.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
 	<context:spring-configured/>
+    <context:annotation-config/>
 
     <datagraph:config storeDirectory="target/neo4j-db"/>
     <datagraph:repositories base-package="org.springframework.data.neo4j.examples.hellograph" graph-database-context-ref="graphDatabaseContext"/>

@@ -15,7 +15,7 @@
     <aspectj.version>1.6.11.RELEASE</aspectj.version>
     <slf4j.version>1.6.1</slf4j.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <datastore-graph.version>1.0.0.BUILD-SNAPSHOT</datastore-graph.version>
+    <datastore-graph.version>1.0.0.RC1</datastore-graph.version>
   </properties>
 
   <repositories>
