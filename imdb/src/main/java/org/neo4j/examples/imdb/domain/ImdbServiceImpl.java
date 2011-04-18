@@ -39,7 +39,7 @@ class ImdbServiceImpl implements ImdbService {
     }
 
     public Actor getActor(final String name) {
-        Actor actor = actorRepository.findByPropertyValue(null, "name", name);
+        Actor actor = actorRepository.findByPropertyValue("name", name);
         if (actor != null) return actor;
         return searchEngine.searchActor(name);
     }
@@ -52,14 +52,14 @@ class ImdbServiceImpl implements ImdbService {
     }
 
     public Movie getExactMovie(final String title) {
-        return movieRepository.findByPropertyValue(null, "title", title);
+        return movieRepository.findByPropertyValue("title", title);
     }
 
 
     @Transactional
     public void setupReferenceRelationship() {
         Node referenceNode = graphDatabaseContext.getReferenceNode();
-        Actor bacon = actorRepository.findByPropertyValue(null, "name", "Bacon, Kevin");
+        Actor bacon = actorRepository.findByPropertyValue("name", "Bacon, Kevin");
 
         if (bacon == null) throw new NoSuchElementException("Unable to find Kevin Bacon actor");
 
@@ -69,7 +69,7 @@ class ImdbServiceImpl implements ImdbService {
     public List<?> getBaconPath(final Actor actor) {
         if (actor == null) throw new IllegalArgumentException("Null actor");
 
-        Actor bacon = actorRepository.findByPropertyValue(null, "name", "Bacon, Kevin");
+        Actor bacon = actorRepository.findByPropertyValue("name", "Bacon, Kevin");
 
         Path path = GraphAlgoFactory.shortestPath(StandardExpander.DEFAULT.add(RelTypes.ACTS_IN), 10).findSinglePath(bacon.getPersistentState(), actor.getPersistentState());
         if (path==null) return Collections.emptyList();

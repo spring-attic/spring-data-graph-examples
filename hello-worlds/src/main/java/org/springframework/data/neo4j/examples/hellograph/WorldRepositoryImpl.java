@@ -56,7 +56,7 @@ public class WorldRepositoryImpl implements MyWorldRepository {
 
     @Override
     public World findWorldNamed(String name) {
-        return worldRepository.findByPropertyValue(null, "name", name);
+        return worldRepository.findByPropertyValue("name", name);
     }
 
     @Override

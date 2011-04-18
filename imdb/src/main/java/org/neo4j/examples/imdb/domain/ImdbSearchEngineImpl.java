@@ -89,7 +89,7 @@ public class ImdbSearchEngineImpl implements ImdbSearchEngine {
     }
 
     private Lookup findLookup(String part) {
-        return lookupRepository.findByPropertyValue(null, "word", part);
+        return lookupRepository.findByPropertyValue("word", part);
     }
 
     private String[] splitSearchString(final String value) {

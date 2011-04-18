@@ -1,10 +1,10 @@
 package org.neo4j.examples.imdb.domain;
 
-import org.springframework.data.graph.neo4j.repository.NodeGraphRepository;
+import org.springframework.data.graph.neo4j.repository.GraphRepository;
 
 /**
  * @author mh
  * @since 01.04.11
  */
-public interface LookupRepository extends NodeGraphRepository<Lookup> {
+public interface LookupRepository extends GraphRepository<Lookup> {
 }
