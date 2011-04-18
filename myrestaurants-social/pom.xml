@@ -8,7 +8,7 @@
 	<name>myrestaurants-social</name>
 	<properties>
 		<spring.version>3.0.5.RELEASE</spring.version>
-		<spring-data-graph.version>1.0.0.BUILD-SNAPSHOT</spring-data-graph.version>
+		<spring-data-graph.version>1.0.0.RELEASE</spring-data-graph.version>
 		<aspectj.version>1.6.11.RELEASE</aspectj.version>
 		<slf4j.version>1.6.1</slf4j.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
