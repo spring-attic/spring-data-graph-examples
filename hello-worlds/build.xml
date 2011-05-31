@@ -3,7 +3,6 @@
 	<property name="lib.dir" location="lib" />
 
 	<import file="${settings.dir}/path.xml" />
-	<import file="${settings.dir}/test.xml" />
 
 	<import file="${settings.dir}/install-ivy.xml" />
 	<import file="${settings.dir}/path.xml" />
@@ -68,7 +67,7 @@
         <junit printsummary="yes" showoutput="true" dir="." outputtoformatters="false">
             <classpath refid="path.testing"/>
             <formatter type="plain" />
-             <batchtest fork="yes" todir="${test.reports}">
+             <batchtest fork="no" todir="${test.reports}">
                  <fileset refid="unittest.source.files"/>
              </batchtest>
          </junit>

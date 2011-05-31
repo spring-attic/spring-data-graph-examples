@@ -3,12 +3,11 @@
 <project name="path" default="donothingToMakeAValidAntFile"
 	basedir=".">
 
-	<property name="target.build" location="target/artifacts" />
 	<property name="main.src" location="src/main/java" />
 	<property name="main.resources" location="src/main/resources" />
 	<property name="main.target" location="target/main/classes" />
-	<property name="main.resources" location="src/main/resources" />
-	<property name="test.src" location="src/test/java" />
+
+    <property name="test.src" location="src/test/java" />
 	<property name="test.target" location="target/test/classes" />
 	<property name="test.reports" location="target/test/reports" />
 	<property name="test.resources" location="src/test/resources" />
