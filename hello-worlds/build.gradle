@@ -1,0 +1,23 @@
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
+
+springVersion = "3.0.5.RELEASE"
+springDataGraphVersion = "1.0.0.RELEASE"
+aspectjVersion = "1.6.11.RELEASE"
+
+apply from:'https://github.com/SpringSource/spring-data-graph/raw/master/build/gradle/springdatagraph.gradle'
+
+configurations {
+    runtime
+    testCompile
+}
+repositories {
+    mavenCentral()
+	mavenLocal()
+	mavenRepo urls: "http://maven.springframework.org/release"
+}
+
