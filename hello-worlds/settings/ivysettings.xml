@@ -11,10 +11,10 @@
                 <ivy pattern="${local-maven2-pattern}"/>
                 <artifact pattern="${local-maven2-pattern}"/>
            </filesystem>
-	    	<ibiblio name="neo4j" root="http://m2.neo4j.org/" m2compatible="true"/>
+	    	<ibiblio name="neo4j" root="https://m2.neo4j.org/" m2compatible="true"/>
 	    	<ibiblio name="maven_central" root="http://repo2.maven.org/maven2/" m2compatible="true"/>
-	        <ibiblio name="jboss" root="http://repository.jboss.org/nexus/content/groups/public/" m2compatible="true"/>   
-	        <ibiblio name="springframework" root="http://maven.springframework.org/release" m2compatible="true"/>
+	        <ibiblio name="jboss" root="https://repository.jboss.org/nexus/content/groups/public/" m2compatible="true"/>   
+	        <ibiblio name="springframework" root="https://maven.springframework.org/release" m2compatible="true"/>
 	    </chain>
 	</resolvers>
 	<caches>
