@@ -11,7 +11,7 @@ import java.util.zip.ZipInputStream;
 
 /**
  * A <code>ImdbParser</code> can parse the movie and actor/actress lists from
- * the imdb text data (http://www.imdb.com/interfaces). It uses an
+ * the imdb text data (https://www.imdb.com/interfaces). It uses an
  * {@link ImdbReader} forwarding the parsed information.
  */
 public class ImdbParser {

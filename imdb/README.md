@@ -1,7 +1,7 @@
 The IMDB Example Application for Neo4j written with Spring Datastore Graph
 ==========================================================================
 
-![Web UI](http://github.com/neo4j-examples/spring-datastore-graph-imdb/raw/master/doc/images/IMDB1.png)
+![Web UI](https://github.com/neo4j-examples/spring-datastore-graph-imdb/raw/master/doc/images/IMDB1.png)
 
 
 This application serves as a boilerplate to illustrate the use of annotations to persist objects in Spring to Neo4j, along the lines of 
@@ -41,11 +41,11 @@ This application serves as a boilerplate to illustrate the use of annotations to
 	
 Which produces a graph similar to 
 
-![Graph](http://wiki.neo4j.org/images/5/53/Imdb.screenshot.actor.png)
+![Graph](https://neo4j.com/docs/)
 
 
 
-The documentation of the IMDB Example domain is found at [http://wiki.neo4j.org/content/IMDB_Example]
+The documentation of the IMDB Example domain is found at [https://neo4j.com/docs/]
 
 
 Run build and run the example:
