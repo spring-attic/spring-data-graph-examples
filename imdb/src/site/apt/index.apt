@@ -17,7 +17,7 @@ The Neo4j - Datastore Graph IMDB Example
 	* @EndNode - the end node for a @GraphRelationship.
 
 	In order to persist objects in Spring into Neo4j, simply do something like this (the full code is available over at the 
-	{{{http://github.com/neo4j-examples/spring-datastore-graph-imdb} Spring Datastore Graph IMDB example}}:
+	{{{https://github.com/neo4j-examples/spring-datastore-graph-imdb} Spring Datastore Graph IMDB example}}:
 
 %{source-code|snippet=MovieClass|file=src/main/java/org/neo4j/examples/imdb/domain/Movie.java}
 
@@ -25,4 +25,4 @@ The Neo4j - Datastore Graph IMDB Example
 
 %{source-code|snippet=ActorClass|file=src/main/java/org/neo4j/examples/imdb/domain/Actor.java}
 
-	This will produce something like {{{http://wiki.neo4j.org/images/5/53/Imdb.screenshot.actor.png} this graph}}
+	This will produce something like {{{https://neo4j.com/docs/} this graph}}
