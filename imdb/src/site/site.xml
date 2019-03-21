@@ -4,24 +4,24 @@
     <bannerLeft>
         <name>${project.name}</name>
         <src>images/logos/logo-dark.png</src>
-        <href>http://neo4j.org/</href>
+        <href>https://neo4j.com</href>
     </bannerLeft>
     <body>
         <links>
-            <item name="Neo4j home" href="http://neo4j.org/" />
-            <item name="news" href="http://news.neo4j.org/" />
-            <item name="wiki" href="http://wiki.neo4j.org/" />
+            <item name="Neo4j home" href="https://neo4j.com" />
+            <item name="news" href="https://news.neo4j.org/" />
+            <item name="wiki" href="https://neo4j.com/docs/" />
             <item name="issues" href="https://trac.neo4j.org/" />
             <item name="components" href=".." />
-            <item name="apidocs" href="http://api.neo4j.org/" />
+            <item name="apidocs" href="https://neo4j.com/api_docs/" />
         </links>
         <menu name="Neo4j ${project.artifactId}">
             <item name="Introduction" href="index.html" />
-            <item name="Wiki" href="http://wiki.neo4j.org/content/Neo4j_and_SpringOne" />
+            <item name="Wiki" href="https://neo4j.com/docs/" />
             <item name="JavaDocs"
                 href="apidocs/index.html" />
             <item name="Source Repository"
-                href="http://github.com/neo4j-examples/spring-datastore-graph-imdb" />
+                href="https://github.com/neo4j-examples/spring-datastore-graph-imdb" />
         </menu>
         <menu ref="reports" />
     </body>
