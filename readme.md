@@ -1,3 +1,5 @@
+# spring-data-graph-examples is no longer actively maintained by VMware.
+
 This repository contains examples for using the Spring Data Graph Library, 
 currently the examples all use the 1.0.0.M4 release.
 
